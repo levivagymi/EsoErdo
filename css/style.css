@@ -1,13 +1,56 @@
-:root{
-    --dark-walnut: #582f0eff;
---saddle-brown: #7f4f24ff;
---toffee-brown: #936639ff;
---camel: #a68a64ff;
---khaki-beige: #b6ad90ff;
---dry-sage: #c2c5aaff;
---dry-sage-2: #a4ac86ff;
---dusty-olive: #656d4aff;
---ebony: #414833ff;
---charcoal-brown: #333d29ff;
+@import url('https://fonts.googleapis.com/css2?family=Varela&display=swap');
+
+:root {
+  --dark-walnut: #582f0eff;
+  --saddle-brown: #7f4f24ff;
+  --toffee-brown: #936639ff;
+  --camel: #a68a64ff;
+  --khaki-beige: #b6ad90ff;
+  --dry-sage: #c2c5aaff;
+  --dry-sage-2: #a4ac86ff;
+  --dusty-olive: #656d4aff;
+  --ebony: #414833ff;
+  --charcoal-brown: #333d29ff;
 }
 
+*{
+    padding: 0;
+    margin: 0;
+}
+body {
+  font-family: 'Varela', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  overflow-x: hidden;
+}
+
+header {
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  min-width: 100vw;
+  min-height: 100vh;
+  padding: 30px;
+  background-color: var(--dusty-olive);
+  font-weight: bold;
+  color: var(--dry-sage);
+}
+header h1{
+    font-size: 500%;
+}
+
+header .heroIMGsec {
+    position: relative;
+    left: -80px;
+  min-width: 50vw;
+  max-width: 50vw;
+  max-height: 90vh;
+  border-radius: 30px;
+
+  background-image: url(/assets/HeroRainForest.jpg);
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
