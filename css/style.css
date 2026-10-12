@@ -11,3 +11,13 @@
 --charcoal-brown: #333d29ff;
 }
 
+
+footer{
+    background-image: url(../img/rainforestfooter.avif);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    color: var(--dry-sage);
+    
+}
