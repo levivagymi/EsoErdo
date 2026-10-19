@@ -17,6 +17,7 @@
 }
 
 body {
+  transition: all 1s;
   margin: 0;
   font-family: 'Varela', sans-serif;
   font-weight: 400;
@@ -45,9 +46,9 @@ body {
   margin: 0 auto;
   padding: 8px 8px 8px 26px;
   color: var(--dry-sage);
-  background: rgba(31, 37, 24, 0.5);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  background: rgba(0, 0, 0, 0.411);
+  backdrop-filter: blur(9px);
+  -webkit-backdrop-filter: blur(9px);
   border: 1px solid rgba(194, 197, 170, 0.15);
   border-radius: 40px;
 }
@@ -76,7 +77,7 @@ body {
 .nav-link {
   padding: 8px 14px;
   font-size: 14px;
-  color: var(--dry-sage-2);
+  color: var(--dry-sage);
   border-radius: 30px;
 }
 
@@ -103,7 +104,7 @@ body {
   border-radius: 50%;
 }
 
-/* asztali menünél a linkek jobbra kerülnek */
+
 .drawer-body {
   justify-content: flex-end;
 }
@@ -117,8 +118,12 @@ body {
   color: var(--dry-sage);
 }
 
-
-/* ---------- Hero ---------- */
+.navbar-brand-img{
+  height: 40px;
+  width: auto;
+  border-radius: 50%;
+  margin-right: 10px;
+}
 
 header {
   display: flex;
@@ -160,8 +165,6 @@ header {
   background-size: cover;
 }
 
-
-/* ---------- Gomb ---------- */
 .button-57 {
   position: relative;
   overflow: hidden;
@@ -387,4 +390,16 @@ footer .flex-fill {
   .footer > p {
     margin: 0 36px;
   }
+}
+
+.loadingScreen {
+  position: absolute;
+  z-index: 5;
+  width: 100%;
+  height: 100vh;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 1s;
 }
