@@ -32,7 +32,6 @@ body {
 }
 
 
-/* ---------- Navigáció ---------- */
 
 .navbar {
   position: fixed;
@@ -103,7 +102,6 @@ body {
   border-radius: 50%;
 }
 
-/* asztali menünél a linkek jobbra kerülnek */
 .drawer-body {
   justify-content: flex-end;
 }
@@ -118,7 +116,6 @@ body {
 }
 
 
-/* ---------- Hero ---------- */
 
 header {
   display: flex;
@@ -161,7 +158,6 @@ header {
 }
 
 
-/* ---------- Gomb ---------- */
 .button-57 {
   position: relative;
   overflow: hidden;
@@ -229,9 +225,7 @@ header {
   transition: all 900ms cubic-bezier(0.48, 0, 0.12, 1);
 }
 
-/* ---------- Lábléc ---------- */
 
-/* a HTML-ben a lábléc egymásba van ágyazva, ezért a külső elemek nullázva */
 footer .ratio-21x9 {
   aspect-ratio: auto;
 }
@@ -315,11 +309,8 @@ footer .flex-fill {
 }
 
 
-/* ---------- Kisebb képernyők ---------- */
 
 @media (max-width: 900px) {
-
-  /* a HTML-ben inline max-width van az oszlopokon, ezért kell az !important */
   .footer .text {
     flex-direction: column;
   }
@@ -350,7 +341,6 @@ footer .flex-fill {
   }
 }
 
-/* a Bootstrap 576px-es menüszélesség alatt váltja a menüt oldalsó panelre */
 @media (max-width: 679px) {
   .nav-link {
     justify-content: flex-start;
