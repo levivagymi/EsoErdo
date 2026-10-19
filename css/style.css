@@ -14,10 +14,7 @@
   --charcoal-brown: #333d29ff;
 }
 
-*{
-    padding: 0;
-    margin: 0;
-}
+
 body {
   font-family: 'Varela', sans-serif;
   font-weight: 400;
@@ -26,29 +23,30 @@ body {
 }
 
 header {
-
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   min-width: 100vw;
   min-height: 100vh;
-  padding: 30px;
+  padding: 20px;
   background-color: var(--dusty-olive);
   font-weight: bold;
   color: var(--dry-sage);
 }
+
+.title {
+  align-content: center;
+
+}
 header h1{
-    font-size: 500%;
+    font-size:5vw;
 }
 
 header .heroIMGsec {
-    position: relative;
-    left: -80px;
   min-width: 50vw;
   max-width: 50vw;
-  max-height: 90vh;
+  max-height: 100vh;
   border-radius: 30px;
-
   background-image: url(/assets/HeroRainForest.jpg);
   background-attachment: fixed;
   background-position: center;
@@ -57,6 +55,60 @@ header .heroIMGsec {
 }
 
 
+footer {
+  background-image: url(../img/rainforestfooter.avif);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  color: var(--dry-sage);
+
+}
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px; 
+  
+  position: fixed;
+  top: 20px;       
+  left: 50%;      
+  transform: translateX(-50%); 
+  
+  width: 70vw;
+  padding: 15px 30px; 
+  z-index: 1000;   
+  background: rgba(148, 148, 148, 0.19);
+  backdrop-filter: blur(5px) saturate(182%);
+  -webkit-backdrop-filter: blur(5px) saturate(182%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 30px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+}
+.drawer-end, .nav-pills {
+  background: none;
+  
+}
+nav .active{
+  border-radius:30px;
+  margin-left:10px;
+  margin-right: 10px;
+}
+
+@media screen and (max-width: 926px){
+  nav, .drawer-end, .nav-pills {
+  background: rgba(148, 148, 148, 0.19);
+  backdrop-filter: blur(5px) saturate(182%);
+  -webkit-backdrop-filter: blur(5px) saturate(182%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 30px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+}
+nav .active{
+  border-radius:30px;
+  margin-left:10px;
+  margin-right: 10px;
+}
 footer {
     padding: 250px;
     font-weight: bolder;
