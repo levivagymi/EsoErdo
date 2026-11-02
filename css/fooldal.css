@@ -1,0 +1,698 @@
+:root {
+  --deep-moss: #1f2518;
+  --line: rgba(194, 197, 170, 0.2);
+  --glass-dark: rgba(31, 37, 24, 0.78);
+  --glass-border: rgba(194, 197, 170, 0.15);
+  --ease-soft: cubic-bezier(0.48, 0, 0.12, 1);
+  --radius-frame: 30px;
+  --radius-pill: 40px;
+  --gutter: clamp(20px, 5vw, 60px);
+  --content-max: 1200px;
+  --space-section: clamp(5rem, 3.5rem + 6vw, 9rem);
+  --nav-offset: 110px;
+}
+
+.navbar {
+  background: var(--glass-dark);
+}
+
+.ugraslink {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  z-index: 1100;
+  padding: 12px 22px;
+  color: var(--charcoal-brown);
+  text-decoration: none;
+  background: var(--dry-sage);
+  border-radius: var(--radius-pill);
+}
+
+main {
+  font-size: clamp(1rem, 0.96rem + 0.2vw, 1.125rem);
+}
+
+main:focus {
+  outline: none;
+}
+
+main section {
+  scroll-margin-top: var(--nav-offset);
+}
+
+main h2 {
+  margin: 0 0 24px;
+  font-size: clamp(2rem, 1.35rem + 2.6vw, 3.5rem);
+  font-weight: 400;
+  line-height: 1.08;
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+main h3 {
+  margin: 0;
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+main p {
+  margin: 0;
+  text-wrap: pretty;
+}
+
+.szoveglink {
+  color: var(--dry-sage);
+  text-decoration: underline;
+  text-decoration-color: var(--dusty-olive);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 6px;
+  transition: color 300ms var(--ease-soft), text-decoration-color 300ms var(--ease-soft);
+}
+
+.szoveglink:hover {
+  color: var(--ink);
+  text-decoration-color: currentColor;
+}
+
+.bevezeto,
+.szintek-fej,
+.reteg-belso,
+.temak,
+.veszely,
+.vedelem {
+  width: min(100% - 2 * var(--gutter), var(--content-max));
+  margin-inline: auto;
+}
+
+.bevezeto,
+.temak {
+  padding-block: var(--space-section);
+}
+
+header {
+  min-height: auto;
+}
+
+.title {
+  padding: 120px 0 12px;
+}
+
+.title h1 {
+  margin: 0 0 24px;
+  font-size: clamp(3rem, 1rem + 4.6vw, 6.5rem);
+  line-height: 1.02;
+}
+
+.cimsor {
+  display: block;
+  padding-block: 0.15em 0.2em;
+  margin-block: -0.15em -0.2em;
+  overflow: clip;
+}
+
+.cimsor > span {
+  display: block;
+}
+
+.hero-gombok {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 28px;
+}
+
+.hero-link {
+  display: inline-block;
+  padding-block: 10px;
+}
+
+.hero-kep {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  margin: 0;
+  overflow: hidden;
+  background: var(--ebony);
+  border-radius: var(--radius-frame);
+}
+
+.hero-kep img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  scale: 1.12;
+}
+
+.bevezeto {
+  display: grid;
+  gap: 48px;
+}
+
+.bevezeto-szoveg p {
+  max-width: 34rem;
+}
+
+.bevezeto-szoveg p + p {
+  margin-top: 16px;
+}
+
+.jellemzok {
+  margin: 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.jellemzo {
+  display: grid;
+  gap: 4px;
+  padding-block: 22px;
+  border-top: 1px solid var(--line);
+}
+
+.jellemzo dt {
+  font-size: 0.9375rem;
+  font-weight: 400;
+  color: var(--dry-sage-2);
+}
+
+.jellemzo dd {
+  margin: 0;
+  color: var(--dry-sage);
+}
+
+.jellemzo-ertek {
+  display: block;
+  margin-bottom: 6px;
+  font-size: clamp(1.375rem, 1.15rem + 0.9vw, 1.875rem);
+  line-height: 1.2;
+  color: var(--ink);
+}
+
+.szintek {
+  padding-top: var(--space-section);
+}
+
+.szintek-fej {
+  padding-bottom: clamp(3rem, 2rem + 3vw, 5rem);
+}
+
+.szintek-fej p {
+  max-width: 38rem;
+}
+
+.szintek-tartalom {
+  position: relative;
+}
+
+.retegek {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.reteg {
+  --reteg-elozo: var(--charcoal-brown);
+  --reteg-hatter: var(--dry-sage);
+  --reteg-szoveg: var(--deep-moss);
+  --reteg-cim: var(--deep-moss);
+  --reteg-kiemeles: var(--dark-walnut);
+  display: flex;
+  align-items: center;
+  padding-block: 9rem 5rem;
+  color: var(--reteg-szoveg);
+  background: linear-gradient(var(--reteg-elozo), var(--reteg-hatter) 7rem);
+}
+
+.reteg-lombkorona {
+  --reteg-elozo: var(--dry-sage);
+  --reteg-hatter: var(--dry-sage-2);
+}
+
+.reteg-alsoszint {
+  --reteg-elozo: var(--dry-sage-2);
+  --reteg-hatter: var(--dusty-olive);
+  --reteg-szoveg: var(--ink);
+  --reteg-cim: var(--ink);
+  --reteg-kiemeles: var(--ink);
+}
+
+.reteg-talaj {
+  --reteg-elozo: var(--dusty-olive);
+  --reteg-hatter: var(--deep-moss);
+  --reteg-szoveg: var(--dry-sage);
+  --reteg-cim: var(--ink);
+  --reteg-kiemeles: var(--camel);
+  background: linear-gradient(var(--reteg-elozo), var(--reteg-hatter) 7rem, var(--reteg-hatter) calc(100% - 7rem), var(--charcoal-brown));
+}
+
+.reteg-belso > * {
+  max-width: 36rem;
+}
+
+.reteg h3 {
+  font-size: clamp(2.25rem, 1.3rem + 3.8vw, 4.5rem);
+  line-height: 1.05;
+  color: var(--reteg-cim);
+}
+
+.reteg-magassag {
+  margin-block: 12px 20px;
+  font-size: clamp(1.125rem, 1rem + 0.5vw, 1.375rem);
+  color: var(--reteg-kiemeles);
+}
+
+.reteg-elolenyek {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 28px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.reteg-elolenyek li {
+  padding: 6px 14px;
+  font-size: 0.9375rem;
+  border: 1px solid color-mix(in srgb, currentColor 40%, transparent);
+  border-radius: var(--radius-pill);
+}
+
+.magassagmero {
+  display: none;
+}
+
+.tema-lista {
+  display: grid;
+  gap: 48px;
+  margin-top: 40px;
+}
+
+.tema-kartya {
+  position: relative;
+  display: grid;
+  gap: 20px;
+}
+
+.tema-kep {
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--ebony);
+  border-radius: var(--radius-frame);
+}
+
+.tema-kep img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.tema-kartya h3 {
+  margin-bottom: 8px;
+  font-size: clamp(1.375rem, 1.2rem + 0.6vw, 1.75rem);
+}
+
+.tema-kartya .stretched-link {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 6px;
+  transition: text-decoration-color 300ms var(--ease-soft);
+}
+
+.tema-kartya:hover .stretched-link {
+  text-decoration-color: currentColor;
+}
+
+.tema-kartya .stretched-link:focus-visible {
+  outline: none;
+}
+
+.tema-kartya .stretched-link:focus-visible::after {
+  outline: 2px solid var(--khaki-beige);
+  outline-offset: 8px;
+  border-radius: var(--radius-frame);
+}
+
+.tema-kartya p {
+  color: var(--dry-sage);
+}
+
+.veszely {
+  display: grid;
+  gap: 40px;
+  padding-block: var(--space-section) calc(var(--space-section) / 2);
+}
+
+.veszely-szoveg p {
+  max-width: 38rem;
+}
+
+.veszely-szoveg p + p {
+  margin-top: 16px;
+}
+
+.veszely-adat {
+  margin: 0;
+  padding: clamp(28px, 4vw, 48px);
+  background: var(--ebony);
+  border-radius: var(--radius-frame);
+}
+
+.veszely-kiemeles {
+  font-size: clamp(1.5rem, 1.1rem + 1.6vw, 2.25rem);
+  line-height: 1.2;
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+.veszely-adat figcaption {
+  display: grid;
+  gap: 14px;
+  margin-top: 16px;
+  color: var(--dry-sage);
+}
+
+.veszely-adat .szoveglink {
+  justify-self: start;
+  padding-block: 6px;
+  font-size: 0.9375rem;
+}
+
+.vedelem {
+  padding-block: calc(var(--space-section) / 2) var(--space-section);
+}
+
+.teendok {
+  display: grid;
+  gap: 36px;
+  margin: 40px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.teendo {
+  display: grid;
+  grid-template-columns: 52px 1fr;
+  gap: 8px 20px;
+  align-content: start;
+}
+
+.teendo .bi {
+  grid-row: span 2;
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  font-size: 1.375rem;
+  color: var(--khaki-beige);
+  background: var(--ebony);
+  border-radius: 50%;
+}
+
+.teendo h3 {
+  padding-top: 12px;
+  font-size: clamp(1.25rem, 1.1rem + 0.5vw, 1.5rem);
+  line-height: 1.25;
+}
+
+.teendo p {
+  max-width: 34rem;
+  color: var(--dry-sage);
+}
+
+.tamogatas {
+  display: grid;
+  gap: 28px;
+  margin-top: clamp(56px, 7vw, 96px);
+  padding: clamp(32px, 5vw, 64px);
+  background: var(--ebony);
+  border-radius: var(--radius-frame);
+}
+
+.tamogatas h3 {
+  margin-bottom: 12px;
+  font-size: clamp(1.75rem, 1.2rem + 2vw, 2.75rem);
+  line-height: 1.12;
+}
+
+.tamogatas p {
+  max-width: 36rem;
+  color: var(--dry-sage);
+}
+
+.tamogatas .button-57 {
+  justify-self: start;
+}
+
+@media (min-width: 768px) {
+  .jellemzo {
+    grid-template-columns: 8rem 1fr;
+    gap: 24px;
+  }
+
+  .tema-kartya {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+    align-items: center;
+    gap: 32px;
+  }
+
+  .teendok {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 48px 56px;
+  }
+}
+
+@media (min-width: 861px) {
+  header {
+    min-height: 100svh;
+  }
+
+  .title {
+    padding: 90px 0 40px clamp(20px, 4vw, 60px);
+  }
+
+  .hero-kep {
+    flex: 1;
+    aspect-ratio: auto;
+  }
+}
+
+@media (min-width: 1024px) {
+  .bevezeto {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    align-items: start;
+    gap: 80px;
+  }
+
+  .reteg {
+    min-height: 85svh;
+  }
+
+  .reteg-belso {
+    padding-left: 220px;
+  }
+
+  .magassagmero {
+    position: absolute;
+    inset-block: 9rem 5rem;
+    left: max(var(--gutter), (100% - var(--content-max)) / 2);
+    z-index: 1;
+    display: block;
+    width: 172px;
+    pointer-events: none;
+  }
+
+  .magassagmero-sav {
+    position: sticky;
+    top: 20svh;
+    height: 60svh;
+    padding: 28px 22px;
+    background: var(--glass-dark);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-pill);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+
+  .magassagmero-skala {
+    position: relative;
+    height: 100%;
+  }
+
+  .magassagmero-szakasz {
+    position: absolute;
+    top: calc((var(--max) - var(--felso)) / var(--max) * 100%);
+    left: 52px;
+    width: 4px;
+    height: calc((var(--felso) - var(--also)) / var(--max) * 100%);
+    background-color: var(--line);
+    background-clip: padding-box;
+    border-block: 2px solid transparent;
+    border-radius: 4px;
+  }
+
+  .magassagmero-szakasz.aktiv {
+    background-color: var(--ink);
+  }
+
+  .magassagmero-felirat {
+    position: absolute;
+    top: calc((var(--max) - var(--magassag)) / var(--max) * 100%);
+    left: 0;
+    width: 40px;
+    font-size: 0.8125rem;
+    line-height: 1;
+    color: var(--dry-sage);
+    text-align: right;
+    white-space: nowrap;
+    translate: 0 -50%;
+  }
+
+  .magassagmero-palya {
+    position: absolute;
+    inset: 0;
+    translate: 0 var(--jelolo, 0%);
+  }
+
+  .magassagmero-jelolo {
+    position: absolute;
+    top: 0;
+    left: 54px;
+    width: 14px;
+    height: 14px;
+    background: var(--ink);
+    border-radius: 50%;
+    box-shadow: 0 0 0 5px rgba(238, 240, 225, 0.18);
+    translate: -50% -50%;
+  }
+
+  .magassagmero-ertek {
+    position: absolute;
+    top: 0;
+    left: 72px;
+    font-size: 0.875rem;
+    line-height: 1;
+    color: var(--ink);
+    white-space: nowrap;
+    translate: 0 -50%;
+  }
+
+  .tema-lista {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 32px;
+  }
+
+  .tema-kartya {
+    grid-template-columns: none;
+    align-items: start;
+    gap: 20px;
+  }
+
+  .veszely {
+    grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
+    align-items: center;
+    gap: 80px;
+  }
+
+  .tamogatas {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 48px;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  .cimsor > span {
+    animation: sor-emelkedes 1000ms var(--ease-soft) both;
+  }
+
+  .cimsor + .cimsor > span {
+    animation-delay: 140ms;
+  }
+
+  .title > p,
+  .hero-gombok {
+    animation: beuszas 900ms var(--ease-soft) 380ms both;
+  }
+
+  .hero-gombok {
+    animation-delay: 500ms;
+  }
+
+  .hero-kep {
+    animation: keret-nyitas 1400ms var(--ease-soft) both;
+  }
+
+  .hero-kep img {
+    animation: kep-kozelites 1800ms var(--ease-soft) both;
+  }
+
+  .tema-kep img {
+    transition: scale 700ms var(--ease-soft);
+  }
+
+  .tema-kartya:hover .tema-kep img {
+    scale: 1.04;
+  }
+
+  .magassagmero-palya {
+    transition: translate 900ms var(--ease-soft);
+  }
+
+  .magassagmero-szakasz {
+    transition: background-color 400ms var(--ease-soft);
+  }
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .hero-kep img {
+      animation: kep-kozelites 1800ms var(--ease-soft) both, kep-parallax linear both;
+      animation-timeline: auto, view();
+      animation-range: normal, exit;
+    }
+  }
+}
+
+@keyframes sor-emelkedes {
+  from {
+    translate: 0 110%;
+  }
+}
+
+@keyframes beuszas {
+  from {
+    opacity: 0;
+    translate: 0 16px;
+  }
+}
+
+@keyframes keret-nyitas {
+  from {
+    clip-path: inset(100% 0 0 0 round var(--radius-frame));
+  }
+
+  to {
+    clip-path: inset(0 0 0 0 round var(--radius-frame));
+  }
+}
+
+@keyframes kep-kozelites {
+  from {
+    scale: 1.3;
+  }
+}
+
+@keyframes kep-parallax {
+  to {
+    translate: 0 6%;
+  }
+}

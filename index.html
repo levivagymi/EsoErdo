@@ -4,107 +4,323 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Ismerd meg az esőerdőket: hogyan épülnek fel, kik élnek bennük, mi fenyegeti őket, és te mit tehetsz a megóvásukért.">
+    <meta name="theme-color" content="#333d29">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-B/GM4XqrwHnWXNOWMbloTmrYXZg10cakYGmpfsR/bbzQ6JAJI4ihuyADKLnBgrCe" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
-    <title>Esőerdő</title>
+    <link rel="stylesheet" href="css/fooldal.css">
+    <title>Esőerdők világa</title>
 </head>
 
 <body>
-  
+    <a class="visually-hidden-focusable ugraslink" href="#tartalom">Ugrás a tartalomra</a>
     <header>
         <nav class="navbar sm:navbar-expand bg-1 fg-2">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#"><img class="navbar-brand-img" src="assets/logo.png" alt=""></a>
+                <a class="navbar-brand" href="index.html"><img class="navbar-brand-img" src="assets/logo.png"
+                        alt="Főoldal"></a>
                 <button class="btn-icon navbar-toggler" type="button" data-bs-toggle="drawer"
                     data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
-                    aria-label="Toggle navigation">
+                    aria-label="Menü megnyitása">
                     <span class="navbar-toggler-icon" aria-hidden="true"></span>
                 </button>
                 <dialog class="drawer drawer-end" tabindex="-1" id="navbarNavAltMarkup"
                     aria-labelledby="navbarNavAltMarkupLabel">
                     <div class="drawer-header">
-                        <h5 class="drawer-title" id="navbarNavAltMarkupLabel"></h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="drawer" aria-label="Close"></button>
+                        <h5 class="drawer-title visually-hidden" id="navbarNavAltMarkupLabel">Menü</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="drawer"
+                            aria-label="Menü bezárása"></button>
                     </div>
                     <div class="drawer-body">
                         <div class="nav nav-pills navbar-nav">
                             <a class="nav-link active" aria-current="page" href="index.html">Főoldal</a>
                             <a class="nav-link" href="esoerdok_novenyzete.html">Esőerdők növényzete</a>
-                            <a class="nav-link" href="vizivilag.html">Esőerdők vizi világa</a>
-                            <a class="nav-link" href="#">Esőerdők lakói</a>
+                            <a class="nav-link" href="vizivilag.html">Esőerdők vízi világa</a>
+                            <a class="nav-link" href="esoerdok_lakoi.html">Esőerdők lakói</a>
                         </div>
                     </div>
                 </dialog>
             </div>
         </nav>
         <section class="title">
-            <img src="/assets/logo.png" alt="">
-            
-            <p>
-                Ismerd meg az esőerdőket, és segíts nekik
-            </p>
-            <button class="button-57" role="button"><span>Tudj meg többet</span><span>Esőerdők világa</span></button>
-
+            <h1>
+                <span class="cimsor"><span>Esőerdők</span></span>
+                <span class="cimsor"><span>világa</span></span>
+            </h1>
+            <p>Ismerd meg az esőerdőket, és segíts nekik</p>
+            <div class="hero-gombok">
+                <a class="button-57" href="#bevezeto"><span>Tudj meg többet</span><span aria-hidden="true">Irány az
+                        erdő</span></a>
+                <a class="szoveglink hero-link" href="#vedelem">Hogyan segíthetsz?</a>
+            </div>
         </section>
-        <div class="heroIMGsec">
-
-        </div>
+        <figure class="hero-kep">
+            <img src="assets/HeroRainForest-1920.jpg"
+                srcset="assets/HeroRainForest-1280.jpg 1280w, assets/HeroRainForest-1920.jpg 1920w, assets/HeroRainForest-2560.jpg 2560w, assets/HeroRainForest.jpg 3840w"
+                sizes="(min-width: 861px) 200vh, 150vw" width="3840" height="2160" fetchpriority="high"
+                alt="Mohával borított fatörzsek és dús páfrányok az esőerdő mélyén">
+        </figure>
     </header>
-    <main>
+    <main id="tartalom" tabindex="-1">
+        <section id="bevezeto" class="bevezeto" aria-labelledby="bevezeto-cim">
+            <div class="bevezeto-szoveg">
+                <h2 id="bevezeto-cim">Mi az esőerdő?</h2>
+                <p>Az esőerdő sűrű, örökzöld erdő, ahol egész évben bőven esik az eső. A legtöbb a trópusokon, az
+                    Egyenlítő mentén nő, de hűvösebb, mérsékelt övi esőerdők is léteznek, például Észak-Amerika nyugati
+                    partvidékén.</p>
+                <p>Ezek az erdők szabályozzák a csapadékot, hatalmas mennyiségű szenet tárolnak, és élőlények
+                    millióinak adnak otthont.</p>
+            </div>
+            <dl class="jellemzok">
+                <div class="jellemzo">
+                    <dt>Csapadék</dt>
+                    <dd>
+                        <span class="jellemzo-ertek">Évente 2000 mm felett</span>
+                        Több mint háromszor annyi, mint amennyi Magyarországon esik.
+                    </dd>
+                </div>
+                <div class="jellemzo">
+                    <dt>Hőmérséklet</dt>
+                    <dd>
+                        <span class="jellemzo-ertek">Átlagosan 27 °C körül</span>
+                        Egész évben meleg van, a havi átlagok alig térnek el egymástól.
+                    </dd>
+                </div>
+                <div class="jellemzo">
+                    <dt>Élővilág</dt>
+                    <dd>
+                        <span class="jellemzo-ertek">A fajok több mint fele</span>
+                        A szárazföldek alig 6%-át borítják, mégis itt él a Föld növény- és állatfajainak több mint
+                        fele.
+                    </dd>
+                </div>
+                <div class="jellemzo">
+                    <dt>A legnagyobb</dt>
+                    <dd>
+                        <span class="jellemzo-ertek">Kb. 5,5 millió km²</span>
+                        Az Amazonas esőerdeje majdnem hatvanszor akkora, mint Magyarország, és kilenc ország osztozik
+                        rajta.
+                    </dd>
+                </div>
+            </dl>
+        </section>
 
-
-
-
-
-    </main>
-    <footer>
-        <div class="w-100 ratio-21x9 d-flex">
-            <div class="p-2 flex-fill">
-                <footer class="footer">
-                    <div class="w-100 ratio-21x9 d-flex text">
-
-                        <div class="p-2" style="flex: 0 0 30%; max-width: 30%;">
-                            <h3>Rólunk</h3>
-                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto ad eos voluptas ab
-                                nisi nulla
-                                sit molestias aut, facere corporis iste sequi velit eligendi ipsum quia omnis quas illo
-                                totam.</p>
-                        </div>
-
-                        <div class="p-2" style="flex: 0 0 25%; max-width: 25%;">
-                            <h3>További oldalak</h3>
-                            <ul class="footerlist">
-                                <li><a class="footerlistelement" href="">Főoldal</a></li>
-                                <li><a class="footerlistelement" href="">Esőerdő növényzete</a></li>
-                                <li><a class="footerlistelement" href="vizivilag.html">Esőerdő vízi világa</a></li>
-                                <li><a class="footerlistelement" href="">Esőerdő lakói</a></li>
+        <section id="szintek" class="szintek" aria-labelledby="szintek-cim">
+            <div class="szintek-fej">
+                <h2 id="szintek-cim">Az esőerdő szintjei</h2>
+                <p>Görgess lefelé, és ereszkedj le a 60 méteres óriásfák csúcsáról az erdő talajáig. Minél lejjebb
+                    érsz, annál kevesebb a fény és annál nagyobb a pára.</p>
+            </div>
+            <div class="szintek-tartalom">
+                <ol class="retegek">
+                    <li class="reteg reteg-oriasfak" data-felso="60" data-also="40">
+                        <div class="reteg-belso">
+                            <h3>Óriásfák szintje</h3>
+                            <p class="reteg-magassag">40–60 m</p>
+                            <p>A lombkorona fölé magasodó fák csúcsait tűző nap, erős szél és nagy hőingadozás éri.
+                                Egyes óriások, például a kapokfa, a 60 métert is túlnőhetik.</p>
+                            <ul class="reteg-elolenyek" aria-label="Jellemző élőlények">
+                                <li>kapokfa</li>
+                                <li>hárpia</li>
+                                <li>arapapagáj</li>
                             </ul>
                         </div>
-
-                        <div class="p-2" style="flex: 0 0 25%; max-width: 25%;">
-                            <h3>Kapcsolat</h3>
-                            <ul class="footerlist">
-                                <li>Facebook: <a href=""><i class="bi bi-facebook"></i></a></li>
-                                <li>Instagram: <a href=""><i class="bi bi-instagram"></i></a></li>
-                                <li>Email: arnoldjuhasz2008@gmail.com</li>
-                                <li>Tel: 06 20 624 2895</li>
+                    </li>
+                    <li class="reteg reteg-lombkorona" data-felso="40" data-also="20">
+                        <div class="reteg-belso">
+                            <h3>Lombkoronaszint</h3>
+                            <p class="reteg-magassag">20–40 m</p>
+                            <p>Összefüggő zöld tető, amely felfogja a napfény és az eső nagy részét. Itt él az esőerdei
+                                állatok többsége, sokan közülük szinte sosem ereszkednek le a talajra.</p>
+                            <ul class="reteg-elolenyek" aria-label="Jellemző élőlények">
+                                <li>tukán</li>
+                                <li>lajhár</li>
+                                <li>bőgőmajom</li>
+                                <li>broméliák</li>
                             </ul>
                         </div>
-
-                        <div class="p-2" style="flex: 0 0 20%; max-width: 20%;">
-                            <h3>Legnagyobb esőerdő elhelyezkedése</h3>
+                    </li>
+                    <li class="reteg reteg-alsoszint" data-felso="20" data-also="5">
+                        <div class="reteg-belso">
+                            <h3>Alsó lombkoronaszint</h3>
+                            <p class="reteg-magassag">5–20 m</p>
+                            <p>Félhomályos, fülledt világ: a napfénynek csak kb. 5%-a jut le idáig. A növények óriási
+                                levelekkel próbálják elkapni a kevés fényt.</p>
+                            <ul class="reteg-elolenyek" aria-label="Jellemző élőlények">
+                                <li>vörösszemű levelibéka</li>
+                                <li>kék morfólepke</li>
+                                <li>pálmák</li>
+                            </ul>
                         </div>
+                    </li>
+                    <li class="reteg reteg-talaj" data-felso="5" data-also="0">
+                        <div class="reteg-belso">
+                            <h3>Talajszint</h3>
+                            <p class="reteg-magassag">0–5 m</p>
+                            <p>A legsötétebb szint: a napfénynek mindössze kb. 2%-a ér le ide. A lehulló leveleket a
+                                gombák és a rovarok gyorsan lebontják, a fák pedig azonnal felveszik belőlük a
+                                tápanyagot.</p>
+                            <ul class="reteg-elolenyek" aria-label="Jellemző élőlények">
+                                <li>jaguár</li>
+                                <li>tapír</li>
+                                <li>levélvágó hangya</li>
+                                <li>gombák</li>
+                            </ul>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <section id="temak" class="temak" aria-labelledby="temak-cim">
+            <h2 id="temak-cim">Fedezd fel részletesen</h2>
+            <div class="tema-lista">
+                <article class="tema-kartya">
+                    <div class="tema-kep">
+                        <img src="assets/rainforestFromBelow-960.jpg"
+                            srcset="assets/rainforestFromBelow-960.jpg 960w, assets/rainforestFromBelow.jpeg 1920w"
+                            sizes="(min-width: 1024px) 380px, (min-width: 768px) 40vw, 100vw" width="960" height="640"
+                            loading="lazy" decoding="async" alt="Ködbe burkolózó esőerdő egy hegyoldalon">
                     </div>
-                    <p class="text-center mt-4">Minden jog fenntartva! &copy; 2026</p>
+                    <div class="tema-szoveg">
+                        <h3><a class="stretched-link" href="esoerdok_novenyzete.html">Esőerdők növényzete</a></h3>
+                        <p>Óriásfák, liánok és orchideák: hogyan alkalmazkodnak a növények a félhomályhoz és a bőséges
+                            esőhöz?</p>
+                    </div>
+                </article>
+                <article class="tema-kartya">
+                    <div class="tema-kep">
+                        <img src="assets/headerbg-960.jpg" width="960" height="637" loading="lazy" decoding="async"
+                            alt="Esőerdővel szegélyezett folyó naplementekor">
+                    </div>
+                    <div class="tema-szoveg">
+                        <h3><a class="stretched-link" href="vizivilag.html">Esőerdők vízi világa</a></h3>
+                        <p>Fekete és fehér vizű folyók, elárasztott erdők, valamint piráják, arapaimák és elektromos
+                            angolnák az Amazonas vidékén.</p>
+                    </div>
+                </article>
+                <article class="tema-kartya">
+                    <div class="tema-kep">
+                        <img src="assets/rainforestFromUp.jpg" width="739" height="415" loading="lazy"
+                            decoding="async" alt="Felhők alatt húzódó, összefüggő esőerdő felülről">
+                    </div>
+                    <div class="tema-szoveg">
+                        <h3><a class="stretched-link" href="esoerdok_lakoi.html">Esőerdők lakói</a></h3>
+                        <p>Jaguárok, tukánok, lajhárok és nyílméregbékák: ismerd meg, kik élnek az esőerdő különböző
+                            szintjein.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
 
+        <section id="veszely" class="veszely" aria-labelledby="veszely-cim">
+            <div class="veszely-szoveg">
+                <h2 id="veszely-cim">Miért vannak veszélyben?</h2>
+                <p>Az esőerdőket leginkább azért vágják ki és égetik fel, hogy a helyükön marhalegelőt, szója- vagy
+                    olajpálma-ültetvényt alakítsanak ki. A fakitermelés, a bányászat, az utak építése és az egyre
+                    gyakoribb tüzek is pusztítják őket.</p>
+                <p>Ahol eltűnik az erdő, ott eltűnnek az ott élő állatok és növények is, a fákban tárolt szén pedig a
+                    légkörbe kerül, és tovább melegíti a bolygót.</p>
+            </div>
+            <figure class="veszely-adat">
+                <p class="veszely-kiemeles">2025-ben 4,3 millió hektár trópusi őserdő tűnt el.</p>
+                <figcaption>
+                    <p>Ez percenként több mint 11 futballpályányi erdő, egyetlen év alatt Magyarország területének
+                        csaknem fele.</p>
+                    <a class="szoveglink"
+                        href="https://africa.wri.org/insights/tropical-rainforest-loss-slowed-2025-fire-growing-threat-forests-worldwide"
+                        target="_blank" rel="noopener">Forrás: Global Forest Watch<span class="visually-hidden"> (új
+                            lapon nyílik)</span></a>
+                </figcaption>
+            </figure>
+        </section>
 
-                </footer>
-                <script type="module"
-                    src="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/js/bootstrap.bundle.min.js"
-                    integrity="sha384-1a/pXj49ZQ1aHEmrJ+gMw1otqoVsYwlEnlD8mIfY2TV03r20Y0CN7uqx1tQogjPL"
-                    crossorigin="anonymous"></script>
-                    <script src="script/script.js"></script>
+        <section id="vedelem" class="vedelem" aria-labelledby="vedelem-cim">
+            <h2 id="vedelem-cim">Mit tehetsz te?</h2>
+            <ul class="teendok">
+                <li class="teendo">
+                    <i class="bi bi-patch-check" aria-hidden="true"></i>
+                    <h3>Válassz tanúsított termékeket</h3>
+                    <p>Fa- és papírtermékeknél keresd az FSC-jelölést, kávénál, kakaónál és banánnál a Rainforest
+                        Alliance zöld békás logóját. Ahol lehet, használj újrapapírt.</p>
+                </li>
+                <li class="teendo">
+                    <i class="bi bi-droplet" aria-hidden="true"></i>
+                    <h3>Figyelj a pálmaolajra</h3>
+                    <p>Sok édességben, kekszben és kozmetikumban van pálmaolaj. Olvasd el a címkét, és a fenntartható,
+                        RSPO-tanúsított változatot válaszd.</p>
+                </li>
+                <li class="teendo">
+                    <i class="bi bi-basket" aria-hidden="true"></i>
+                    <h3>Egyél kevesebb marhahúst</h3>
+                    <p>Az Amazonas vidékén az erdőirtás legfőbb oka a marhalegelők terjeszkedése. Ha ritkábban kerül
+                        marhahús a tányérodra, kevesebb erdőre van szükség.</p>
+                </li>
+                <li class="teendo">
+                    <i class="bi bi-megaphone" aria-hidden="true"></i>
+                    <h3>Mondd el másoknak is</h3>
+                    <p>Beszélj a barátaidnak és a családodnak az esőerdőkről. Minél többen ismerik őket, annál többen
+                        tesznek a megóvásukért.</p>
+                </li>
+            </ul>
+            <div class="tamogatas">
+                <div class="tamogatas-szoveg">
+                    <h3>Támogasd a természetvédőket</h3>
+                    <p>A WWF Magyarország évtizedek óta dolgozik az erdők és az élővilág védelméért. Adománnyal vagy
+                        önkéntesként te is beszállhatsz a munkájukba.</p>
+                </div>
+                <a class="button-57" href="https://wwf.hu/" target="_blank" rel="noopener"
+                    aria-label="Segíts az esőerdőknek a WWF Magyarország oldalán (új lapon nyílik)"><span>Segíts az
+                        esőerdőknek</span><span aria-hidden="true">Támogatás</span></a>
+            </div>
+        </section>
+    </main>
+    <footer class="footer">
+        <div class="w-100 ratio-21x9 d-flex text">
+
+            <div class="p-2" style="flex: 0 0 28%; max-width: 28%;">
+                <h3>Rólunk</h3>
+                <p>Ez az oldal egy iskolai projekt keretében készült. Célunk, hogy közérthetően bemutassuk az esőerdők
+                    élővilágát, és megmutassuk, mit tehetünk a megóvásukért.</p>
+            </div>
+
+            <div class="p-2" style="flex: 0 0 20%; max-width: 20%;">
+                <h3>További oldalak</h3>
+                <ul class="footerlist">
+                    <li><a class="footerlistelement" href="index.html">Főoldal</a></li>
+                    <li><a class="footerlistelement" href="esoerdok_novenyzete.html">Esőerdők növényzete</a></li>
+                    <li><a class="footerlistelement" href="vizivilag.html">Esőerdők vízi világa</a></li>
+                    <li><a class="footerlistelement" href="esoerdok_lakoi.html">Esőerdők lakói</a></li>
+                </ul>
+            </div>
+
+            <div class="p-2" style="flex: 0 0 22%; max-width: 22%;">
+                <h3>Kapcsolat</h3>
+                <ul class="footerlist">
+                    <li>Email: <a class="footerlistelement"
+                            href="mailto:arnoldjuhasz2008@gmail.com">arnoldjuhasz2008@gmail.com</a></li>
+                    <li>Tel: <a class="footerlistelement" href="tel:+36206242895">06 20 624 2895</a></li>
+                </ul>
+            </div>
+
+            <div class="p-2" style="flex: 0 0 30%; max-width: 30%;">
+                <h3>Legnagyobb esőerdő elhelyezkedése</h3>
+                <iframe class="footerterkep" title="Az Amazonas esőerdejének helye a térképen"
+                    src="https://www.openstreetmap.org/export/embed.html?bbox=-76.0%2C-16.0%2C-47.0%2C4.0&amp;layer=mapnik&amp;marker=-3.5%2C-62.0"
+                    loading="lazy"></iframe>
+            </div>
+        </div>
+        <p class="text-center mt-4">Minden jog fenntartva! &copy; 2026</p>
+    </footer>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-1a/pXj49ZQ1aHEmrJ+gMw1otqoVsYwlEnlD8mIfY2TV03r20Y0CN7uqx1tQogjPL"
+        crossorigin="anonymous"></script>
+    <script src="script/fooldal.js"></script>
 </body>
 
 </html>

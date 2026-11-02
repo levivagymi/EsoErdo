@@ -152,17 +152,6 @@ header {
   font-size: 18px;
 }
 
-.heroIMGsec {
-  flex: 1;
-  min-height: 400px;
-  border-radius: 30px;
-  background-image: url("../assets/HeroRainForest.jpg");
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
 .button-57 {
   position: relative;
   overflow: hidden;
@@ -235,10 +224,6 @@ footer .ratio-21x9 {
   aspect-ratio: auto;
 }
 
-footer .flex-fill {
-  padding: 0;
-}
-
 .footer {
   overflow: hidden;
   color: var(--dry-sage);
@@ -302,6 +287,14 @@ footer .flex-fill {
 .footer .bi {
   margin-left: 4px;
   font-size: 18px;
+}
+
+.footerterkep {
+  display: block;
+  width: 100%;
+  aspect-ratio: 5 / 4;
+  border: 0;
+  border-radius: 15px;
 }
 
 .footer > p {
