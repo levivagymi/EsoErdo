@@ -20,7 +20,7 @@ padding: 0;
     background-size: cover;
     height:80vh;
     width: 100vw;
-  box-shadow: inset 0px -100px 21px -50px #001a33;
+  box-shadow: inset 0px -100px 21px -50px var(--ocean-darker-blue);
 border-radius: 0px;
 
 }

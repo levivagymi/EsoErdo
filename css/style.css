@@ -377,3 +377,20 @@ footer .ratio-21x9 {
   }
 }
 
+
+.footer-map iframe {
+    width: 100%;
+    height: 190px;
+    border: none;
+    border-radius: 8px;
+}
+
+
+.footer-map {
+    width: 100%;
+    max-width: 320px;
+}
+
+.footer-map iframe {
+    pointer-events: auto;
+}
