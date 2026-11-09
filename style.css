@@ -1162,133 +1162,59 @@ header {
 }
 
 /* ---------- 9. Vízi világ (.oldal-vizivilag) ---------- */
-.oldal-vizivilag {
-  --ocean-lighter-blue: #0066cc;
-  --ocean-light-blue: #0059b3;
-  --ocean-blue: #004080;
-  --ocean-dark-blue: #003366;
-  --ocean-darker-blue: #001a33;
+.vizi-kartyak {
+  margin-top: 8px;
 }
 
-.oldal-vizivilag header {
-  margin: 0;
-  padding: 0;
-}
-
-.oldal-vizivilag .hero {
-  background-image: url("img/folyo-naplemente.webp");
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  height: 80vh;
-  width: 100vw;
-  box-shadow: inset 0px -100px 21px -50px var(--ocean-darker-blue);
-  border-radius: 0px;
-}
-
-body.oldal-vizivilag {
-  font-family: 'Varela', sans-serif;
-  font-weight: 400;
-  font-style: normal;
-  overflow-x: hidden;
-  color: #ffffff;
-  background-color: var(--ocean-darker-blue);
-}
-
-.oldal-vizivilag .title {
-  align-content: center;
-}
-
-.oldal-vizivilag header h1 {
-  font-size: 5vw;
-}
-
-.oldal-vizivilag .card-container {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 24px;
-  width: 100%;
-  max-width: 1000px;
-  margin: 30px auto;
-  padding: 0 20px;
-}
-
-.oldal-vizivilag .card {
-  width: 100%;
-  height: 100%;
-  background-color: var(--ocean-dark-blue);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 12px;
+.vizi-kartya {
+  --bs-card-bg: var(--ebony);
+  --bs-card-border-color: var(--glass-border);
+  --bs-card-border-radius: 24px;
+  --bs-card-inner-border-radius: 23px;
   overflow: hidden;
+  transition: border-color 300ms var(--ease-soft), transform 300ms var(--ease-soft);
 }
 
-.oldal-vizivilag .card-img-top {
+.vizi-kartya:hover {
+  border-color: rgba(194, 197, 170, 0.45);
+}
+
+.vizi-kartya .card-img-top {
+  height: auto;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  transition: transform 700ms var(--ease-soft);
+}
+
+.vizi-kartya .card-title {
+  margin-bottom: 8px;
+  font-size: 1.25rem;
+}
+
+.vizi-kartya .card-text {
+  color: var(--dry-sage);
+}
+
+.vizi-sor + .vizi-sor {
+  margin-top: clamp(2.5rem, 2rem + 3vw, 5rem);
+}
+
+.vizi-kep {
+  display: block;
   width: 100%;
-  height: 220px;
+  height: auto;
+  aspect-ratio: 4 / 3;
   object-fit: cover;
+  border-radius: var(--radius-frame);
 }
 
-.oldal-vizivilag .card-body {
-  background-color: var(--ocean-dark-blue);
+.aloldal .vizi-sor h3 {
+  margin: 0 0 16px;
+  font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem);
 }
 
-.oldal-vizivilag .card-text {
-  color: #ffffff;
-}
-
-.oldal-vizivilag .vizivilagbemutato {
-  padding-top: 100px;
-  padding-left: 50px;
-}
-
-.oldal-vizivilag .vizivilagvizei {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 50px 30px;
-}
-
-.oldal-vizivilag .viz-row {
-  display: flex;
-  align-items: center;
-  gap: 30px;
-  margin-bottom: 50px;
-}
-
-.oldal-vizivilag .viz-row img {
-  width: 45%;
-  height: 300px;
-  object-fit: cover;
-  border-radius: 15px;
-  flex-shrink: 0;
-}
-
-.oldal-vizivilag .viz-row p {
-  flex: 1;
-  line-height: 1.8;
-  margin: 0;
-}
-
-@media screen and (max-width: 600px) {
-  .oldal-vizivilag .card-container {
-    grid-template-columns: 1fr;
-    padding: 0 12px;
-  }
-
-  .oldal-vizivilag .viz-row {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 15px;
-  }
-
-  .oldal-vizivilag .viz-row img {
-    width: 100%;
-    height: 220px;
-  }
-
-  .oldal-vizivilag .vizivilagvizei {
-    padding: 30px 15px;
-  }
+.vizi-sor p {
+  margin: 0 0 12px;
 }
 
 /* ---------- 10. Animációk (csak ha a felhasználó nem kért csökkentett mozgást) ---------- */
@@ -1310,8 +1236,13 @@ body.oldal-vizivilag {
     animation: beuszas 900ms var(--ease-soft) 380ms both;
   }
 
-  .tudtad-kartya:hover {
+  .tudtad-kartya:hover,
+  .vizi-kartya:hover {
     transform: translateY(-4px);
+  }
+
+  .vizi-kartya:hover .card-img-top {
+    transform: scale(1.05);
   }
 
   .hero-gombok {

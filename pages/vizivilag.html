@@ -22,7 +22,7 @@
     <script src="../script.js" defer></script>
 </head>
 
-<body class="oldal-vizivilag">
+<body class="oldal-vizivilag aloldal">
     <a class="visually-hidden-focusable ugraslink" href="#tartalom">Ugrás a tartalomra</a>
     <header>
         <nav class="navbar navbar-expand-lg fo-menu" aria-label="Fő navigáció">
@@ -48,98 +48,129 @@
                 </div>
             </div>
         </nav>
-        <section class="hero title">
-            <h1>
-                Esőerdők <br> Növényzete
-            </h1>
-            <p>
-                Tudj meg mindent röviden az esőerdők világáról!
-            </p>
-            <button class="button-57" role="button"><span>Segíts az esőerdőknek</span><span>Támogatás</span></button>
+        <section class="title" aria-labelledby="oldal-cim">
+            <p class="oldal-felirat">Vízi világ</p>
+            <h1 id="oldal-cim">Az esőerdő vízi világa</h1>
+            <p>Hatalmas folyók, fekete és fehér vizek, elárasztott erdők – és a bennük élő különleges állatok az
+                Amazonas vidékén.</p>
+            <div class="hero-gombok">
+                <a class="btn btn-esoerdo" href="#amazonas">Merülj el!</a>
+            </div>
         </section>
-
+        <figure class="hero-kep">
+            <img src="../img/folyo-naplemente.webp" width="1000" height="664" fetchpriority="high"
+                alt="Esőerdővel szegélyezett folyó naplementekor, a vízen tükröződő felhőkkel">
+        </figure>
     </header>
     <main id="tartalom" tabindex="-1">
-        <section class="vizivilagbemutato">
-            <h2 class="p-10">Az Amazonas</h2>
-            <p>Az esőerdők, különösen az Amazonas-medence esőerdei, a Föld legváltozatosabb édesvízi élőhelyei közé
-                tartoznak. Hatalmas folyók, kisebb patakok, mocsarak és időszakosan elárasztott erdők biztosítanak
-                otthont rengeteg halfajnak, kétéltűnek, hüllőnek és vízi emlősnek. Az Amazonas folyórendszere a világ
-                legváltozatosabb édesvízi ökoszisztémája, több mint 2500 ismert
-                halfajjal. Néhány érdekes példa:</p>
-
-            <div class="card-container">
-                <div class="card">
-                    <img src="../img/piranja.webp" class="card-img-top" alt="Pirája">
-                    <div class="card-body">
-                        <p class="card-text">
-                            <strong>Piráják:</strong> Ezek a ragadozó halak csoportokban
-                            vadásznak, és fontos szerepet játszanak az ökoszisztémában.
-                        </p>
-                    </div>
+        <section id="amazonas" class="aloldal-szakasz" aria-labelledby="amazonas-cim">
+            <h2 id="amazonas-cim">Az Amazonas</h2>
+            <div class="aloldal-bevezeto">
+                <p>Az esőerdők, különösen az Amazonas-medence esőerdei, a Föld legváltozatosabb édesvízi élőhelyei közé
+                    tartoznak. Hatalmas folyók, kisebb patakok, mocsarak és időszakosan elárasztott erdők biztosítanak
+                    otthont rengeteg halfajnak, kétéltűnek, hüllőnek és vízi emlősnek. Az Amazonas folyórendszere a világ
+                    legváltozatosabb édesvízi ökoszisztémája, több mint 2500 ismert halfajjal. Néhány érdekes példa:</p>
+            </div>
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-xl-4 g-4 vizi-kartyak">
+                <div class="col">
+                    <article class="card vizi-kartya h-100">
+                        <img src="../img/piranja.webp" class="card-img-top" width="1024" height="576" loading="lazy"
+                            decoding="async" alt="Vörös hasú pirája oldalnézetből">
+                        <div class="card-body">
+                            <h3 class="card-title">Piráják</h3>
+                            <p class="card-text">Ezek a ragadozó halak csoportokban vadásznak, és fontos szerepet
+                                játszanak az ökoszisztémában.</p>
+                        </div>
+                    </article>
                 </div>
-
-                <div class="card">
-                    <img src="../img/arapaima.webp" class="card-img-top" alt="Arapaima">
-                    <div class="card-body">
-                        <p class="card-text">
-                            <strong>Arapaima:</strong> Az egyik legnagyobb édesvízi hal,
-                            amely akár 3 méter hosszúra is megnőhet.
-                        </p>
-                    </div>
+                <div class="col">
+                    <article class="card vizi-kartya h-100">
+                        <img src="../img/arapaima.webp" class="card-img-top" width="1024" height="682" loading="lazy"
+                            decoding="async" alt="Arapaima feje közelről, a víz alatt">
+                        <div class="card-body">
+                            <h3 class="card-title">Arapaima</h3>
+                            <p class="card-text">Az egyik legnagyobb édesvízi hal, amely akár 3 méter hosszúra is
+                                megnőhet.</p>
+                        </div>
+                    </article>
                 </div>
-
-                <div class="card">
-                    <img src="../img/elektromos-angolna.webp" class="card-img-top" alt="Elektromos angolna">
-                    <div class="card-body">
-                        <p class="card-text">
-                            <strong>Elektromos angolna:</strong> Ez a hal erős elektromos
-                            töltést tud generálni védekezés és vadászat céljából.
-                        </p>
-                    </div>
+                <div class="col">
+                    <article class="card vizi-kartya h-100">
+                        <img src="../img/elektromos-angolna.webp" class="card-img-top" width="1024" height="576"
+                            loading="lazy" decoding="async" alt="Elektromos angolna feje közelről, sötét vízben">
+                        <div class="card-body">
+                            <h3 class="card-title">Elektromos angolna</h3>
+                            <p class="card-text">Ez a hal erős elektromos töltést tud generálni védekezés és vadászat
+                                céljából.</p>
+                        </div>
+                    </article>
                 </div>
-
-                <div class="card">
-                    <img src="../img/manati.webp" class="card-img-top" alt="Amazóniai manatik">
-                    <div class="card-body">
-                        <p class="card-text">
-                            <strong>Amazóniai manatik:</strong> Ezek a nagy testű,
-                            növényevő emlősök a folyók és árterületek lakói.
-                        </p>
-                    </div>
+                <div class="col">
+                    <article class="card vizi-kartya h-100">
+                        <img src="../img/manati.webp" class="card-img-top" width="500" height="344" loading="lazy"
+                            decoding="async" alt="Két lamantin úszik egymás mellett a tiszta, zöldes vízben">
+                        <div class="card-body">
+                            <h3 class="card-title">Amazonasi lamantin</h3>
+                            <p class="card-text">Ezek a nagy testű, növényevő emlősök a folyók és árterületek lakói.</p>
+                        </div>
+                    </article>
                 </div>
             </div>
         </section>
-        <section class="vizivilagvizei">
-            <div class="d-flex viz-row">
-                <img src="../img/fekete-viz-1280.webp" class="img-fluid" alt="...">
-                <p>A szín legfontosabb oka a bomló növényi anyagokból származó oldott szerves vegyületek jelenléte.
-                    Amikor levelek, ágak és más növényi maradványok bomlanak le a trópusi erdő talajában, humuszanyagok
-                    és más szerves molekulák kerülnek a vízbe.
-
-                    Ezek a vegyületek elnyelik a fény jelentős részét, különösen a rövidebb hullámhosszú fényt, ezért a
-                    víz sötét, tea- vagy kávészerű színt kap. A folyó ettől még lehet viszonylag átlátszó, vagyis a
-                    sötét szín nem feltétlenül jelent nagy zavarosságot</p>
-            </div>
-            <div class="d-flex viz-row">
-                <p>Az esőerdők „fehér vizei” (angolul whitewater rivers) a trópusi folyók egyik különleges típusát
-                    jelentik. Leginkább az Amazonas-medencéből ismertek, és nem azért fehérek, mert tiszta, világos vagy
-                    habos vízről van szó: a színüket elsősorban a bennük lebegő, finom ásványi üledékek adják. A fehér
-                    vízek zavaros, agyagos-iszapos, gyakran sárgásbarna folyók, amelyek sok ásványi anyagot és lebegő
-                    hordalékot szállítanak.</p>
-                <img src="../img/feher-viz.webp" class="img-fluid" alt="...">
-
-            </div>
-            <div class="d-flex viz-row">
-                <img src="../img/elarasztott-erdo.webp" class="img-fluid" alt="...">
-                <p>Az elárasztott esőerdők a Föld legkülönlegesebb élőhelyei közé tartoznak. Képzelj el egy sűrű, zöld
-                    trópusi erdőt, ahol a fák törzseinek alsó része hónapokon át víz alatt áll, a halak az ágak között
-                    úsznak, a gyümölcsök a folyóba hullanak, és olyan állatok is megjelennek a fák között, amelyek
-                    szárazföldi erdőben élnek.
-
-                    Az Amazonas vidékén ezek az erdők nem pusztán árvizek által sújtott területek: az évszakos
-                    elárasztás az ökoszisztéma természetes működésének egyik alapja.</p>
-            </div>
+        <section class="aloldal-szakasz" aria-labelledby="vizek-cim">
+            <h2 id="vizek-cim">Fekete víz, fehér víz, elárasztott erdő</h2>
+            <article class="row align-items-center g-4 g-lg-5 vizi-sor">
+                <div class="col-md-6">
+                    <img class="vizi-kep" src="../img/fekete-viz-1280.webp"
+                        srcset="../img/fekete-viz-1280.webp 1280w, ../img/fekete-viz-1920.webp 1920w"
+                        sizes="(min-width: 768px) 50vw, 100vw" width="1280" height="853" loading="lazy"
+                        decoding="async" alt="Sötét, tea színű folyó kanyarog a sűrű esőerdőben, légifelvételen">
+                </div>
+                <div class="col-md-6">
+                    <h3>Fekete vizű folyók</h3>
+                    <p>A szín legfontosabb oka a bomló növényi anyagokból származó oldott szerves vegyületek jelenléte.
+                        Amikor levelek, ágak és más növényi maradványok bomlanak le a trópusi erdő talajában,
+                        humuszanyagok és más szerves molekulák kerülnek a vízbe.</p>
+                    <p>Ezek a vegyületek elnyelik a fény jelentős részét, különösen a rövidebb hullámhosszú fényt, ezért
+                        a víz sötét, tea- vagy kávészerű színt kap. A folyó ettől még lehet viszonylag átlátszó, vagyis
+                        a sötét szín nem feltétlenül jelent nagy zavarosságot.</p>
+                </div>
+            </article>
+            <article class="row align-items-center g-4 g-lg-5 vizi-sor">
+                <div class="col-md-6 order-md-2">
+                    <img class="vizi-kep" src="../img/feher-viz.webp" width="1280" height="854" loading="lazy"
+                        decoding="async" alt="Széles, sárgásbarna, iszapos folyó az esőerdőben, viharfelhők alatt">
+                </div>
+                <div class="col-md-6 order-md-1">
+                    <h3>Fehér vizű folyók</h3>
+                    <p>Az esőerdők „fehér vizei” (angolul whitewater rivers) a trópusi folyók egyik különleges típusát
+                        jelentik. Leginkább az Amazonas-medencéből ismertek, és nem azért fehérek, mert tiszta, világos
+                        vagy habos vízről van szó: a színüket elsősorban a bennük lebegő, finom ásványi üledékek adják.
+                    </p>
+                    <p>A fehér vizek zavaros, agyagos-iszapos, gyakran sárgásbarna folyók, amelyek sok ásványi anyagot
+                        és lebegő hordalékot szállítanak.</p>
+                </div>
+            </article>
+            <article class="row align-items-center g-4 g-lg-5 vizi-sor">
+                <div class="col-md-6">
+                    <img class="vizi-kep" src="../img/elarasztott-erdo.webp" width="1024" height="1024" loading="lazy"
+                        decoding="async" alt="Csónak orra egy elárasztott erdőben, a vízből kiemelkedő hatalmas fatörzsek között">
+                </div>
+                <div class="col-md-6">
+                    <h3>Elárasztott erdők</h3>
+                    <p>Az elárasztott esőerdők a Föld legkülönlegesebb élőhelyei közé tartoznak. Képzelj el egy sűrű,
+                        zöld trópusi erdőt, ahol a fák törzseinek alsó része hónapokon át víz alatt áll, a halak az ágak
+                        között úsznak, a gyümölcsök a folyóba hullanak, és olyan állatok is megjelennek a fák között,
+                        amelyek szárazföldi erdőben élnek.</p>
+                    <p>Az Amazonas vidékén ezek az erdők nem pusztán árvizek által sújtott területek: az évszakos
+                        elárasztás az ökoszisztéma természetes működésének egyik alapja.</p>
+                </div>
+            </article>
+        </section>
+        <section class="kovetkezo" aria-labelledby="kovetkezo-cim">
+            <h2 id="kovetkezo-cim">Következő lépés: teszteld a tudásod!</h2>
+            <p>Mennyit jegyeztél meg az esőerdőkről? Töltsd ki a tízkérdéses kvízt, és nézd meg, hány pontot érsz el.</p>
+            <a class="btn btn-esoerdo" href="kviz.html">Tovább a kvízhez</a>
         </section>
     </main>
     <footer class="lablec">
