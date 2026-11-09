@@ -1,19 +1,8 @@
-/* =====================================================================
-   Esőerdők világa – közös saját stíluslap (style.css)
-   A Bootstrap 5.3 után töltődik be, ezért felülírhatja annak változóit.
-   1. Tokenek   2. Alapok   3. Menüsáv   4. Fejléc és hero   5. Gombok
-   6. Lábléc   7. Főoldal (.oldal-fooldal)   8. Aloldalak közös elemei (.aloldal)
-   9. Aloldalak: térkép, élővilág, vízi világ, kvíz, tippek, játék
-   10. Visszajelző animációk
-   Szabály: a komponensek csak tokeneket használnak (szín, betűméret, térköz,
-   lekerekítés, időtartam). Nyers érték csak a tokenek definíciójában szerepel.
-   ===================================================================== */
 
-/* ---------- 1. Tokenek ---------- */
 :root {
   color-scheme: dark;
 
-  /* Paletta (docs/designterv.md) */
+
   --dark-walnut: #582f0e;
   --saddle-brown: #7f4f24;
   --camel: #a68a64;
@@ -25,31 +14,30 @@
   --deep-moss: #1f2518;
   --ink: #eef0e1;
 
-  /* Szerepek – minden szöveg/háttér párt a WCAG 2.1 szerint ellenőriztünk */
-  --bg: var(--charcoal-brown);
-  --surface: var(--ebony);                /* kártyák, dobozok háttere */
-  --surface-hover: color-mix(in srgb, var(--ebony) 94%, var(--dry-sage)); /* zsálya szöveg rajta 4,8:1 */
-  --surface-deep: var(--deep-moss);       /* menüsáv, lábléc, tömör képfelirat */
-  --fg: var(--dry-sage);                  /* törzsszöveg: 6,4:1 a háttéren, 5,4:1 kártyán, 8,9:1 sötét mohán */
-  --fg-strong: var(--ink);                /* címek, kiemelés: 9,9:1 a háttéren, 8,3:1 kártyán */
-  --fg-muted: var(--dry-sage-2);          /* másodlagos szöveg csak a háttéren (4,8:1) és sötét mohán (6,6:1) */
-  --border: color-mix(in srgb, var(--dry-sage) 20%, transparent);   /* sorelválasztó vonal */
-  --border-control: var(--dry-sage-2);    /* gombok, kapcsolók kerete: 4,8:1 a háttéren, 4,0:1 kártyán */
-  --track: color-mix(in srgb, var(--dry-sage) 18%, transparent);    /* folyamatjelző üres sávja */
-  --hover-tint: color-mix(in srgb, var(--dry-sage) 12%, transparent);
-  --accent: var(--dry-sage);              /* az egyetlen kiemelőszín: fő gomb, aktív és kiválasztott állapot, fókusz, haladás */
-  --accent-hover: var(--ink);
-  --on-accent: var(--deep-moss);          /* 8,9:1 a kiemelőszínen, 13,6:1 hoveren */
-  --success: #a9c48f;                     /* csak a helyes válasz jelzésére */
-  --on-success: var(--deep-moss);         /* 8,2:1 */
-  --danger: #8a3b2a;                      /* csak a hibás válasz jelzésére */
-  --on-danger: var(--ink);                /* 6,6:1 */
-  --success-surface: color-mix(in srgb, var(--success) 15%, var(--surface)); /* halvány szöveg rajta 6,3:1 */
-  --danger-surface: color-mix(in srgb, var(--danger) 30%, var(--surface));   /* halvány szöveg rajta 8,0:1 */
-  --map-water: #aad3df;                   /* az OpenStreetMap tengerszíne, amíg a csempék töltődnek */
-  --map-land: #f2efe9;                    /* az OpenStreetMap szárazföldszíne a jelmagyarázatban */
 
-  /* Betűk: a Varelának egyetlen, 400-as súlya van; oldalanként legfeljebb 7 méret */
+  --bg: var(--charcoal-brown);
+  --surface: var(--ebony);                
+  --surface-hover: color-mix(in srgb, var(--ebony) 94%, var(--dry-sage)); 
+  --surface-deep: var(--deep-moss);      
+  --fg: var(--dry-sage);                 
+  --fg-strong: var(--ink);               
+  --fg-muted: var(--dry-sage-2);         
+  --border: color-mix(in srgb, var(--dry-sage) 20%, transparent);  
+  --border-control: var(--dry-sage-2);  
+  --track: color-mix(in srgb, var(--dry-sage) 18%, transparent);   
+  --hover-tint: color-mix(in srgb, var(--dry-sage) 12%, transparent);
+  --accent: var(--dry-sage);             
+  --accent-hover: var(--ink);
+  --on-accent: var(--deep-moss);          
+  --success: #a9c48f;                   
+  --on-success: var(--deep-moss);       
+  --danger: #8a3b2a;                   
+  --on-danger: var(--ink);               
+  --success-surface: color-mix(in srgb, var(--success) 15%, var(--surface));
+  --danger-surface: color-mix(in srgb, var(--danger) 30%, var(--surface));   
+  --map-water: #aad3df;                 
+  --map-land: #f2efe9;                   
+
   --font-sans: 'Varela', ui-sans-serif, system-ui, sans-serif;
   --text-xs: 0.8125rem;
   --text-sm: 0.9375rem;
@@ -57,8 +45,8 @@
   --text-lg: clamp(1.25rem, 1.15rem + 0.4vw, 1.5rem);
   --text-xl: clamp(1.5rem, 1.1rem + 1.6vw, 2.25rem);
   --text-2xl: clamp(1.875rem, 1.3rem + 2.2vw, 3rem);
-  --text-3xl: clamp(2.25rem, 1rem + 3.4vw, 3.75rem);    /* aloldalak főcíme */
-  --text-display: clamp(3rem, 1rem + 4.6vw, 6.5rem);   /* a főoldal főcíme */
+  --text-3xl: clamp(2.25rem, 1rem + 3.4vw, 3.75rem);   
+  --text-display: clamp(3rem, 1rem + 4.6vw, 6.5rem);  
   --leading-body: 1.6;
   --leading-tight: 1.25;
   --leading-display: 1.05;
@@ -66,7 +54,7 @@
   --tracking-label: 0.04em;
   --measure: 65ch;
 
-  /* Térközök: 4 px-es alap */
+  
   --space-1: 0.25rem;
   --space-2: 0.5rem;
   --space-3: 0.75rem;
@@ -83,13 +71,13 @@
   --gutter: clamp(var(--space-5), 5vw, var(--space-16));
   --content-max: 75rem;
   --space-section: clamp(var(--space-16), 2rem + 6vw, var(--space-32));
-  --tap: 2.75rem;                         /* 44 px: érintőképernyős célméret */
+  --tap: 2.75rem;                        
   --logo-height: 2.5rem;
   --nav-max: 61.25rem;
-  --card-max: 56rem;                      /* kvíz- és játékkártya */
+  --card-max: 56rem;               
   --map-height: clamp(23.75rem, 62vh, 38.75rem);
   --map-list-max: 21.25rem;
-  --caption-min: 17rem;                   /* galériafelirat: ne ugráljon a magasság lapozáskor */
+  --caption-min: 17rem;                  
   --caption-min-wide: 12rem;
   --dt-width: 8rem;
   --progress-height: 0.625rem;
@@ -97,7 +85,6 @@
   --measure-lede: 40ch;
   --measure-title: 20ch;
 
-  /* Vonalvastagság és optikai igazítás */
   --line-width: 1px;
   --ring-width: 2px;
   --ring-offset: 2px;
@@ -105,27 +92,24 @@
   --nav-height: calc(var(--tap) + 2 * var(--space-2));
   --nav-offset: calc(var(--space-4) + var(--nav-height) + var(--space-6));
 
-  /* Lekerekítés. Beágyazott elemnél: belső sugár = külső sugár − belső margó. */
   --radius-sm: 0.5rem;
   --radius-md: 1rem;
   --radius-lg: 1.5rem;
   --radius-full: 9999px;
-  --radius-nav: calc(var(--tap) / 2 + var(--space-2));   /* a 44 px-es elemek köré koncentrikusan */
+  --radius-nav: calc(var(--tap) / 2 + var(--space-2));  
 
-  /* Árnyék: csak lebegő rétegen (térképjelölő) */
   --shadow-overlay: 0 1px 2px rgb(0 0 0 / 0.4), 0 8px 24px rgb(0 0 0 / 0.5);
 
-  /* Mozgás: csak visszajelzés, legfeljebb 200 ms, túllendülés nélkül */
   --duration-fast: 150ms;
   --duration-base: 200ms;
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
 
-  /* A Bootstrap-kapcsoló gombja SVG-kép, ezért a színe itt, tokenként szerepel */
+ 
   --switch-knob: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23a4ac86'/%3e%3c/svg%3e");
   --switch-knob-on: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%231f2518'/%3e%3c/svg%3e");
 }
 
-/* Csökkentett mozgásnál minden átmenet azonnali (a töltésjelző tovább forog). */
+
 @media (prefers-reduced-motion: reduce) {
   :root {
     --duration-fast: 0ms;
@@ -133,7 +117,7 @@
   }
 }
 
-/* A Bootstrap sötét témájának változói a saját tokenjeinkre kötve */
+
 [data-bs-theme="dark"] {
   --bs-body-font-family: var(--font-sans);
   --bs-body-line-height: var(--leading-body);
@@ -160,7 +144,7 @@
   --bs-border-radius-pill: var(--radius-full);
 }
 
-/* ---------- 2. Alapok ---------- */
+
 html {
   scroll-padding-top: var(--nav-offset);
 }
@@ -176,7 +160,6 @@ body {
   overflow-x: hidden;
 }
 
-/* A Varelának nincs félkövér változata: kiemelésnél a világosabb szín jelez, nem álfélkövér betű. */
 strong,
 b {
   font-weight: 400;
@@ -202,7 +185,6 @@ b {
   box-shadow: none;
 }
 
-/* Változó vagy oszlopba rendezett számok: azonos szélességű számjegyek */
 .jellemzo-ertek,
 .reteg-magassag,
 .magassagmero,
@@ -246,7 +228,6 @@ b {
   text-decoration-color: currentColor;
 }
 
-/* ---------- 3. Menüsáv (Bootstrap 5 navbar, mobilon lenyíló menüvel) ---------- */
 .fo-menu {
   position: fixed;
   top: var(--space-4);
@@ -359,7 +340,6 @@ b {
   }
 }
 
-/* ---------- 4. Fejléc és hero: balra cím, jobbra a kép (12-ből 7 oszlop) ---------- */
 header {
   display: grid;
   gap: var(--space-4);
@@ -466,7 +446,6 @@ header {
   }
 }
 
-/* ---------- 5. Gombok ---------- */
 .btn {
   --bs-btn-font-family: var(--font-sans);
   --bs-btn-font-size: var(--text-base);
@@ -484,13 +463,11 @@ header {
   transition: color var(--duration-fast) var(--ease-out), background-color var(--duration-fast) var(--ease-out), border-color var(--duration-fast) var(--ease-out);
 }
 
-/* Bal oldali ikonnál az ikon felőli belső margó 4 px-szel kisebb, hogy optikailag középen legyen. */
 .btn:has(> .bi:first-child),
 .btn:has(> .spinner-border:first-child) {
   padding-left: calc(var(--bs-btn-padding-x) - var(--space-1));
 }
 
-/* Teli gomb: nézetenként egyetlen fő művelet */
 .btn-esoerdo {
   --bs-btn-color: var(--on-accent);
   --bs-btn-bg: var(--accent);
@@ -506,7 +483,6 @@ header {
   --bs-btn-disabled-border-color: var(--dry-sage-2);
 }
 
-/* Körvonalas gomb: másodlagos művelet; kiválasztva (.active) kiemelőszínű */
 .btn-outline-esoerdo {
   --bs-btn-color: var(--fg);
   --bs-btn-bg: transparent;
@@ -522,7 +498,6 @@ header {
   --bs-btn-disabled-border-color: var(--border);
 }
 
-/* ---------- 6. Lábléc ---------- */
 .lablec {
   color: var(--fg);
   background: var(--surface-deep);
@@ -601,9 +576,6 @@ header {
   }
 }
 
-/* ---------- 7. Főoldal (.oldal-fooldal) ----------
-   A main-re vonatkozó alapszabályok szándékosan gyenge szelektorok (main h2, main p),
-   hogy a komponensek saját szabályai (pl. .reteg h3) felülírhassák őket. */
 main {
   font-size: var(--text-base);
 }
@@ -670,7 +642,7 @@ main p {
   margin-top: var(--space-4);
 }
 
-/* Számadatok: a sorok közti vonal táblázatszerű elválasztó */
+
 .jellemzok {
   margin: 0;
   border-bottom: var(--line-width) solid var(--border);
@@ -701,7 +673,6 @@ main p {
   color: var(--fg-strong);
 }
 
-/* Galéria (Bootstrap carousel): a felirat a kép alatt, tömör háttéren */
 .galeria {
   padding-bottom: var(--space-section);
 }
@@ -752,7 +723,6 @@ main p {
   margin: 0 0 var(--space-2) var(--space-5);
 }
 
-/* Lapozósávok: 48 × 44 px-es célterület, benne 32 × 4 px-es látható sáv */
 .galeria-carousel .carousel-indicators [data-bs-target] {
   box-sizing: content-box;
   width: var(--space-8);
@@ -769,7 +739,6 @@ main p {
   background-color: var(--fg-strong);
 }
 
-/* Lapozónyilak csak a kép magasságában, tömör kör alakú háttéren */
 .galeria-carousel .carousel-control-prev,
 .galeria-carousel .carousel-control-next {
   bottom: auto;
@@ -787,7 +756,6 @@ main p {
   transition: background-color var(--duration-fast) var(--ease-out);
 }
 
-/* A nyílhegy a csúcsa felé tolva, hogy a körben optikailag középen legyen */
 .galeria-carousel .carousel-control-prev-icon {
   background-position: calc(50% - var(--optical-nudge)) 50%;
 }
@@ -807,9 +775,7 @@ main p {
   }
 }
 
-/* Az esőerdő szintjei: minden szint egy sáv, amelynek a hátterét a szint fotója tölti ki.
-   A szöveg tömör, a szint színével egyező kártyán ül (lefelé egyre sötétebb), mert szöveg
-   közvetlenül képre nem kerül. Amíg a fotó töltődik, a sáv a szint színét mutatja. */
+
 .szintek {
   padding-top: var(--space-section);
 }
@@ -830,9 +796,9 @@ main p {
   --mero-pont: 0.875rem;
   --szint-kartya-max: 36rem;
   --szint-kartya-belso: clamp(var(--space-6), 1rem + 2vw, var(--space-10));
-  --szint-foto-sav: max(var(--space-section), 40svh);   /* keskeny képernyőn ennyi látszik a fotóból a kártya fölött */
-  --szint-arnyek: 8rem;                                 /* a fotók tetején és alján az árnyék magassága */
-  /* Lágy (ease-in-out) átmenet a háttérszínből átlátszóba: így nem látszik csík az árnyék szélén */
+  --szint-foto-sav: max(var(--space-section), 40svh);   
+  --szint-arnyek: 8rem;                              
+
   --szint-arnyek-atmenet:
     var(--bg),
     color-mix(in srgb, var(--bg) 90%, transparent) 20%,
@@ -888,7 +854,6 @@ main p {
   border-radius: var(--radius-lg);
 }
 
-/* A fotó a sáv mögött, a teljes sávot kitöltve (mint a hero képe) */
 .reteg-kep {
   position: absolute;
   inset: 0;
@@ -898,8 +863,7 @@ main p {
   object-fit: cover;
 }
 
-/* Erős árnyék a fotók tetején és alján: a szomszédos szintek a háttérszínen át mosódnak
-   egymásba, az első és az utolsó fotó pedig az oldal hátterébe olvad */
+
 .reteg::after {
   content: "";
   position: absolute;
@@ -939,12 +903,11 @@ main p {
   border-radius: var(--radius-full);
 }
 
-/* Magasságmérő: görgetés közben mutatja, melyik szintnél jár a látogató */
 .magassagmero {
   display: none;
 }
 
-/* Aloldalakra vezető kártyák: az egész kártya egy link, hoverre a háttere vált */
+
 .oldal-fooldal .temak-bevezeto {
   max-width: var(--measure);
   margin-bottom: var(--space-8);
@@ -1180,7 +1143,7 @@ main p {
   .magassagmero-palya {
     position: absolute;
     inset: 0;
-    translate: 0 var(--jelolo, 0%);
+    translate: 0 calc((var(--max) - var(--jelolo-magassag, var(--max))) / var(--max) * 100%);
     transition: translate var(--duration-base) var(--ease-out);
   }
 
@@ -1207,7 +1170,7 @@ main p {
   }
 }
 
-/* ---------- 8. Aloldalak közös elemei (.aloldal) ---------- */
+
 .aloldal header {
   min-height: auto;
 }
@@ -1238,7 +1201,6 @@ main p {
   color: var(--fg-muted);
 }
 
-/* Ismeretterjesztő kártyák: csak szöveg, nem kattinthatók, ezért nincs hover-effekt */
 .tudtad-kartya {
   --bs-card-bg: var(--surface);
   --bs-card-border-width: 0;
@@ -1258,7 +1220,6 @@ main p {
   margin-top: var(--space-2);
 }
 
-/* Következő lépés: minden oldal végén ide kerül az oldal fő gombja */
 .kovetkezo {
   display: grid;
   justify-items: start;
@@ -1287,7 +1248,6 @@ main .kovetkezo h2 {
   gap: var(--space-3) var(--space-6);
 }
 
-/* ---------- 9a. Térkép (.oldal-terkep) ---------- */
 .terkep-utmutato {
   max-width: var(--measure);
   margin-bottom: var(--space-6);
@@ -1352,7 +1312,6 @@ main .kovetkezo h2 {
   margin-bottom: var(--space-3);
 }
 
-/* A típuscímke színe a térképjelölőével és a jelmagyarázatéval azonos (adatkódolás) */
 .oldal-terkep .terkep-info-tipus {
   display: inline-block;
   margin-bottom: var(--space-3);
@@ -1455,7 +1414,6 @@ main .kovetkezo h2 {
   background: var(--saddle-brown);
 }
 
-/* Szaggatott vonal mintája: a térkép Egyenlítő-vonalát jelöli */
 .jel-vonal {
   width: var(--space-6);
   border: 0;
@@ -1467,7 +1425,10 @@ main .kovetkezo h2 {
   background-size: var(--space-2) var(--ring-width);
 }
 
-/* A Leaflet a jelölőt transformmal helyezi el, ezért csak a belső ikont nagyítjuk. */
+.terkep-vonal {
+  stroke: var(--dark-walnut);
+}
+
 .terkep-jelolo {
   display: grid;
   place-items: center;
@@ -1506,7 +1467,6 @@ main .kovetkezo h2 {
   line-height: var(--tap);
 }
 
-/* ---------- 9b. Élővilág (.oldal-elovilag) ---------- */
 .oldal-elovilag .fajok-bevezeto {
   max-width: var(--measure);
   margin-bottom: var(--space-6);
@@ -1526,7 +1486,6 @@ main .kovetkezo h2 {
   color: var(--fg-muted);
 }
 
-/* Hangulat-sáv: a sugara a benne lévő 44 px-es gombhoz igazodik (22 + 16 px) */
 .hangulat-sav {
   --hangulat-margo: var(--space-4);
   display: flex;
@@ -1551,7 +1510,6 @@ main .kovetkezo h2 {
   color: var(--fg-muted);
 }
 
-/* Lejátszás közben a gomb kiemelőszínű (kiválasztott állapot) */
 .hang-gomb.szol {
   --bs-btn-color: var(--on-accent);
   --bs-btn-bg: var(--accent);
@@ -1664,7 +1622,6 @@ main .kovetkezo h2 {
   color: var(--fg-strong);
 }
 
-/* ---------- 9c. Vízi világ (.oldal-vizivilag) ---------- */
 .vizi-kartyak {
   margin-top: var(--space-2);
 }
@@ -1709,7 +1666,6 @@ main .kovetkezo h2 {
   margin-top: var(--space-3);
 }
 
-/* ---------- 9d. Kvíz (.oldal-kviz) ---------- */
 .kviz-kartya,
 .jatek-kartya {
   --bs-card-bg: var(--surface);
@@ -1746,9 +1702,7 @@ main .kovetkezo h2 {
   font-size: var(--text-sm);
 }
 
-/* Folyamatjelzők: a sáv transformmal nő, értéke a --ertek változó (0–1).
-   Az .animalt osztályt a script csak a kezdőállapot után adja hozzá,
-   így oldalbetöltéskor nincs mozgás, csak a felhasználó lépéseire. */
+
 .progress {
   --bs-progress-bg: var(--track);
   --bs-progress-border-radius: var(--radius-full);
@@ -1801,7 +1755,6 @@ main .kovetkezo h2 {
   gap: var(--space-3);
 }
 
-/* Válasz- és döntésgombok: keretes vezérlők, kiválasztva teli */
 .kviz-valasz,
 .jatek-dontes {
   --bs-btn-padding-x: var(--space-5);
@@ -1889,13 +1842,11 @@ main .kovetkezo h2 {
   color: var(--fg-strong);
 }
 
-/* ---------- 9e. Tippek (.oldal-tippek) ---------- */
 .oldal-tippek .tippek-bevezeto {
   max-width: var(--measure);
   margin-bottom: var(--space-5);
 }
 
-/* Tapadó vállalás-sáv: a sugara a jobb alsó 44 px-es gombhoz igazodik (22 + 16 px) */
 .vallalas-sav {
   --vallalas-margo: var(--space-4);
   position: sticky;
@@ -1942,7 +1893,6 @@ main .kovetkezo h2 {
   border-top: 0;
 }
 
-/* Vállalom-kapcsoló: a teljes sor kattintható, érintve 44 px magas */
 .tipp-kartya .form-check {
   display: flex;
   align-items: center;
@@ -1974,14 +1924,12 @@ main .kovetkezo h2 {
   cursor: pointer;
 }
 
-/* ---------- 9f. Döntési játék (.oldal-jatek) ---------- */
 .jatek-mutatok {
   display: grid;
   gap: var(--space-4);
   margin-bottom: var(--space-8);
 }
 
-/* A három mutató semleges színű; a kiemelőszín a fő gombé marad */
 .jatek-mutato .progress {
   --bs-progress-height: var(--meter-height);
   --bs-progress-bar-bg: var(--fg-strong);
@@ -2042,10 +1990,7 @@ main .kovetkezo h2 {
   font-size: var(--text-sm);
 }
 
-/* ---------- 10. Visszajelző animációk ----------
-   Csak a felhasználó lépésére reagáló mozgás marad: menü, galérialapozás, folyamatjelzők,
-   a kvíz és a játék visszajelzése. Legfeljebb 200 ms, csak opacity és transform;
-   csökkentett mozgásnál a tokenek 0 ms-ra állnak. */
+
 @media (prefers-reduced-motion: no-preference) {
   html {
     scroll-behavior: smooth;
