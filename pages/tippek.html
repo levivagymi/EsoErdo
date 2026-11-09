@@ -32,7 +32,7 @@
                     <span>Esőerdők világa</span>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#fomenu"
-                    aria-controls="fomenu" aria-expanded="false" aria-label="Menü megnyitása">
+                    aria-controls="fomenu" aria-expanded="false" aria-label="Menü megnyitása" title="Menü">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="fomenu">
@@ -49,19 +49,18 @@
             </div>
         </nav>
         <section class="title" aria-labelledby="oldal-cim">
-            <p class="oldal-felirat">Fenntarthatóság</p>
-            <h1 id="oldal-cim">Mit tehetünk mi?</h1>
-            <p>Az esőerdők több ezer kilométerre vannak tőlünk, a mindennapi döntéseink mégis hatással vannak rájuk.
-                Íme néhány egyszerű, de valódi lépés.</p>
+            <h1 id="oldal-cim">10 dolog, amit itthonról tehetsz az esőerdőkért</h1>
+            <p>Az esőerdők több ezer kilométerre vannak, de a hús, a csokoládé, a papír és a telefon, amit veszünk,
+                hatással van rájuk.</p>
             <div class="hero-gombok">
-                <a class="btn btn-esoerdo" href="#tippek">Mutasd a tippeket</a>
+                <a class="btn btn-esoerdo" href="#tippek">Ugrás a tippekhez</a>
                 <a class="szoveglink hero-link" href="#bevezeto">Miért számít?</a>
             </div>
         </section>
         <figure class="hero-kep">
             <img src="../img/hero-tippek-1280.webp"
                 srcset="../img/hero-tippek-800.webp 800w, ../img/hero-tippek-1280.webp 1280w, ../img/hero-tippek-1920.webp 1920w"
-                sizes="(min-width: 861px) 120vh, 100vw" width="1280" height="945" fetchpriority="high"
+                sizes="(min-width: 992px) 120vh, 125vw" width="1280" height="945" fetchpriority="high"
                 alt="Fiatal mangrovecsemete hajt ki a kopár, kiszáradt talajból">
             <figcaption class="kep-forras">Fotó: Wilfredor, CC0, Wikimedia Commons</figcaption>
         </figure>
@@ -78,25 +77,23 @@
             </div>
         </section>
         <section id="tippek" class="aloldal-szakasz tippek-szekcio" aria-labelledby="tippek-cim">
-            <h2 id="tippek-cim">10 konkrét tipp</h2>
-            <p class="tippek-bevezeto">Kapcsold be, melyik tippet vállalod! A böngésződ megjegyzi a vállalásaidat,
+            <h2 id="tippek-cim">10 tipp négy témában</h2>
+            <p class="tippek-bevezeto">Kapcsold be, melyik tippet vállalod. A böngésződ megjegyzi a vállalásaidat,
                 így legközelebb is itt találod őket.</p>
             <div class="vallalas-sav">
                 <div class="progress vallalas-progress" id="vallalas-sav" role="progressbar" aria-label="Vállalásaid"
                     aria-valuemin="0" aria-valuemax="10" aria-valuenow="0" aria-valuetext="0 vállalás a 10-ből">
                     <div class="progress-bar" id="vallalas-sav-belso"></div>
                 </div>
-                <p class="vallalas-szoveg" id="vallalas-szoveg" aria-live="polite">Még nem vállaltál egy tippet sem.
-                    Válassz legalább egyet!</p>
-                <button type="button" class="btn btn-outline-esoerdo btn-sm" id="vallalas-torles" disabled>Vállalások
+                <p class="vallalas-szoveg" id="vallalas-szoveg" aria-live="polite">Még nem vállaltál egy tippet sem.</p>
+                <button type="button" class="btn btn-outline-esoerdo" id="vallalas-torles" disabled>Vállalások
                     törlése</button>
             </div>
-            <h3 class="tipp-kategoria"><i class="bi bi-bag-check" aria-hidden="true"></i> Vásárlás</h3>
+            <h3 class="tipp-kategoria">Vásárlás</h3>
             <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4 tipp-racs">
                 <div class="col">
                     <article class="card tipp-kartya h-100">
                         <div class="card-body">
-                            <i class="bi bi-tree tipp-ikon" aria-hidden="true"></i>
                             <h4 class="card-title">1. Keresd az FSC-jelölést</h4>
                             <p class="card-text">Fa- és papírtermékeknél (bútor, füzet, papírzsebkendő) válaszd az FSC-jelölésűt: ez azt mutatja, hogy a fa felelős erdőgazdálkodásból származik.</p>
                         </div>
@@ -113,7 +110,6 @@
                 <div class="col">
                     <article class="card tipp-kartya h-100">
                         <div class="card-body">
-                            <i class="bi bi-patch-check tipp-ikon" aria-hidden="true"></i>
                             <h4 class="card-title">2. Válaszd a zöld békát</h4>
                             <p class="card-text">A Rainforest Alliance zöld békás jelölése kávén, kakaón, teán és banánon azt jelzi, hogy a termesztés során figyeltek az erdőre és a gazdákra.</p>
                         </div>
@@ -130,7 +126,6 @@
                 <div class="col">
                     <article class="card tipp-kartya h-100">
                         <div class="card-body">
-                            <i class="bi bi-droplet tipp-ikon" aria-hidden="true"></i>
                             <h4 class="card-title">3. Figyelj a pálmaolajra</h4>
                             <p class="card-text">Sok kekszben, csokoládéban és kozmetikumban van pálmaolaj. Olvasd el a címkét, és az RSPO-tanúsított vagy pálmaolajmentes változatot válaszd.</p>
                         </div>
@@ -145,12 +140,11 @@
                     </article>
                 </div>
             </div>
-            <h3 class="tipp-kategoria"><i class="bi bi-egg-fried" aria-hidden="true"></i> Étkezés</h3>
+            <h3 class="tipp-kategoria">Étkezés</h3>
             <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4 tipp-racs">
                 <div class="col">
                     <article class="card tipp-kartya h-100">
                         <div class="card-body">
-                            <i class="bi bi-basket tipp-ikon" aria-hidden="true"></i>
                             <h4 class="card-title">4. Egyél kevesebb marhahúst</h4>
                             <p class="card-text">Az Amazonas vidékén az erdőirtás legfőbb oka a marhalegelők terjeszkedése. Ha ritkábban kerül marhahús a tányérodra, kevesebb erdőre van szükség.</p>
                         </div>
@@ -167,7 +161,6 @@
                 <div class="col">
                     <article class="card tipp-kartya h-100">
                         <div class="card-body">
-                            <i class="bi bi-recycle tipp-ikon" aria-hidden="true"></i>
                             <h4 class="card-title">5. Ne pazarold az ételt</h4>
                             <p class="card-text">Minden kidobott étel mögött föld, víz és energia van. Ha kevesebbet pazarolunk, kevesebb mezőgazdasági területre van szükség, és kevesebb erdőt kell kivágni.</p>
                         </div>
@@ -182,12 +175,11 @@
                     </article>
                 </div>
             </div>
-            <h3 class="tipp-kategoria"><i class="bi bi-house-heart" aria-hidden="true"></i> Otthon és az iskolában</h3>
+            <h3 class="tipp-kategoria">Otthon és az iskolában</h3>
             <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4 tipp-racs">
                 <div class="col">
                     <article class="card tipp-kartya h-100">
                         <div class="card-body">
-                            <i class="bi bi-journal-text tipp-ikon" aria-hidden="true"></i>
                             <h4 class="card-title">6. Használj újrapapírt</h4>
                             <p class="card-text">Válassz újrapapírból készült füzetet, nyomtass kétoldalasan, és csak akkor, ha tényleg szükséges.</p>
                         </div>
@@ -204,7 +196,6 @@
                 <div class="col">
                     <article class="card tipp-kartya h-100">
                         <div class="card-body">
-                            <i class="bi bi-phone tipp-ikon" aria-hidden="true"></i>
                             <h4 class="card-title">7. Használd tovább a telefonodat</h4>
                             <p class="card-text">Az elektronikai eszközökhöz szükséges fémek (például az arany) bányászata esőerdőket is pusztít. Használd tovább a régi eszközödet, és vidd vissza újrahasznosításra.</p>
                         </div>
@@ -221,7 +212,6 @@
                 <div class="col">
                     <article class="card tipp-kartya h-100">
                         <div class="card-body">
-                            <i class="bi bi-arrow-repeat tipp-ikon" aria-hidden="true"></i>
                             <h4 class="card-title">8. Kevesebbet, de tartósabbat</h4>
                             <p class="card-text">Vásárolj használtan, javíttasd meg, ami elromlott, és cserélj a barátaiddal. Minden meg nem vett új tárgy kevesebb nyersanyagot és energiát igényel.</p>
                         </div>
@@ -236,12 +226,11 @@
                     </article>
                 </div>
             </div>
-            <h3 class="tipp-kategoria"><i class="bi bi-people" aria-hidden="true"></i> Közösen</h3>
+            <h3 class="tipp-kategoria">Közösen</h3>
             <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4 tipp-racs">
                 <div class="col">
                     <article class="card tipp-kartya h-100">
                         <div class="card-body">
-                            <i class="bi bi-shield-check tipp-ikon" aria-hidden="true"></i>
                             <h4 class="card-title">9. Ne vegyél egzotikus állatot</h4>
                             <p class="card-text">Ne vásárolj egzotikus háziállatot vagy állatból készült szuvenírt: az illegális kereskedelem sok esőerdei fajt sodor a kihalás szélére.</p>
                         </div>
@@ -258,7 +247,6 @@
                 <div class="col">
                     <article class="card tipp-kartya h-100">
                         <div class="card-body">
-                            <i class="bi bi-megaphone tipp-ikon" aria-hidden="true"></i>
                             <h4 class="card-title">10. Mondd el másoknak is</h4>
                             <p class="card-text">Tarts kiselőadást, oszd meg ezt az oldalt, vagy támogass egy természetvédelmi szervezetet. Minél többen ismerik az esőerdőket, annál többen tesznek értük.</p>
                         </div>
@@ -280,7 +268,6 @@
                 <div class="col">
                     <article class="card tudtad-kartya h-100">
                         <div class="card-body">
-                            <i class="bi bi-heart" aria-hidden="true"></i>
                             <h3 class="card-title">WWF Magyarország</h3>
                             <p class="card-text">Évtizedek óta dolgozik az erdők és az élővilág védelméért; adománnyal vagy önkéntesként is beszállhatsz.</p>
                             <a class="szoveglink" href="https://wwf.hu/" target="_blank" rel="noopener">A szervezet oldala<span
@@ -291,7 +278,6 @@
                 <div class="col">
                     <article class="card tudtad-kartya h-100">
                         <div class="card-body">
-                            <i class="bi bi-heart" aria-hidden="true"></i>
                             <h3 class="card-title">Rainforest Trust</h3>
                             <p class="card-text">Helyi partnerekkel együtt esőerdő-területeket vásárol meg és helyez védelem alá.</p>
                             <a class="szoveglink" href="https://www.rainforesttrust.org/" target="_blank" rel="noopener">A szervezet oldala<span
@@ -302,7 +288,6 @@
                 <div class="col">
                     <article class="card tudtad-kartya h-100">
                         <div class="card-body">
-                            <i class="bi bi-heart" aria-hidden="true"></i>
                             <h3 class="card-title">Rainforest Alliance</h3>
                             <p class="card-text">A zöld békás tanúsítvány mögött álló szervezet, amely a fenntartható gazdálkodást segíti.</p>
                             <a class="szoveglink" href="https://www.rainforest-alliance.org/" target="_blank" rel="noopener">A szervezet oldala<span
@@ -313,7 +298,6 @@
                 <div class="col">
                     <article class="card tudtad-kartya h-100">
                         <div class="card-body">
-                            <i class="bi bi-heart" aria-hidden="true"></i>
                             <h3 class="card-title">FSC</h3>
                             <p class="card-text">A felelős erdőgazdálkodás nemzetközi tanúsítási rendszere: az FSC-jelölés mögött álló szervezet.</p>
                             <a class="szoveglink" href="https://www.fsc.org/" target="_blank" rel="noopener">A szervezet oldala<span
@@ -324,10 +308,11 @@
             </div>
         </section>
         <section class="kovetkezo" aria-labelledby="kovetkezo-cim">
-            <h2 id="kovetkezo-cim">Köszönjük, hogy végigjártad az esőerdők világát!</h2>
-            <p>Oszd meg, amit tanultál, a barátaiddal is, vagy teszteld a tudásod a kvízben.</p>
+            <h2 id="kovetkezo-cim">Ez volt az utolsó aloldal</h2>
+            <p>Köszönjük, hogy végigjártad. Oszd meg, amit tanultál, a barátaiddal is, vagy nézd meg a kvízben, mennyit
+                jegyeztél meg.</p>
             <div class="kovetkezo-gombok">
-                <a class="btn btn-esoerdo" href="kviz.html">Kitöltöm a kvízt</a>
+                <a class="btn btn-outline-esoerdo" href="kviz.html">Töltsd ki a kvízt</a>
                 <a class="btn btn-outline-esoerdo" href="../index.html">Vissza a főoldalra</a>
             </div>
         </section>

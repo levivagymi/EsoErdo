@@ -32,7 +32,7 @@
                     <span>Esőerdők világa</span>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#fomenu"
-                    aria-controls="fomenu" aria-expanded="false" aria-label="Menü megnyitása">
+                    aria-controls="fomenu" aria-expanded="false" aria-label="Menü megnyitása" title="Menü">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="fomenu">
@@ -49,25 +49,23 @@
             </div>
         </nav>
         <section class="title" aria-labelledby="oldal-cim">
-            <p class="oldal-felirat">Élővilág</p>
-            <h1 id="oldal-cim">Az esőerdő lakói</h1>
-            <p>Ismerd meg az esőerdők legkülönlegesebb állatait és növényeit – néhány állat hangját is
-                meghallgathatod!</p>
+            <h1 id="oldal-cim">14 esőerdei állat és növény</h1>
+            <p>A jaguártól a raffléziáig: képek, leírások, és öt állat valódi hangja.</p>
             <div class="hero-gombok">
-                <a class="btn btn-esoerdo" href="#fajok">Ismerkedjünk!</a>
+                <a class="btn btn-esoerdo" href="#fajok">Ugrás a fajokhoz</a>
             </div>
         </section>
         <figure class="hero-kep">
             <img src="../img/hero-elovilag-1280.webp"
                 srcset="../img/hero-elovilag-800.webp 800w, ../img/hero-elovilag-1280.webp 1280w, ../img/hero-elovilag-1920.webp 1920w"
-                sizes="(min-width: 861px) 120vh, 100vw" width="1280" height="853" fetchpriority="high"
+                sizes="(min-width: 992px) 120vh, 125vw" width="1280" height="853" fetchpriority="high"
                 alt="Óriástukán ül egy ágon, élénk narancssárga csőrével">
             <figcaption class="kep-forras">Fotó: Giles Laurent, CC BY-SA 4.0, Wikimedia Commons (módosítva)</figcaption>
         </figure>
     </header>
     <main id="tartalom" tabindex="-1">
         <section id="bevezeto" class="aloldal-szakasz" aria-labelledby="bevezeto-cim">
-            <h2 id="bevezeto-cim">Az élet sokfélesége</h2>
+            <h2 id="bevezeto-cim">Egy hektáron több száz fafaj</h2>
             <div class="aloldal-bevezeto">
                 <p>Az esőerdők a Föld legfajgazdagabb élőhelyei: bár a szárazföldeknek csak kis részét borítják, itt él a
                     növény- és állatfajok több mint fele. Egyetlen hektárnyi amazóniai erdőben akár több száz különböző
@@ -79,9 +77,9 @@
         </section>
         <section id="fajok" class="aloldal-szakasz" aria-labelledby="fajok-cim">
             <h2 id="fajok-cim">Állatok és növények</h2>
-            <p class="fajok-bevezeto">Szűrd a fajokat a gombokkal, és hallgasd meg néhány állat valódi hangját!</p>
+            <p class="fajok-bevezeto">Szűrd a fajokat, és hallgasd meg öt állat valódi hangját.</p>
             <div class="hangulat-sav">
-                <button type="button" class="btn btn-esoerdo hang-gomb" data-hang="../audio/esoerdo-hangulat.mp3"
+                <button type="button" class="btn btn-outline-esoerdo hang-gomb" data-hang="../audio/esoerdo-hangulat.mp3"
                     aria-pressed="false">
                     <i class="bi bi-music-note-beamed" aria-hidden="true"></i>
                     <span class="hang-felirat">Esőerdő-hangulat</span>
@@ -404,7 +402,7 @@
         <section class="kovetkezo" aria-labelledby="kovetkezo-cim">
             <h2 id="kovetkezo-cim">Következő lépés: az esőerdő vízi világa</h2>
             <p>Fekete és fehér vizű folyók, elárasztott erdők, piráják és lamantinok várnak az Amazonas vidékén.</p>
-            <a class="btn btn-esoerdo" href="vizivilag.html">Tovább a Vízi világhoz</a>
+            <a class="btn btn-outline-esoerdo" href="vizivilag.html">Tovább a Vízi világhoz</a>
         </section>
     </main>
     <footer class="lablec">

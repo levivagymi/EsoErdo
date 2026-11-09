@@ -32,7 +32,7 @@
                     <span>Esőerdők világa</span>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#fomenu"
-                    aria-controls="fomenu" aria-expanded="false" aria-label="Menü megnyitása">
+                    aria-controls="fomenu" aria-expanded="false" aria-label="Menü megnyitása" title="Menü">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="fomenu">
@@ -49,18 +49,17 @@
             </div>
         </nav>
         <section class="title" aria-labelledby="oldal-cim">
-            <p class="oldal-felirat">Kvíz</p>
-            <h1 id="oldal-cim">Teszteld a tudásod!</h1>
-            <p>Tíz kérdés az esőerdőkről. Minden válasz után megtudod, mi a helyes megoldás, és miért.</p>
+            <h1 id="oldal-cim">Tíz kérdés az esőerdőkről</h1>
+            <p>Minden válasz után megtudod, mi a helyes megoldás és miért; a végén pontszámot kapsz.</p>
             <div class="hero-gombok">
-                <a class="btn btn-esoerdo" href="#kviz">Irány a kvíz</a>
+                <a class="btn btn-esoerdo" href="#kviz" data-indit>Kvíz indítása</a>
                 <a class="szoveglink hero-link" href="#szabalyok">Hogyan működik?</a>
             </div>
         </section>
         <figure class="hero-kep">
             <img src="../img/esoerdo-kod-960.webp"
                 srcset="../img/esoerdo-kod-960.webp 960w, ../img/esoerdo-kod-1920.webp 1920w"
-                sizes="(min-width: 861px) 120vh, 100vw" width="960" height="640" fetchpriority="high"
+                sizes="(min-width: 992px) 120vh, 125vw" width="960" height="640" fetchpriority="high"
                 alt="Ködbe burkolózó esőerdő egy hegyoldalon">
         </figure>
     </header>
@@ -79,8 +78,8 @@
             <article class="card kviz-kartya">
                 <div class="card-body">
                     <div class="kviz-kezdo" id="kviz-kezdo">
-                        <p>Készen állsz? Tíz kérdés, négy válaszlehetőség – lássuk, mennyit tudsz az esőerdőkről!</p>
-                        <button type="button" class="btn btn-esoerdo btn-lg" id="kviz-indit">Kezdjük!</button>
+                        <p>Tíz kérdés, kérdésenként négy válaszlehetőség. A kérdések sorrendje minden kitöltésnél más.</p>
+                        <button type="button" class="btn btn-esoerdo" id="kviz-indit">Kvíz indítása</button>
                         <noscript>
                             <p class="kviz-figyelem">A kvíz kitöltéséhez engedélyezd a JavaScriptet a böngésződben.</p>
                         </noscript>
@@ -104,19 +103,19 @@
                     <div class="kviz-eredmeny" id="kviz-eredmeny" hidden>
                         <h3 id="kviz-eredmeny-cim" tabindex="-1">Az eredményed</h3>
                         <p class="kviz-vegpont"><span id="kviz-vegpont">0</span> / 10 pont</p>
-                        <p class="kviz-ertekeles" id="kviz-ertekeles">Töltsd ki a kvízt az eredményhez!</p>
+                        <p class="kviz-ertekeles" id="kviz-ertekeles">Töltsd ki a kvízt az eredményhez.</p>
                         <div class="kovetkezo-gombok">
-                            <button type="button" class="btn btn-esoerdo" id="kviz-ujra">Újrakezdés</button>
-                            <a class="btn btn-outline-esoerdo" href="tippek.html">Mit tehetek az esőerdőkért?</a>
+                            <button type="button" class="btn btn-outline-esoerdo" id="kviz-ujra">Újrakezdés</button>
+                            <a class="szoveglink hero-link" href="tippek.html">Mit tehetek az esőerdőkért?</a>
                         </div>
                     </div>
                 </div>
             </article>
         </section>
         <section class="kovetkezo" aria-labelledby="kovetkezo-cim">
-            <h2 id="kovetkezo-cim">Következő lépés: dönts te az erdő sorsáról!</h2>
+            <h2 id="kovetkezo-cim">Következő lépés: a döntési játék</h2>
             <p>A döntési játékban egy esőerdős vidék vezetőjeként kell jól gazdálkodnod az erdővel.</p>
-            <a class="btn btn-esoerdo" href="jatek.html">Tovább a játékhoz</a>
+            <a class="btn btn-outline-esoerdo" href="jatek.html">Tovább a játékhoz</a>
         </section>
     </main>
     <footer class="lablec">

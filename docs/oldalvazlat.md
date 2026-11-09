@@ -10,9 +10,9 @@ Két vázlat készült: a **főoldalé** és az **aloldalak közös sablonjáé*
 ├───────────────────────────────┬──────────────────────────────────────┤
 │  ESŐERDŐK                     │ ╭──────────────────────────────────╮ │
 │  VILÁGA            (h1)       │ │                                  │ │
-│  Fedezd fel az esőerdők       │ │      NAGY HERO KÉP (animált)     │ │
-│  világát…                     │ │                                  │ │
-│  [Tudj meg többet] Hogyan…?   │ ╰──────────────────────────────────╯ │
+│  Hol nőnek esőerdők, kik…     │ │   NAGY HERO KÉP (12-ből 7 oszlop)│ │
+│  térkép 11 régióval, 14 faj…  │ │                                  │ │
+│  [Nyisd meg a térképet] Hogy…?│ ╰──────────────────────────────────╯ │
 ├───────────────────────────────┴──────────────────────────────────────┤
 │  Miért fontosak az esőerdők?   │  Csapadék / Hőmérséklet / Élővilág / │
 │  3 bekezdés (7 mondat)         │  A legnagyobb  (számadatok)          │
@@ -22,13 +22,15 @@ Két vázlat készült: a **főoldalé** és az **aloldalak közös sablonjáé*
 │  Az esőerdő szintjei   │magasság-│  Óriásfák → Lombkorona →          │
 │                        │ mérő    │  Alsó szint → Talaj (görgetésre)  │
 ├──────────────────────────────────────────────────────────────────────┤
-│  Fedezd fel részletesen                                              │
-│  [kép]Térkép [Tovább]  [kép]Élővilág [Tovább]  [kép]Vízi világ […]   │
-│  [kép]Kvíz   [Tovább]  [kép]Játék    [Tovább]  [kép]Tippek     […]   │
+│  Hat téma, hat aloldal                                               │
+│  [kép]Térkép link →    [kép]Élővilág link →    [kép]Vízi világ →     │
+│  [kép]Kvíz   link →    [kép]Játék    link →    [kép]Tippek     →     │
 ├──────────────────────────────────────────────────────────────────────┤
 │  Miért vannak veszélyben?   │  ╭ 2025-ben 4,3 millió hektár… ╮       │
 ├──────────────────────────────────────────────────────────────────────┤
-│  Mit tehetsz te?  (4 tipp ikonnal)  [Mind a 10 tipp]  [WWF-doboz]    │
+│  Mit tehetsz te?  (4 tipp)  [Nézd meg mind a 10 tippet]  [WWF-doboz] │
+├──────────────────────────────────────────────────────────────────────┤
+│  ╭ Következő lépés: a térkép   [Nyisd meg a térképet] ╮              │
 ├──────────────────────────────────────────────────────────────────────┤
 │  LÁBLÉC: Rólunk (szerzők) │ Oldalak │ Kapcsolat + GitHub │ térkép    │
 │  © 2026 Ádám Levente Dániel és Juhász Arnold · GitHub-repó           │
@@ -42,8 +44,8 @@ Két vázlat készült: a **főoldalé** és az **aloldalak közös sablonjáé*
 │ ([logó] Esőerdők…  [≡])│  ← a ≡ gomb lenyitja a menüt
 ├────────────────────────┤
 │ ESŐERDŐK VILÁGA        │
-│ Fedezd fel…            │
-│ [Tudj meg többet]      │
+│ Hol nőnek esőerdők…    │
+│ [Nyisd meg a térképet] │
 │ ╭────────────────────╮ │
 │ │   HERO KÉP         │ │
 │ ╰────────────────────╯ │
@@ -61,6 +63,8 @@ Két vázlat készült: a **főoldalé** és az **aloldalak közös sablonjáé*
 ├────────────────────────┤
 │ Veszélyek, tippek      │
 ├────────────────────────┤
+│ Következő lépés        │
+├────────────────────────┤
 │ LÁBLÉC (egymás alatt)  │
 └────────────────────────┘
 ```
@@ -71,10 +75,9 @@ Két vázlat készült: a **főoldalé** és az **aloldalak közös sablonjáé*
 ┌──────────────────────────────────────────────────────────────────────┐
 │  ( [logó] Esőerdők világa      menü – az aktuális oldal kiemelve )   │
 ├───────────────────────────────┬──────────────────────────────────────┤
-│  FELIRAT (pl. KVÍZ)           │ ╭──────────────────────────────────╮ │
-│  Oldalcím (h1)                │ │  HERO KÉP  (forrás a sarokban)   │ │
-│  Rövid bevezető mondat        │ ╰──────────────────────────────────╯ │
-│  [Fő gomb]  másodlagos link   │                                      │
+│  Oldalcím (h1)                │ ╭──────────────────────────────────╮ │
+│  Rövid bevezető mondat        │ │  HERO KÉP  (forrás a sarokban)   │ │
+│  [Fő gomb]  másodlagos link   │ ╰──────────────────────────────────╯ │
 ├───────────────────────────────┴──────────────────────────────────────┤
 │  Bevezető szakasz (h2 + 1–2 bekezdés)                                │
 ├──────────────────────────────────────────────────────────────────────┤
@@ -98,7 +101,6 @@ Két vázlat készült: a **főoldalé** és az **aloldalak közös sablonjáé*
 ┌────────────────────────┐
 │ ([logó] Esőerdők…  [≡])│
 ├────────────────────────┤
-│ FELIRAT                │
 │ Oldalcím               │
 │ Bevezető mondat        │
 │ [Fő gomb]              │

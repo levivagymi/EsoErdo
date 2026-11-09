@@ -27,7 +27,7 @@ A fejlesztéshez AI-asszisztenst (Claude) is használtunk a kód és a szövegek
 
 | Oldal | Fájl | Tartalom és interakció |
 |---|---|---|
-| Főoldal | `index.html` | hero kép animációval, „Miért fontosak az esőerdők?” bevezető, számadatok, Bootstrap carousel, az esőerdő szintjei görgetésre mozduló magasságmérővel, 6 kártya gombokkal az aloldalakra, veszélyek, tippek |
+| Főoldal | `index.html` | hero kép, „Miért fontosak az esőerdők?” bevezető, számadatok, Bootstrap carousel, az esőerdő szintjei görgetésre mozduló magasságmérővel, 6 kattintható kártya az aloldalakra, veszélyek, tippek, „Következő lépés” a térképre |
 | Térkép | `pages/terkep.html` | interaktív Leaflet-térkép 11 esőerdő-régióval, szűrő (trópusi / mérsékelt övi), régiólista, információs kártya, Egyenlítő és térítők |
 | Élővilág | `pages/elovilag.html` | 14 állat- és növényfaj képpel és leírással, szűrő, 5 valódi állathang + esőerdő-hangulat |
 | Vízi világ | `pages/vizivilag.html` | az Amazonas vízi élőlényei, fekete és fehér vizű folyók, elárasztott erdők |
@@ -70,7 +70,7 @@ EsoErdo/
 ├── style.css           saját stíluslap (minden oldalhoz)
 ├── script.js           saját JavaScript (minden oldalhoz)
 ├── pages/              aloldalak: terkep, elovilag, vizivilag, kviz, jatek, tippek
-├── img/                képek WebP formátumban (img/elovilag/: a fajok képei)
+├── img/                képek WebP formátumban (img/elovilag/: a fajok képei, img/szintek/: a főoldali erdőszintek képei)
 ├── audio/              állathangok MP3-ban
 ├── vendor/leaflet/     a Leaflet térkép stíluslapja
 └── docs/               designterv, oldalvázlat, kutatási jegyzet, tesztelési jegyzőkönyv

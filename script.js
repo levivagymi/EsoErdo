@@ -78,6 +78,30 @@ function elem(tag, osztaly = '', szoveg = '') {
   return uj;
 }
 
+// Bootstrap-ikon; csak díszítés, a jelentését mindig szöveg is hordozza.
+function ikon(nev) {
+  const i = elem('i', `bi bi-${nev}`);
+  i.setAttribute('aria-hidden', 'true');
+  return i;
+}
+
+// A style.css tokenjeinek értéke (pl. a térkép vonalszínéhez), hogy a szín egy helyen legyen megadva.
+const tokenErtek = (nev) => getComputedStyle(document.documentElement).getPropertyValue(nev).trim();
+
+const szazalek = new Intl.NumberFormat('hu-HU', { style: 'percent', maximumFractionDigits: 0 });
+
+// Folyamatjelző: a sáv a --ertek változóval (0–1) transformmal nő, lásd style.css.
+function savBeallit(belsoSav, arany) {
+  belsoSav.style.setProperty('--ertek', String(Math.min(1, Math.max(0, arany))));
+}
+
+// A kezdőérték kirajzolása után kapcsolja be az átmenetet,
+// így oldalbetöltéskor nincs mozgás, csak a felhasználó lépéseire.
+function animalasBekapcsol(progress) {
+  progress.getBoundingClientRect();
+  progress.classList.add('animalt');
+}
+
 /* ---------- Interaktív térkép (pages/terkep.html, Leaflet.js) ----------
    A régiók adatai egy tömbben vannak; ebből készül a lista, a jelölők és az információs kártya. */
 const ESOERDO_REGIOK = [
@@ -207,14 +231,15 @@ function initTerkep(terkepElem) {
   terkep.on('click focus', () => terkep.scrollWheelZoom.enable());
   terkep.on('mouseout blur', () => terkep.scrollWheelZoom.disable());
 
-  // Az Egyenlítő és a két térítő szaggatott vonallal
+  // Az Egyenlítő és a két térítő szaggatott vonallal (a szín a style.css --dark-walnut tokenje)
+  const vonalSzin = tokenErtek('--dark-walnut');
   [[23.44, 'Ráktérítő (é. sz. 23,4°)'], [0, 'Egyenlítő'], [-23.44, 'Baktérítő (d. sz. 23,4°)']].forEach(([fok, nev]) => {
-    L.polyline([[fok, -190], [fok, 200]], { color: '#582f0e', weight: 1.5, opacity: 0.85, dashArray: '6 6' })
+    L.polyline([[fok, -190], [fok, 200]], { color: vonalSzin, weight: 1.5, opacity: 0.85, dashArray: '6 6' })
       .bindTooltip(nev, { sticky: true })
       .addTo(terkep);
   });
 
-  const ikon = (tipus) => L.divIcon({
+  const jeloloIkon = (tipus) => L.divIcon({
     className: `terkep-jelolo terkep-jelolo-${tipus}`,
     html: '<i class="bi bi-tree-fill" aria-hidden="true"></i>',
     iconSize: [34, 34],
@@ -258,15 +283,14 @@ function initTerkep(terkepElem) {
       jelolo.openPopup();
       return;
     }
-    // a felugró ablak csak a mozgás végén nyílik ki, különben megzavarná a repülést
+    // A felugró ablak a mozgás végén nyílik ki; a nagyítás a Leaflet rövid alapanimációjával történik.
     terkep.once('moveend', () => jelolo.openPopup());
-    if (csokkentettMozgas()) terkep.setView(regio.koord, 5);
-    else terkep.flyTo(regio.koord, 5, { duration: 1.2 });
+    terkep.setView(regio.koord, 5, { animate: !csokkentettMozgas() });
   };
 
   ESOERDO_REGIOK.forEach((regio) => {
     const nevElem = elem('strong', '', regio.nev);
-    const jelolo = L.marker(regio.koord, { icon: ikon(regio.tipus), title: regio.nev, keyboard: true, riseOnHover: true })
+    const jelolo = L.marker(regio.koord, { icon: jeloloIkon(regio.tipus), title: regio.nev, keyboard: true, riseOnHover: true })
       .bindPopup(nevElem)
       .on('click', () => kivalaszt(regio, false))
       .addTo(terkep);
@@ -344,57 +368,82 @@ if (fajSzuro) {
 
 /* ---------- Élővilág: állathangok (pages/elovilag.html) ----------
    Egyetlen közös Audio objektum szól, így egyszerre mindig csak egy hang hallható.
-   A hangfájl útvonala a gomb data-hang attribútumában van. */
+   A hangfájl útvonala a gomb data-hang attribútumában van.
+   Állapotok: alap → töltés (forgó jel, a gomb szélessége rögzítve) → szól (Leállítás) vagy hiba. */
 function initHangok(gombok) {
   const lejatszo = new Audio();
   lejatszo.preload = 'none';
   const allapot = document.getElementById('hang-allapot');
   let aktivGomb = null;
 
-  const gombAllapot = (gomb, szol) => {
-    const felirat = gomb.querySelector('.hang-felirat');
-    const ikon = gomb.querySelector('.bi');
-    if (!gomb.dataset.eredetiFelirat) gomb.dataset.eredetiFelirat = felirat.textContent;
-    gomb.setAttribute('aria-pressed', String(szol));
-    gomb.classList.toggle('szol', szol);
-    felirat.textContent = szol ? 'Leállítás' : gomb.dataset.eredetiFelirat;
-    ikon.classList.toggle('bi-stop-fill', szol);
-    ikon.classList.toggle(gomb.dataset.hang.includes('hangulat') ? 'bi-music-note-beamed' : 'bi-volume-up', !szol);
+  gombok.forEach((gomb) => {
+    gomb.dataset.eredetiFelirat = gomb.querySelector('.hang-felirat').textContent;
+    gomb.dataset.alapIkon = gomb.dataset.hang.includes('hangulat') ? 'music-note-beamed' : 'volume-up';
+  });
+
+  const allapotKiir = (szoveg) => {
+    allapot.removeAttribute('aria-busy');
+    allapot.textContent = szoveg;
+  };
+
+  const gombAllapot = (gomb, uj) => {
+    // A felirat cseréje előtt rögzítjük a gomb szélességét, hogy semmi ne ugorjon el mellette.
+    if (uj !== 'alap' && !gomb.style.minWidth) gomb.style.minWidth = `${gomb.getBoundingClientRect().width}px`;
+    let jel;
+    if (uj === 'tolt') {
+      jel = elem('span', 'spinner-border');
+      jel.setAttribute('aria-hidden', 'true');
+    } else {
+      jel = ikon(uj === 'szol' ? 'stop-fill' : gomb.dataset.alapIkon);
+    }
+    gomb.firstElementChild.replaceWith(jel);
+    gomb.querySelector('.hang-felirat').textContent = uj === 'szol' ? 'Leállítás' : gomb.dataset.eredetiFelirat;
+    gomb.classList.toggle('szol', uj === 'szol');
+    gomb.setAttribute('aria-pressed', String(uj !== 'alap'));
+    if (uj === 'tolt') gomb.setAttribute('aria-busy', 'true');
+    else gomb.removeAttribute('aria-busy');
   };
 
   const leallit = () => {
     lejatszo.pause();
     lejatszo.currentTime = 0;
-    if (aktivGomb) gombAllapot(aktivGomb, false);
+    if (aktivGomb) gombAllapot(aktivGomb, 'alap');
     aktivGomb = null;
   };
 
   lejatszo.addEventListener('ended', () => {
-    if (aktivGomb) allapot.textContent = `Véget ért: ${aktivGomb.dataset.eredetiFelirat}.`;
+    if (!aktivGomb) return;
+    const nev = aktivGomb.dataset.eredetiFelirat;
     leallit();
+    allapotKiir(`Véget ért: ${nev}.`);
   });
 
   gombok.forEach((gomb) => {
     gomb.addEventListener('click', () => {
+      // Töltés vagy lejátszás közben ugyanaz a gomb leállítja a hangot.
       if (aktivGomb === gomb) {
         leallit();
-        allapot.textContent = 'A hang leállt.';
+        allapotKiir('A hang leállt.');
         return;
       }
       leallit();
       aktivGomb = gomb;
-      gombAllapot(gomb, true);
+      gombAllapot(gomb, 'tolt');
+      allapot.setAttribute('aria-busy', 'true');
+      allapot.textContent = `Betöltés: ${gomb.dataset.eredetiFelirat}…`;
       lejatszo.src = gomb.dataset.hang;
       // A play() Promise-t ad vissza: ha a böngésző nem tudja lejátszani, itt kezeljük a hibát.
       lejatszo.play()
         .then(() => {
-          if (aktivGomb === gomb) allapot.textContent = `Most szól: ${gomb.dataset.eredetiFelirat}.`;
+          if (aktivGomb !== gomb) return;
+          gombAllapot(gomb, 'szol');
+          allapotKiir(`Most szól: ${gomb.dataset.eredetiFelirat}.`);
         })
         .catch((hiba) => {
-          // Ha közben egy másik hangot indítottak el, a régi lejátszás megszakad (AbortError) – ez nem hiba.
+          // Ha közben leállították vagy másik hangot indítottak, a régi lejátszás megszakad (AbortError) – ez nem hiba.
           if (aktivGomb !== gomb || hiba.name === 'AbortError') return;
           leallit();
-          allapot.textContent = 'A hangot most nem sikerült lejátszani. Próbáld újra, vagy ellenőrizd a hangerőt!';
+          allapotKiir(`Nem sikerült lejátszani: ${gomb.dataset.eredetiFelirat}. Kattints újra a gombra; ha most sem szól, ellenőrizd az internetkapcsolatot és a hangerőt.`);
         });
     });
   });
@@ -403,4 +452,491 @@ function initHangok(gombok) {
 const hangGombok = [...document.querySelectorAll('.hang-gomb')];
 if (hangGombok.length) {
   initHangok(hangGombok);
+}
+
+/* ---------- Kvíz (pages/kviz.html) ----------
+   Minden kérdésnél az első válasz a helyes; a sorrendet a program keveri össze. */
+const KVIZ_KERDESEK = [
+  {
+    kerdes: 'A szárazföldek nagyjából hány százalékát borítják esőerdők?',
+    valaszok: ['kb. 6%-át', 'kb. 20%-át', 'kb. 35%-át', 'kb. 50%-át'],
+    magyarazat: 'Az esőerdők a szárazföldeknek csak kb. 6%-át borítják, mégis itt él a Föld növény- és állatfajainak több mint fele.',
+  },
+  {
+    kerdes: 'Melyik az esőerdő legmagasabb szintje?',
+    valaszok: ['az óriásfák szintje', 'a lombkoronaszint', 'az alsó lombkoronaszint', 'a talajszint'],
+    magyarazat: 'Az óriásfák (40–60 m) a lombkorona fölé magasodnak, csúcsaikat tűző nap és erős szél éri.',
+  },
+  {
+    kerdes: 'A napfénynek nagyjából hány százaléka jut le az esőerdő talajáig?',
+    valaszok: ['kb. 2%-a', 'kb. 25%-a', 'kb. 50%-a', 'kb. 80%-a'],
+    magyarazat: 'A sűrű lombkorona szinte minden fényt felfog, a talajra csak kb. 2% jut le, ezért ott félhomály van.',
+  },
+  {
+    kerdes: 'Mi az erdőirtás legfőbb oka az Amazonas vidékén?',
+    valaszok: ['a marhalegelők kialakítása', 'a városok építése', 'a turizmus', 'a vasútépítés'],
+    magyarazat: 'Az Amazonas vidékén az erdőirtás legfőbb oka a marhalegelők terjeszkedése; emellett a szójaültetvények és a tüzek is sok erdőt pusztítanak.',
+  },
+  {
+    kerdes: 'Melyik esőerdei állat hangja hallatszik el akár 5 kilométerre is?',
+    valaszok: ['a bőgőmajomé', 'a lajháré', 'a vörösszemű levelibékáé', 'a jaguáré'],
+    magyarazat: 'A bőgőmajom a szárazföld egyik leghangosabb állata; üvöltésével jelzi a csapat területét.',
+  },
+  {
+    kerdes: 'Melyik növénynek van a világ legnagyobb egyedi virága?',
+    valaszok: ['a rafflézia', 'az óriás tündérrózsa', 'a vanília', 'a kakaófa'],
+    magyarazat: 'A Rafflesia arnoldii virága akár 1 méter átmérőjű is lehet. Nincs levele, szára és gyökere: egy lián belsejében élősködik.',
+  },
+  {
+    kerdes: 'Igaz-e, hogy az Amazonas esőerdő adja a Föld oxigénjének 20%-át?',
+    valaszok: [
+      'Nem: az erdő élőlényei a megtermelt oxigén szinte egészét maguk fel is használják.',
+      'Igen, ezért hívják a Föld tüdejének.',
+      'Igen, sőt a Föld oxigénjének a felét adja.',
+      'Nem, mert az esőerdő fái egyáltalán nem termelnek oxigént.',
+    ],
+    magyarazat: 'Ez gyakori tévhit. Az Amazonas sok oxigént termel, de az ott élő növények, állatok és lebontó szervezetek szinte ugyanennyit el is használnak. Az esőerdő azért pótolhatatlan, mert hatalmas mennyiségű szenet tárol, és szabályozza a csapadékot.',
+  },
+  {
+    kerdes: 'Mit jelez az FSC-jelölés egy fa- vagy papírterméken?',
+    valaszok: ['hogy felelős erdőgazdálkodásból származik', 'hogy újrahasznosított műanyagból készült', 'hogy Magyarországon gyártották', 'hogy vízálló'],
+    magyarazat: 'Az FSC-jelölés azt mutatja, hogy a fa olyan erdőből származik, ahol figyelnek a természetre és az ott élő emberekre is.',
+  },
+  {
+    kerdes: 'Miért sötét, tea színű az Amazonas „fekete vizű” folyóinak vize?',
+    valaszok: ['a bomló növényi anyagokból oldódó szerves vegyületek miatt', 'olajszennyezés miatt', 'a mélyben lévő vulkáni kőzetek miatt', 'mert nagyon hideg a víz'],
+    magyarazat: 'A lehulló levelekből és ágakból humuszanyagok oldódnak a vízbe, és ezek nyelik el a fényt. A víz ettől még lehet viszonylag átlátszó.',
+  },
+  {
+    kerdes: 'Mekkora az Amazonas esőerdeje?',
+    valaszok: ['kb. 5,5 millió km²', 'kb. 55 ezer km²', 'kb. 550 ezer km²', 'kb. 55 millió km²'],
+    magyarazat: 'Az Amazonas esőerdeje kb. 5,5 millió km²-es: majdnem hatvanszor akkora, mint Magyarország.',
+  },
+];
+
+// Fisher–Yates keverés: a tömb egy összekevert másolatát adja vissza.
+function kever(tomb) {
+  const masolat = [...tomb];
+  for (let i = masolat.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [masolat[i], masolat[j]] = [masolat[j], masolat[i]];
+  }
+  return masolat;
+}
+
+function initKviz(kvizElem) {
+  const $ = (id) => kvizElem.querySelector(`#${id}`);
+  const kezdo = $('kviz-kezdo');
+  const kerdesResz = $('kviz-kerdes-resz');
+  const eredmeny = $('kviz-eredmeny');
+  const szamlalo = $('kviz-szamlalo');
+  const pontKiiras = $('kviz-pont');
+  const sav = $('kviz-sav');
+  const savBelso = $('kviz-sav-belso');
+  const kerdesSzoveg = $('kviz-kerdes-szoveg');
+  const valaszDoboz = $('kviz-valaszok');
+  const visszajelzes = $('kviz-visszajelzes');
+  const tovabbGomb = $('kviz-tovabb');
+  const darab = KVIZ_KERDESEK.length;
+
+  let sorrend = [];
+  let index = 0;
+  let pont = 0;
+
+  // A lebegő menü ne takarja ki a kérdést: ha a kérdés nem látszik jól, a kvíz elejére görgetünk.
+  const kerdesLathatoba = () => {
+    kerdesSzoveg.focus({ preventScroll: true });
+    const teteje = kerdesSzoveg.getBoundingClientRect().top;
+    if (teteje < 120 || teteje > window.innerHeight - 160) {
+      kvizElem.scrollIntoView({ behavior: csokkentettMozgas() ? 'auto' : 'smooth', block: 'start' });
+    }
+  };
+
+  const kerdesMutat = () => {
+    const kerdes = sorrend[index];
+    szamlalo.textContent = `${index + 1}. kérdés / ${darab}`;
+    sav.setAttribute('aria-valuenow', String(index + 1));
+    sav.setAttribute('aria-valuetext', `${index + 1}. kérdés a ${darab}-ből`);
+    savBeallit(savBelso, (index + 1) / darab);
+    kerdesSzoveg.textContent = kerdes.kerdes;
+    visszajelzes.replaceChildren();
+    visszajelzes.className = 'kviz-visszajelzes';
+    tovabbGomb.hidden = true;
+
+    const helyes = kerdes.valaszok[0];
+    const gombok = kever(kerdes.valaszok).map((szoveg) => {
+      const gomb = elem('button', 'btn kviz-valasz', szoveg);
+      gomb.type = 'button';
+      gomb.dataset.helyes = String(szoveg === helyes);
+      gomb.addEventListener('click', () => valaszol(gomb, kerdes));
+      return gomb;
+    });
+    valaszDoboz.replaceChildren(...gombok);
+  };
+
+  const valaszol = (valasztott, kerdes) => {
+    const helyes = kerdes.valaszok[0];
+    const talalt = valasztott.dataset.helyes === 'true';
+    [...valaszDoboz.children].forEach((gomb) => {
+      gomb.disabled = true;
+      if (gomb.dataset.helyes === 'true') {
+        gomb.classList.add('helyes');
+        gomb.prepend(ikon('check-lg'));
+        gomb.append(elem('span', 'visually-hidden', ' – helyes válasz'));
+      }
+    });
+    if (talalt) {
+      pont += 1;
+    } else {
+      valasztott.classList.add('helytelen');
+      valasztott.prepend(ikon('x-lg'));
+      valasztott.append(elem('span', 'visually-hidden', ' – a te válaszod'));
+    }
+    pontKiiras.textContent = String(pont);
+
+    visszajelzes.className = `kviz-visszajelzes ${talalt ? 'jo' : 'rossz'}`;
+    const cim = elem('strong', '', talalt ? 'Helyes. ' : `Nem jó. A helyes válasz: ${helyes}. `);
+    cim.prepend(ikon(talalt ? 'check-lg' : 'x-lg'));
+    visszajelzes.replaceChildren(cim, document.createTextNode(kerdes.magyarazat));
+
+    tovabbGomb.textContent = index === darab - 1 ? 'Eredmény megtekintése' : 'Következő kérdés';
+    tovabbGomb.hidden = false;
+    tovabbGomb.focus({ preventScroll: true });
+    if (tovabbGomb.getBoundingClientRect().bottom > window.innerHeight) {
+      tovabbGomb.scrollIntoView({ behavior: csokkentettMozgas() ? 'auto' : 'smooth', block: 'nearest' });
+    }
+  };
+
+  const ertekeles = () => {
+    if (pont === darab) return 'Minden kérdésre jól válaszoltál.';
+    if (pont >= 8) return 'Szinte mindent tudsz az esőerdőkről.';
+    if (pont >= 5) return 'Jó alap. Olvasd át még egyszer az aloldalakat, aztán próbáld újra.';
+    return 'Olvasd át az aloldalakat, aztán próbáld újra: a kérdések sorrendje minden kitöltésnél más.';
+  };
+
+  const vege = () => {
+    kerdesResz.hidden = true;
+    eredmeny.hidden = false;
+    $('kviz-vegpont').textContent = String(pont);
+    $('kviz-ertekeles').textContent = `${szazalek.format(pont / darab)} – ${ertekeles()}`;
+    $('kviz-eredmeny-cim').focus();
+  };
+
+  const indit = () => {
+    sorrend = kever(KVIZ_KERDESEK);
+    index = 0;
+    pont = 0;
+    pontKiiras.textContent = '0';
+    kezdo.hidden = true;
+    eredmeny.hidden = true;
+    kerdesResz.hidden = false;
+    kerdesMutat();
+    kerdesLathatoba();
+  };
+
+  tovabbGomb.addEventListener('click', () => {
+    if (index === darab - 1) {
+      vege();
+      return;
+    }
+    index += 1;
+    kerdesMutat();
+    kerdesLathatoba();
+  });
+  $('kviz-indit').addEventListener('click', indit);
+  $('kviz-ujra').addEventListener('click', indit);
+  // A fejléc fő gombja ugyanazt teszi, mint a kártya indítógombja (JavaScript nélkül csak a kvízhez ugrik).
+  document.querySelectorAll('[data-indit][href="#kviz"]').forEach((link) => link.addEventListener('click', (esemeny) => {
+    esemeny.preventDefault();
+    if (kerdesResz.hidden) indit();
+    else kerdesLathatoba();
+  }));
+  animalasBekapcsol(sav);
+}
+
+const kvizElem = document.getElementById('kviz');
+if (kvizElem) {
+  initKviz(kvizElem);
+}
+
+/* ---------- Tárolás a böngészőben (localStorage) ----------
+   Privát módban vagy letiltott sütik mellett a localStorage hibát dobhat: ilyenkor az oldal tárolás nélkül működik tovább. */
+const tarolo = {
+  olvas(kulcs, alapertek) {
+    try {
+      const ertek = window.localStorage.getItem(kulcs);
+      return ertek === null ? alapertek : JSON.parse(ertek);
+    } catch (hiba) {
+      return alapertek;
+    }
+  },
+  ir(kulcs, ertek) {
+    try {
+      window.localStorage.setItem(kulcs, JSON.stringify(ertek));
+      return true;
+    } catch (hiba) {
+      return false;
+    }
+  },
+};
+
+/* ---------- Tippek: vállalás-lista (pages/tippek.html) ---------- */
+const VALLALAS_KULCS = 'esoerdo-vallalasok';
+
+function vallalasUzenet(db, osszes) {
+  if (db === 0) return 'Még nem vállaltál egy tippet sem.';
+  if (db === osszes) return `Mind a ${osszes} tippet vállaltad.`;
+  return `${db} tippet vállaltál a ${osszes}-ből.`;
+}
+
+function initVallalasok(dobozok) {
+  const sav = document.getElementById('vallalas-sav');
+  const savBelso = document.getElementById('vallalas-sav-belso');
+  const szoveg = document.getElementById('vallalas-szoveg');
+  const torles = document.getElementById('vallalas-torles');
+  const ervenyes = new Set(dobozok.map((doboz) => doboz.dataset.tipp));
+
+  const mentett = tarolo.olvas(VALLALAS_KULCS, []);
+  const mentettLista = Array.isArray(mentett) ? mentett.filter((kulcs) => ervenyes.has(kulcs)) : [];
+  dobozok.forEach((doboz) => {
+    doboz.checked = mentettLista.includes(doboz.dataset.tipp);
+  });
+
+  const frissit = (mentes) => {
+    dobozok.forEach((doboz) => doboz.closest('.tipp-kartya').classList.toggle('vallalt', doboz.checked));
+    const bejelolt = dobozok.filter((doboz) => doboz.checked);
+    const db = bejelolt.length;
+    sav.setAttribute('aria-valuenow', String(db));
+    sav.setAttribute('aria-valuetext', `${db} vállalás a ${dobozok.length}-ből`);
+    savBeallit(savBelso, db / dobozok.length);
+    let uzenet = vallalasUzenet(db, dobozok.length);
+    if (mentes && !tarolo.ir(VALLALAS_KULCS, bejelolt.map((doboz) => doboz.dataset.tipp))) {
+      uzenet += ' (A böngésződ most nem engedi a mentést, de amíg itt vagy, a vállalásaid megmaradnak.)';
+    }
+    if (szoveg.textContent !== uzenet) szoveg.textContent = uzenet;
+    torles.disabled = db === 0;
+  };
+
+  dobozok.forEach((doboz) => doboz.addEventListener('change', () => frissit(true)));
+  torles.addEventListener('click', () => {
+    dobozok.forEach((doboz) => {
+      doboz.checked = false;
+    });
+    frissit(true);
+  });
+  frissit(false);
+  animalasBekapcsol(sav);
+}
+
+const vallalasDobozok = [...document.querySelectorAll('.vallalas')];
+if (vallalasDobozok.length) {
+  initVallalasok(vallalasDobozok);
+}
+
+/* ---------- Döntési játék (pages/jatek.html) ----------
+   Hat év, évente egy helyzet és három döntés. Minden döntés megváltoztatja a három mutatót (0–100). */
+const JATEK_KEZDO = { erdo: 80, elovilag: 75, jolet: 45 };
+const MUTATO_NEV = { erdo: 'Erdő', elovilag: 'Élővilág', jolet: 'Helyiek jóléte' };
+
+const JATEK_HELYZETEK = [
+  {
+    cim: 'Fakitermelő cég ajánlata',
+    leiras: 'Egy nagy fakitermelő cég sok pénzt ajánl azért, hogy kivághassa az erdő egy részét.',
+    dontesek: [
+      { szoveg: 'Elfogadod az ajánlatot, és engedélyezed a tarvágást.', hatas: { erdo: -20, elovilag: -15, jolet: 15 },
+        kovetkezmeny: 'Sok fa eltűnt, az állatok élőhelye beszűkült. A pénz egy ideig jól jön, de a kivágott erdő évtizedek alatt sem nő vissza.' },
+      { szoveg: 'Csak kíméletes, tanúsított (FSC) fakitermelést engedsz.', hatas: { erdo: -5, elovilag: -3, jolet: 8 },
+        kovetkezmeny: 'A cég csak válogatva vághat ki fákat, és újakat ültet. Kevesebb a bevétel, de az erdő megmarad.' },
+      { szoveg: 'Elutasítod az ajánlatot.', hatas: { erdo: 0, elovilag: 2, jolet: -5 },
+        kovetkezmeny: 'Az erdő érintetlen marad, de a helyiek csalódottak, mert elmaradt a munkalehetőség.' },
+    ],
+  },
+  {
+    cim: 'Legelő vagy erdő?',
+    leiras: 'A gazdák azt kérik, hogy felégethessenek egy erdőrészt új marhalegelőnek.',
+    dontesek: [
+      { szoveg: 'Engedélyezed az erdőégetést.', hatas: { erdo: -20, elovilag: -15, jolet: 10 },
+        kovetkezmeny: 'A tűz hatalmas területet emésztett fel. A legelő talaja néhány év alatt kimerül, és a gazdák újabb erdőt kérnek majd.' },
+      { szoveg: 'Segítesz a meglévő legelőket jobban kihasználni.', hatas: { erdo: 0, elovilag: 0, jolet: 6 },
+        kovetkezmeny: 'Fák árnyékában legeltetnek, takarmányt termesztenek: ugyanakkora területen több állat fér el.' },
+      { szoveg: 'Az erdő árnyékában termesztett kakaót és gyümölcsöt támogatod.', hatas: { erdo: 2, elovilag: 3, jolet: 4 },
+        kovetkezmeny: 'Az erdei kertek jövedelmet adnak, és közben az erdő is megmarad.' },
+    ],
+  },
+  {
+    cim: 'Turisták érkeznének',
+    leiras: 'Egy utazási iroda szállást építene, hogy a turisták megismerhessék az esőerdőt.',
+    dontesek: [
+      { szoveg: 'Nagy szállodát és utat építtetsz az erdő közepébe.', hatas: { erdo: -10, elovilag: -8, jolet: 10 },
+        kovetkezmeny: 'Sok turista érkezik, de az új út mentén megindult az illegális fakivágás is.' },
+      { szoveg: 'Kis, helyiek által vezetett ökoszállást támogatsz, helyi túravezetőkkel.', hatas: { erdo: 0, elovilag: 2, jolet: 10 },
+        kovetkezmeny: 'A turisták azért fizetnek, hogy élő erdőt lássanak – így a helyieknek megéri megvédeni.' },
+      { szoveg: 'Nem engedsz be turistákat.', hatas: { erdo: 0, elovilag: 0, jolet: -3 },
+        kovetkezmeny: 'Az erdő nyugalma megmarad, de a vidék egy fontos bevételi lehetőségtől esik el.' },
+    ],
+  },
+  {
+    cim: 'Orvvadászok az erdőben',
+    leiras: 'Orvvadászok jelentek meg, akik ritka papagájokat és majmokat fognak be eladásra.',
+    dontesek: [
+      { szoveg: 'Nem foglalkozol vele, erre nincs pénz.', hatas: { erdo: 0, elovilag: -15, jolet: 0 },
+        kovetkezmeny: 'Egyre kevesebb papagáj és majom él az erdőben, néhány faj teljesen eltűnt a vidékről.' },
+      { szoveg: 'Helyi erdőőröket alkalmazol.', hatas: { erdo: 2, elovilag: 10, jolet: 4 },
+        kovetkezmeny: 'Az őrök munkát kaptak, az orvvadászat pedig szinte teljesen megszűnt.' },
+      { szoveg: 'Szigorú büntetést vezetsz be, de nincs, aki ellenőrizze.', hatas: { erdo: 0, elovilag: -5, jolet: 0 },
+        kovetkezmeny: 'A szabály papíron jó, de ellenőrzés nélkül az orvvadászok folytatják.' },
+    ],
+  },
+  {
+    cim: 'Aszály és tűzveszély',
+    leiras: 'Rendkívül száraz év jön, az erdőben nagy a tűzveszély.',
+    dontesek: [
+      { szoveg: 'Tűzoltó csapatokat képzel ki, és megtiltod a tűzgyújtást.', hatas: { erdo: 0, elovilag: 2, jolet: -3 },
+        kovetkezmeny: 'Néhány kisebb tűz kitört, de gyorsan eloltották. Az erdő nagy része megmenekült.' },
+      { szoveg: 'Nem teszel semmit.', hatas: { erdo: -15, elovilag: -10, jolet: -5 },
+        kovetkezmeny: 'Hatalmas erdőtűz pusztított, a füst miatt sok ember meg is betegedett.' },
+      { szoveg: 'Engedélyezed a szokásos tarlóégetést.', hatas: { erdo: -10, elovilag: -6, jolet: 2 },
+        kovetkezmeny: 'Az egyik tűz átterjedt az erdőre: száraz időben a tűz könnyen elszabadul.' },
+    ],
+  },
+  {
+    cim: 'Az őslakosok földjei',
+    leiras: 'Az erdőben élő őslakos közösség hivatalos jogot kér az ősei által lakott földekre.',
+    dontesek: [
+      { szoveg: 'Megadod nekik a földjogot, és támogatod őket.', hatas: { erdo: 8, elovilag: 6, jolet: 8 },
+        kovetkezmeny: 'Az őslakosok vigyáznak az erdőre, amelyben élnek. A kutatások szerint ahol biztos a földjoguk, ott sokkal kevesebb erdőt irtanak ki.' },
+      { szoveg: 'Elutasítod, mert a földet egy bányacégnek adnád.', hatas: { erdo: -15, elovilag: -10, jolet: -5 },
+        kovetkezmeny: 'A bánya szennyezte a folyót, az őslakosoknak el kellett hagyniuk az otthonukat.' },
+      { szoveg: 'Elhalasztod a döntést.', hatas: { erdo: -3, elovilag: -2, jolet: -3 },
+        kovetkezmeny: 'Amíg nem született döntés, illegális telepesek vágtak ki erdőt a területen.' },
+    ],
+  },
+];
+
+function initJatek(jatekElem) {
+  const $ = (id) => jatekElem.querySelector(`#${id}`);
+  const kezdo = $('jatek-kezdo');
+  const kor = $('jatek-kor');
+  const vegeResz = $('jatek-vege');
+  const dontesDoboz = $('jatek-dontesek');
+  const kovetkezmeny = $('jatek-kovetkezmeny');
+  const tovabbGomb = $('jatek-tovabb');
+  const helyzetCim = $('jatek-helyzet-cim');
+
+  let allapot = { ...JATEK_KEZDO };
+  let ev = 0;
+  let naplo = [];
+
+  const mutatokFrissit = () => {
+    Object.keys(MUTATO_NEV).forEach((kulcs) => {
+      $(`mutato-${kulcs}`).setAttribute('aria-valuenow', String(allapot[kulcs]));
+      savBeallit($(`mutato-${kulcs}-sav`), allapot[kulcs] / 100);
+      $(`mutato-${kulcs}-ertek`).textContent = szazalek.format(allapot[kulcs] / 100);
+    });
+  };
+
+  const valtozasSzoveg = (hatas) => Object.keys(MUTATO_NEV)
+    .map((kulcs) => {
+      const ertek = hatas[kulcs];
+      const jel = ertek > 0 ? '+' : ertek < 0 ? '−' : '±';
+      return `${MUTATO_NEV[kulcs]} ${jel}${Math.abs(ertek)}`;
+    })
+    .join(', ');
+
+  const helyzetMutat = () => {
+    const helyzet = JATEK_HELYZETEK[ev];
+    $('jatek-ev').textContent = `${ev + 1}. év / ${JATEK_HELYZETEK.length}`;
+    helyzetCim.textContent = helyzet.cim;
+    $('jatek-helyzet-leiras').textContent = helyzet.leiras;
+    kovetkezmeny.replaceChildren();
+    tovabbGomb.hidden = true;
+    const gombok = helyzet.dontesek.map((dontes) => {
+      const gomb = elem('button', 'btn jatek-dontes', dontes.szoveg);
+      gomb.type = 'button';
+      gomb.addEventListener('click', () => dont(gomb, dontes, helyzet));
+      return gomb;
+    });
+    dontesDoboz.replaceChildren(...gombok);
+    helyzetCim.focus({ preventScroll: true });
+  };
+
+  const dont = (gomb, dontes, helyzet) => {
+    [...dontesDoboz.children].forEach((g) => { g.disabled = true; });
+    gomb.classList.add('valasztott');
+    gomb.prepend(ikon('check-lg'));
+    gomb.append(elem('span', 'visually-hidden', ' – a te döntésed'));
+    Object.keys(MUTATO_NEV).forEach((kulcs) => {
+      allapot[kulcs] = Math.min(100, Math.max(0, allapot[kulcs] + dontes.hatas[kulcs]));
+    });
+    mutatokFrissit();
+    naplo.push({ cim: helyzet.cim, dontes: dontes.szoveg });
+    kovetkezmeny.replaceChildren(
+      elem('p', 'jatek-kovetkezmeny-szoveg', dontes.kovetkezmeny),
+      elem('p', 'jatek-valtozas', `Változás: ${valtozasSzoveg(dontes.hatas)}.`),
+    );
+    tovabbGomb.textContent = ev === JATEK_HELYZETEK.length - 1 ? 'Eredmény megtekintése' : 'Következő év';
+    tovabbGomb.hidden = false;
+    tovabbGomb.focus({ preventScroll: true });
+  };
+
+  const ertekeles = () => {
+    const { erdo, elovilag, jolet } = allapot;
+    if (erdo >= 70 && elovilag >= 70 && jolet >= 55) {
+      return 'Fenntartható eredmény: megőrizted az erdőt és az élővilágot, és közben az itt élők is jobban élnek. A valóságban is ez a cél.';
+    }
+    if (erdo < 45) {
+      return 'Az erdő nagy része eltűnt. A gyors haszon helyett hosszú távú kár lett a vége: a kivágott esőerdő emberöltők alatt sem nő vissza.';
+    }
+    if (jolet < 40) {
+      return 'Az erdő megmaradt, de az itt élők nehezen boldogulnak. A legjobb megoldások azok, amelyek az embereknek is megélhetést adnak.';
+    }
+    return 'Kompromisszumos eredmény: az erdő egy része megmaradt, de lett volna jobb út is. Próbáld újra, és keresd azokat a döntéseket, amelyek egyszerre védik az erdőt és segítik az embereket.';
+  };
+
+  const vege = () => {
+    kor.hidden = true;
+    vegeResz.hidden = false;
+    const [erdo, elovilag, jolet] = ['erdo', 'elovilag', 'jolet'].map((kulcs) => szazalek.format(allapot[kulcs] / 100));
+    $('jatek-ertekeles').textContent = `Erdő: ${erdo}, élővilág: ${elovilag}, helyiek jóléte: ${jolet}. ${ertekeles()}`;
+    $('jatek-osszegzes').replaceChildren(...naplo.map((sor, i) => elem('li', '', `${i + 1}. év – ${sor.cim}: ${sor.dontes}`)));
+    $('jatek-vege-cim').focus({ preventScroll: true });
+    jatekElem.scrollIntoView({ behavior: csokkentettMozgas() ? 'auto' : 'smooth', block: 'start' });
+  };
+
+  const indit = () => {
+    allapot = { ...JATEK_KEZDO };
+    ev = 0;
+    naplo = [];
+    mutatokFrissit();
+    kezdo.hidden = true;
+    vegeResz.hidden = true;
+    kor.hidden = false;
+    helyzetMutat();
+    jatekElem.scrollIntoView({ behavior: csokkentettMozgas() ? 'auto' : 'smooth', block: 'start' });
+  };
+
+  tovabbGomb.addEventListener('click', () => {
+    if (ev === JATEK_HELYZETEK.length - 1) {
+      vege();
+      return;
+    }
+    ev += 1;
+    helyzetMutat();
+    jatekElem.scrollIntoView({ behavior: csokkentettMozgas() ? 'auto' : 'smooth', block: 'start' });
+  });
+  $('jatek-indit').addEventListener('click', indit);
+  $('jatek-ujra').addEventListener('click', indit);
+  // A fejléc fő gombja ugyanazt teszi, mint a kártya indítógombja (JavaScript nélkül csak a játékhoz ugrik).
+  document.querySelectorAll('[data-indit][href="#jatek"]').forEach((link) => link.addEventListener('click', (esemeny) => {
+    esemeny.preventDefault();
+    if (kor.hidden) indit();
+    else jatekElem.scrollIntoView({ behavior: csokkentettMozgas() ? 'auto' : 'smooth', block: 'start' });
+  }));
+  mutatokFrissit();
+  Object.keys(MUTATO_NEV).forEach((kulcs) => animalasBekapcsol($(`mutato-${kulcs}`)));
+}
+
+const jatekElem = document.getElementById('jatek');
+if (jatekElem) {
+  initJatek(jatekElem);
 }
