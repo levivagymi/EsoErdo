@@ -1,6 +1,13 @@
-const retegLista = document.querySelector('.retegek');
+/* =====================================================================
+   Esőerdők világa – közös JavaScript (script.js)
+   Minden funkció egy init…() függvény, és csak akkor fut le,
+   ha az aktuális oldalon megtalálható a hozzá tartozó HTML-elem.
+   ===================================================================== */
+'use strict';
 
-if (retegLista && 'IntersectionObserver' in window) {
+/* ---------- Magasságmérő (főoldal, „Az esőerdő szintjei”) ----------
+   Görgetés közben jelzi, hogy a látogató éppen melyik erdőszintnél jár. */
+function initMagassagmero(retegLista) {
   const retegek = [...retegLista.querySelectorAll('.reteg')];
   const tartomany = (reteg) => ({ felso: Number(reteg.dataset.felso), also: Number(reteg.dataset.also) });
   const legmagasabb = Math.max(...retegek.map((reteg) => tartomany(reteg).felso));
@@ -53,4 +60,9 @@ if (retegLista && 'IntersectionObserver' in window) {
 
   retegek.forEach((reteg) => megfigyelo.observe(reteg));
   aktival(retegek[0]);
+}
+
+const retegLista = document.querySelector('.retegek');
+if (retegLista && 'IntersectionObserver' in window) {
+  initMagassagmero(retegLista);
 }

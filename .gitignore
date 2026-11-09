@@ -1,0 +1,7 @@
+# Helyi fejlesztői eszközök beállításai (nem részei a weboldalnak)
+.claude/
+
+# Operációs rendszer által létrehozott fájlok
+Thumbs.db
+desktop.ini
+.DS_Store
