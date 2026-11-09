@@ -311,3 +311,362 @@ const terkepElem = document.getElementById('terkep');
 if (terkepElem) {
   initTerkep(terkepElem);
 }
+
+/* ---------- Élővilág: fajok szűrése (pages/elovilag.html) ----------
+   A kártyák oszlopain lévő data-tipus alapján rejti el vagy mutatja meg a fajokat. */
+function initFajSzuro(szuroSav) {
+  const gombok = [...szuroSav.querySelectorAll('[data-szuro]')];
+  const oszlopok = [...document.querySelectorAll('.faj-racs > [data-tipus]')];
+  const szamlalo = document.getElementById('faj-szam');
+
+  const szur = (szuro) => {
+    let darab = 0;
+    oszlopok.forEach((oszlop) => {
+      const lathato = szuro === 'mind' || oszlop.dataset.tipus === szuro;
+      oszlop.hidden = !lathato;
+      if (lathato) darab += 1;
+    });
+    gombok.forEach((gomb) => {
+      const aktiv = gomb.dataset.szuro === szuro;
+      gomb.classList.toggle('active', aktiv);
+      gomb.setAttribute('aria-pressed', String(aktiv));
+    });
+    szamlalo.textContent = `${darab} faj látható`;
+  };
+
+  gombok.forEach((gomb) => gomb.addEventListener('click', () => szur(gomb.dataset.szuro)));
+}
+
+const fajSzuro = document.querySelector('.faj-szuro');
+if (fajSzuro) {
+  initFajSzuro(fajSzuro);
+}
+
+/* ---------- Élővilág: állathangok (pages/elovilag.html) ----------
+   Egyetlen közös Audio objektum szól, így egyszerre mindig csak egy hang hallható.
+   A hangfájl útvonala a gomb data-hang attribútumában van. */
+function initHangok(gombok) {
+  const lejatszo = new Audio();
+  lejatszo.preload = 'none';
+  const allapot = document.getElementById('hang-allapot');
+  let aktivGomb = null;
+
+  const gombAllapot = (gomb, szol) => {
+    const felirat = gomb.querySelector('.hang-felirat');
+    const ikon = gomb.querySelector('.bi');
+    if (!gomb.dataset.eredetiFelirat) gomb.dataset.eredetiFelirat = felirat.textContent;
+    gomb.setAttribute('aria-pressed', String(szol));
+    gomb.classList.toggle('szol', szol);
+    felirat.textContent = szol ? 'Leállítás' : gomb.dataset.eredetiFelirat;
+    ikon.classList.toggle('bi-stop-fill', szol);
+    ikon.classList.toggle(gomb.dataset.hang.includes('hangulat') ? 'bi-music-note-beamed' : 'bi-volume-up', !szol);
+  };
+
+  const leallit = () => {
+    lejatszo.pause();
+    lejatszo.currentTime = 0;
+    if (aktivGomb) gombAllapot(aktivGomb, false);
+    aktivGomb = null;
+  };
+
+  lejatszo.addEventListener('ended', () => {
+    if (aktivGomb) allapot.textContent = `Véget ért: ${aktivGomb.dataset.eredetiFelirat}.`;
+    leallit();
+  });
+
+  gombok.forEach((gomb) => {
+    gomb.addEventListener('click', () => {
+      if (aktivGomb === gomb) {
+        leallit();
+        allapot.textContent = 'A hang leállt.';
+        return;
+      }
+      leallit();
+      aktivGomb = gomb;
+      gombAllapot(gomb, true);
+      lejatszo.src = gomb.dataset.hang;
+      // A play() Promise-t ad vissza: ha a böngésző nem tudja lejátszani, itt kezeljük a hibát.
+      lejatszo.play()
+        .then(() => {
+          if (aktivGomb === gomb) allapot.textContent = `Most szól: ${gomb.dataset.eredetiFelirat}.`;
+        })
+        .catch((hiba) => {
+          // Ha közben egy másik hangot indítottak el, a régi lejátszás megszakad (AbortError) – ez nem hiba.
+          if (aktivGomb !== gomb || hiba.name === 'AbortError') return;
+          leallit();
+          allapot.textContent = 'A hangot most nem sikerült lejátszani. Próbáld újra, vagy ellenőrizd a hangerőt!';
+        });
+    });
+  });
+}
+
+const hangGombok = [...document.querySelectorAll('.hang-gomb')];
+if (hangGombok.length) {
+  initHangok(hangGombok);
+}
+
+/* ---------- Kvíz (pages/kviz.html) ----------
+   Minden kérdésnél az első válasz a helyes; a sorrendet a program keveri össze. */
+const KVIZ_KERDESEK = [
+  {
+    kerdes: 'A szárazföldek nagyjából hány százalékát borítják esőerdők?',
+    valaszok: ['kb. 6%-át', 'kb. 20%-át', 'kb. 35%-át', 'kb. 50%-át'],
+    magyarazat: 'Az esőerdők a szárazföldeknek csak kb. 6%-át borítják, mégis itt él a Föld növény- és állatfajainak több mint fele.',
+  },
+  {
+    kerdes: 'Melyik az esőerdő legmagasabb szintje?',
+    valaszok: ['az óriásfák szintje', 'a lombkoronaszint', 'az alsó lombkoronaszint', 'a talajszint'],
+    magyarazat: 'Az óriásfák (40–60 m) a lombkorona fölé magasodnak, csúcsaikat tűző nap és erős szél éri.',
+  },
+  {
+    kerdes: 'A napfénynek nagyjából hány százaléka jut le az esőerdő talajáig?',
+    valaszok: ['kb. 2%-a', 'kb. 25%-a', 'kb. 50%-a', 'kb. 80%-a'],
+    magyarazat: 'A sűrű lombkorona szinte minden fényt felfog, a talajra csak kb. 2% jut le, ezért ott félhomály van.',
+  },
+  {
+    kerdes: 'Mi az erdőirtás legfőbb oka az Amazonas vidékén?',
+    valaszok: ['a marhalegelők kialakítása', 'a városok építése', 'a turizmus', 'a vasútépítés'],
+    magyarazat: 'Az Amazonas vidékén az erdőirtás legfőbb oka a marhalegelők terjeszkedése; emellett a szójaültetvények és a tüzek is sok erdőt pusztítanak.',
+  },
+  {
+    kerdes: 'Melyik esőerdei állat hangja hallatszik el akár 5 kilométerre is?',
+    valaszok: ['a bőgőmajomé', 'a lajháré', 'a vörösszemű levelibékáé', 'a jaguáré'],
+    magyarazat: 'A bőgőmajom a szárazföld egyik leghangosabb állata; üvöltésével jelzi a csapat területét.',
+  },
+  {
+    kerdes: 'Melyik növénynek van a világ legnagyobb egyedi virága?',
+    valaszok: ['a rafflézia', 'az óriás tündérrózsa', 'a vanília', 'a kakaófa'],
+    magyarazat: 'A Rafflesia arnoldii virága akár 1 méter átmérőjű is lehet. Nincs levele, szára és gyökere: egy lián belsejében élősködik.',
+  },
+  {
+    kerdes: 'Igaz-e, hogy az Amazonas esőerdő adja a Föld oxigénjének 20%-át?',
+    valaszok: [
+      'Nem: az erdő élőlényei a megtermelt oxigén szinte egészét maguk fel is használják.',
+      'Igen, ezért hívják a Föld tüdejének.',
+      'Igen, sőt a Föld oxigénjének a felét adja.',
+      'Nem, mert az esőerdő fái egyáltalán nem termelnek oxigént.',
+    ],
+    magyarazat: 'Ez gyakori tévhit. Az Amazonas sok oxigént termel, de az ott élő növények, állatok és lebontó szervezetek szinte ugyanennyit el is használnak. Az esőerdő azért pótolhatatlan, mert hatalmas mennyiségű szenet tárol, és szabályozza a csapadékot.',
+  },
+  {
+    kerdes: 'Mit jelez az FSC-jelölés egy fa- vagy papírterméken?',
+    valaszok: ['hogy felelős erdőgazdálkodásból származik', 'hogy újrahasznosított műanyagból készült', 'hogy Magyarországon gyártották', 'hogy vízálló'],
+    magyarazat: 'Az FSC-jelölés azt mutatja, hogy a fa olyan erdőből származik, ahol figyelnek a természetre és az ott élő emberekre is.',
+  },
+  {
+    kerdes: 'Miért sötét, tea színű az Amazonas „fekete vizű” folyóinak vize?',
+    valaszok: ['a bomló növényi anyagokból oldódó szerves vegyületek miatt', 'olajszennyezés miatt', 'a mélyben lévő vulkáni kőzetek miatt', 'mert nagyon hideg a víz'],
+    magyarazat: 'A lehulló levelekből és ágakból humuszanyagok oldódnak a vízbe, és ezek nyelik el a fényt. A víz ettől még lehet viszonylag átlátszó.',
+  },
+  {
+    kerdes: 'Mekkora az Amazonas esőerdeje?',
+    valaszok: ['kb. 5,5 millió km²', 'kb. 55 ezer km²', 'kb. 550 ezer km²', 'kb. 55 millió km²'],
+    magyarazat: 'Az Amazonas esőerdeje kb. 5,5 millió km²-es: majdnem hatvanszor akkora, mint Magyarország.',
+  },
+];
+
+// Fisher–Yates keverés: a tömb egy összekevert másolatát adja vissza.
+function kever(tomb) {
+  const masolat = [...tomb];
+  for (let i = masolat.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [masolat[i], masolat[j]] = [masolat[j], masolat[i]];
+  }
+  return masolat;
+}
+
+function initKviz(kvizElem) {
+  const $ = (id) => kvizElem.querySelector(`#${id}`);
+  const kezdo = $('kviz-kezdo');
+  const kerdesResz = $('kviz-kerdes-resz');
+  const eredmeny = $('kviz-eredmeny');
+  const szamlalo = $('kviz-szamlalo');
+  const pontKiiras = $('kviz-pont');
+  const sav = $('kviz-sav');
+  const savBelso = $('kviz-sav-belso');
+  const kerdesSzoveg = $('kviz-kerdes-szoveg');
+  const valaszDoboz = $('kviz-valaszok');
+  const visszajelzes = $('kviz-visszajelzes');
+  const tovabbGomb = $('kviz-tovabb');
+  const darab = KVIZ_KERDESEK.length;
+
+  let sorrend = [];
+  let index = 0;
+  let pont = 0;
+
+  // A lebegő menü ne takarja ki a kérdést: ha a kérdés nem látszik jól, a kvíz elejére görgetünk.
+  const kerdesLathatoba = () => {
+    kerdesSzoveg.focus({ preventScroll: true });
+    const teteje = kerdesSzoveg.getBoundingClientRect().top;
+    if (teteje < 120 || teteje > window.innerHeight - 160) {
+      kvizElem.scrollIntoView({ behavior: csokkentettMozgas() ? 'auto' : 'smooth', block: 'start' });
+    }
+  };
+
+  const kerdesMutat = () => {
+    const kerdes = sorrend[index];
+    szamlalo.textContent = `${index + 1}. kérdés / ${darab}`;
+    sav.setAttribute('aria-valuenow', String(index + 1));
+    sav.setAttribute('aria-valuetext', `${index + 1}. kérdés a ${darab}-ből`);
+    savBelso.style.width = `${((index + 1) / darab) * 100}%`;
+    kerdesSzoveg.textContent = kerdes.kerdes;
+    visszajelzes.replaceChildren();
+    visszajelzes.className = 'kviz-visszajelzes';
+    tovabbGomb.hidden = true;
+
+    const helyes = kerdes.valaszok[0];
+    const gombok = kever(kerdes.valaszok).map((szoveg) => {
+      const gomb = elem('button', 'btn kviz-valasz', szoveg);
+      gomb.type = 'button';
+      gomb.addEventListener('click', () => valaszol(gomb, szoveg === helyes, helyes, kerdes.magyarazat));
+      return gomb;
+    });
+    valaszDoboz.replaceChildren(...gombok);
+  };
+
+  const valaszol = (valasztott, talalt, helyes, magyarazat) => {
+    [...valaszDoboz.children].forEach((gomb) => {
+      gomb.disabled = true;
+      if (gomb.textContent === helyes) {
+        gomb.classList.add('helyes');
+        gomb.append(elem('span', 'visually-hidden', ' – helyes válasz'));
+      }
+    });
+    if (!talalt) {
+      valasztott.classList.add('helytelen');
+      valasztott.append(elem('span', 'visually-hidden', ' – a te válaszod'));
+    }
+    if (talalt) pont += 1;
+    pontKiiras.textContent = String(pont);
+
+    visszajelzes.className = `kviz-visszajelzes ${talalt ? 'jo' : 'rossz'}`;
+    const cim = elem('strong', '', talalt ? '✔ Helyes! ' : `✘ Nem egészen. A helyes válasz: ${helyes}. `);
+    visszajelzes.replaceChildren(cim, document.createTextNode(magyarazat));
+
+    tovabbGomb.textContent = index === darab - 1 ? 'Eredmény megtekintése' : 'Következő kérdés';
+    tovabbGomb.hidden = false;
+    tovabbGomb.focus({ preventScroll: true });
+    if (tovabbGomb.getBoundingClientRect().bottom > window.innerHeight) {
+      tovabbGomb.scrollIntoView({ behavior: csokkentettMozgas() ? 'auto' : 'smooth', block: 'nearest' });
+    }
+  };
+
+  const ertekeles = () => {
+    if (pont === darab) return 'Tökéletes! Igazi esőerdő-szakértő vagy.';
+    if (pont >= 8) return 'Nagyon szép! Szinte mindent tudsz az esőerdőkről.';
+    if (pont >= 5) return 'Jó kezdet! Nézz körül még egyszer az oldalon, aztán próbáld újra.';
+    return 'Ne add fel! Fedezd fel az aloldalakat, aztán próbáld újra.';
+  };
+
+  const vege = () => {
+    kerdesResz.hidden = true;
+    eredmeny.hidden = false;
+    $('kviz-vegpont').textContent = String(pont);
+    $('kviz-ertekeles').textContent = `${Math.round((pont / darab) * 100)}% – ${ertekeles()}`;
+    $('kviz-eredmeny-cim').focus();
+  };
+
+  const indit = () => {
+    sorrend = kever(KVIZ_KERDESEK);
+    index = 0;
+    pont = 0;
+    pontKiiras.textContent = '0';
+    kezdo.hidden = true;
+    eredmeny.hidden = true;
+    kerdesResz.hidden = false;
+    kerdesMutat();
+    kerdesLathatoba();
+  };
+
+  tovabbGomb.addEventListener('click', () => {
+    if (index === darab - 1) {
+      vege();
+      return;
+    }
+    index += 1;
+    kerdesMutat();
+    kerdesLathatoba();
+  });
+  $('kviz-indit').addEventListener('click', indit);
+  $('kviz-ujra').addEventListener('click', indit);
+}
+
+const kvizElem = document.getElementById('kviz');
+if (kvizElem) {
+  initKviz(kvizElem);
+}
+
+/* ---------- Tárolás a böngészőben (localStorage) ----------
+   Privát módban vagy letiltott sütik mellett a localStorage hibát dobhat: ilyenkor az oldal tárolás nélkül működik tovább. */
+const tarolo = {
+  olvas(kulcs, alapertek) {
+    try {
+      const ertek = window.localStorage.getItem(kulcs);
+      return ertek === null ? alapertek : JSON.parse(ertek);
+    } catch (hiba) {
+      return alapertek;
+    }
+  },
+  ir(kulcs, ertek) {
+    try {
+      window.localStorage.setItem(kulcs, JSON.stringify(ertek));
+      return true;
+    } catch (hiba) {
+      return false;
+    }
+  },
+};
+
+/* ---------- Tippek: vállalás-lista (pages/tippek.html) ---------- */
+const VALLALAS_KULCS = 'esoerdo-vallalasok';
+
+function vallalasUzenet(db, osszes) {
+  if (db === 0) return 'Még nem vállaltál egy tippet sem. Válassz legalább egyet!';
+  if (db === osszes) return `Mind a ${osszes} tippet vállaltad – az esőerdők nevében: köszönjük!`;
+  if (db >= 8) return `${db} vállalásod van. Lenyűgöző, már csak néhány hiányzik!`;
+  if (db >= 4) return `${db} vállalásod van. Szuper, igazi esőerdő-barát vagy!`;
+  return `${db} vállalásod van. Jó kezdet – minden lépés számít!`;
+}
+
+function initVallalasok(dobozok) {
+  const sav = document.getElementById('vallalas-sav');
+  const savBelso = document.getElementById('vallalas-sav-belso');
+  const szoveg = document.getElementById('vallalas-szoveg');
+  const torles = document.getElementById('vallalas-torles');
+  const ervenyes = new Set(dobozok.map((doboz) => doboz.dataset.tipp));
+
+  const mentett = tarolo.olvas(VALLALAS_KULCS, []);
+  const mentettLista = Array.isArray(mentett) ? mentett.filter((kulcs) => ervenyes.has(kulcs)) : [];
+  dobozok.forEach((doboz) => {
+    doboz.checked = mentettLista.includes(doboz.dataset.tipp);
+  });
+
+  const frissit = (mentes) => {
+    dobozok.forEach((doboz) => doboz.closest('.tipp-kartya').classList.toggle('vallalt', doboz.checked));
+    const bejelolt = dobozok.filter((doboz) => doboz.checked);
+    const db = bejelolt.length;
+    sav.setAttribute('aria-valuenow', String(db));
+    sav.setAttribute('aria-valuetext', `${db} vállalás a ${dobozok.length}-ből`);
+    savBelso.style.width = `${(db / dobozok.length) * 100}%`;
+    let uzenet = vallalasUzenet(db, dobozok.length);
+    if (mentes && !tarolo.ir(VALLALAS_KULCS, bejelolt.map((doboz) => doboz.dataset.tipp))) {
+      uzenet += ' (A böngésződ most nem engedi a mentést, de amíg itt vagy, a vállalásaid megmaradnak.)';
+    }
+    if (szoveg.textContent !== uzenet) szoveg.textContent = uzenet;
+    torles.disabled = db === 0;
+  };
+
+  dobozok.forEach((doboz) => doboz.addEventListener('change', () => frissit(true)));
+  torles.addEventListener('click', () => {
+    dobozok.forEach((doboz) => {
+      doboz.checked = false;
+    });
+    frissit(true);
+  });
+  frissit(false);
+}
+
+const vallalasDobozok = [...document.querySelectorAll('.vallalas')];
+if (vallalasDobozok.length) {
+  initVallalasok(vallalasDobozok);
+}
