@@ -2,7 +2,7 @@
    Esőerdők világa – közös saját stíluslap (style.css)
    A Bootstrap 5.3 után töltődik be, ezért felülírhatja annak változóit.
    1. Változók   2. Alapok   3. Menüsáv   4. Fejléc és hero   5. Gombok
-   6. Lábléc   7. Főoldal (.oldal-fooldal)   8. Élővilág (.oldal-elovilag)
+   6. Lábléc   7. Főoldal (.oldal-fooldal)   8. Aloldalak közös elemei (.aloldal)
    9. Vízi világ (.oldal-vizivilag)   10. Animációk
    ===================================================================== */
 
@@ -999,22 +999,166 @@ header {
   }
 }
 
-/* ---------- 8. Élővilág (.oldal-elovilag) ---------- */
-.oldal-elovilag header {
-  margin: 0;
-  padding: 0;
+/* ---------- 8. Aloldalak közös elemei (.aloldal) ---------- */
+.aloldal header {
+  min-height: auto;
 }
 
-.oldal-elovilag .hero {
-  background-image: url("img/esoerdo-kod-1920.webp");
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  height: 80vh;
-  width: 100vw;
-  box-shadow: inset 0px -100px 21px -50px rgba(51, 61, 41, 1);
-  border-radius: 0px;
+.aloldal .title {
+  padding: 120px 0 12px;
+}
+
+.aloldal .title h1 {
+  margin: 0 0 20px;
+  font-size: clamp(2.5rem, 1rem + 3.6vw, 5rem);
+  line-height: 1.05;
+  text-wrap: balance;
+}
+
+.title .oldal-felirat {
+  margin: 0 0 12px;
+  font-size: 0.8125rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--dry-sage-2);
+}
+
+.kep-forras {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  z-index: 1;
+  max-width: calc(100% - 24px);
+  margin: 0;
+  padding: 4px 12px;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: var(--ink);
+  background: rgba(31, 37, 24, 0.75);
+  border-radius: var(--radius-pill);
+}
+
+.aloldal main {
+  font-size: clamp(1rem, 0.96rem + 0.2vw, 1.125rem);
+}
+
+.aloldal main:focus {
+  outline: none;
+}
+
+.aloldal main h2 {
+  margin: 0 0 24px;
+  font-size: clamp(1.875rem, 1.3rem + 2.2vw, 3rem);
+  font-weight: 400;
+  line-height: 1.1;
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+.aloldal main h3 {
+  font-weight: 400;
+  color: var(--ink);
+}
+
+.aloldal-szakasz {
+  width: min(100% - 2 * var(--gutter), var(--content-max));
+  margin-inline: auto;
+  padding-block: clamp(3.5rem, 2.5rem + 4vw, 6rem);
+}
+
+.aloldal-bevezeto {
+  display: grid;
+  gap: 16px;
+  max-width: 46rem;
+}
+
+.aloldal-bevezeto p {
+  margin: 0;
+}
+
+.szabaly-lista,
+.mutato-lista {
+  display: grid;
+  gap: 12px;
+  max-width: 46rem;
+  margin: 24px 0 0;
+  padding-left: 1.4rem;
+}
+
+.szabaly-lista li::marker,
+.mutato-lista li::marker {
+  color: var(--khaki-beige);
+}
+
+.tudtad-kartya {
+  --bs-card-bg: var(--ebony);
+  --bs-card-border-color: var(--glass-border);
+  --bs-card-border-radius: 24px;
+  --bs-card-spacer-y: 1.75rem;
+  --bs-card-spacer-x: 1.5rem;
+  transition: border-color 300ms var(--ease-soft), transform 300ms var(--ease-soft);
+}
+
+.tudtad-kartya:hover {
+  border-color: rgba(194, 197, 170, 0.45);
+}
+
+.tudtad-kartya .bi {
+  display: inline-grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  margin-bottom: 16px;
+  font-size: 1.375rem;
+  color: var(--deep-moss);
+  background: var(--khaki-beige);
+  border-radius: 50%;
+}
+
+.tudtad-kartya .card-title {
+  margin-bottom: 8px;
+  font-size: 1.25rem;
+}
+
+.tudtad-kartya .card-text {
+  color: var(--dry-sage);
+}
+
+.kovetkezo {
+  display: grid;
+  justify-items: start;
+  gap: 16px;
+  width: min(100% - 2 * var(--gutter), var(--content-max));
+  margin: 0 auto clamp(4rem, 3rem + 4vw, 7rem);
+  padding: clamp(32px, 5vw, 56px);
+  background: var(--ebony);
+  border-radius: var(--radius-frame);
+}
+
+.aloldal .kovetkezo h2 {
+  margin: 0;
+  font-size: clamp(1.5rem, 1.1rem + 1.6vw, 2.25rem);
+}
+
+.kovetkezo p {
+  max-width: 40rem;
+  margin: 0;
+}
+
+.kovetkezo-gombok {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+@media (min-width: 861px) {
+  .aloldal header {
+    min-height: 72svh;
+  }
+
+  .aloldal .title {
+    padding: 110px 0 40px clamp(20px, 4vw, 60px);
+  }
 }
 
 /* ---------- 9. Vízi világ (.oldal-vizivilag) ---------- */
@@ -1161,9 +1305,13 @@ body.oldal-vizivilag {
     animation-delay: 140ms;
   }
 
-  .oldal-fooldal .title > p,
+  .title > p,
   .hero-gombok {
     animation: beuszas 900ms var(--ease-soft) 380ms both;
+  }
+
+  .tudtad-kartya:hover {
+    transform: translateY(-4px);
   }
 
   .hero-gombok {

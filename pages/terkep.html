@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="hu" data-bs-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Interaktív térkép a világ esőerdeiről: az Amazonastól a Kongó-medencén át Borneóig és a mérsékelt övi esőerdőkig.">
+    <meta name="theme-color" content="#333d29">
+    <title>Térkép – Esőerdők világa</title>
+    <link rel="icon" href="../img/favicon.png" type="image/png">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Varela&amp;display=swap">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.2/font/bootstrap-icons.min.css"
+        integrity="sha384-nWN3KqaaVcbEsCjLSV+2jMjh62Iny/+mN3srM8TZeM8N6aj7eDl5wwYggjAJ4/sJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="../style.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous" defer></script>
+    <script src="../script.js" defer></script>
+</head>
+
+<body class="oldal-terkep aloldal">
+    <a class="visually-hidden-focusable ugraslink" href="#tartalom">Ugrás a tartalomra</a>
+    <header>
+        <nav class="navbar navbar-expand-lg fo-menu" aria-label="Fő navigáció">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="../index.html">
+                    <img class="navbar-brand-img" src="../img/logo-jel.png" alt="" width="109" height="80">
+                    <span>Esőerdők világa</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#fomenu"
+                    aria-controls="fomenu" aria-expanded="false" aria-label="Menü megnyitása">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="fomenu">
+                    <ul class="navbar-nav ms-lg-auto">
+                        <li class="nav-item"><a class="nav-link" href="../index.html">Főoldal</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="terkep.html">Térkép</a></li>
+                        <li class="nav-item"><a class="nav-link" href="elovilag.html">Élővilág</a></li>
+                        <li class="nav-item"><a class="nav-link" href="vizivilag.html">Vízi világ</a></li>
+                        <li class="nav-item"><a class="nav-link" href="kviz.html">Kvíz</a></li>
+                        <li class="nav-item"><a class="nav-link" href="jatek.html">Játék</a></li>
+                        <li class="nav-item"><a class="nav-link" href="tippek.html">Tippek</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <section class="title" aria-labelledby="oldal-cim">
+            <p class="oldal-felirat">Interaktív térkép</p>
+            <h1 id="oldal-cim">A világ esőerdei</h1>
+            <p>Fedezd fel, hol húzódnak a Föld esőerdei az Amazonastól Borneóig, és mi teszi különlegessé az egyes
+                vidékeket.</p>
+            <div class="hero-gombok">
+                <a class="btn btn-esoerdo" href="#bevezeto">Hol vannak esőerdők?</a>
+            </div>
+        </section>
+        <figure class="hero-kep">
+            <img src="../img/hero-terkep-1280.webp"
+                srcset="../img/hero-terkep-800.webp 800w, ../img/hero-terkep-1280.webp 1280w, ../img/hero-terkep-1920.webp 1920w"
+                sizes="(min-width: 861px) 120vh, 100vw" width="1280" height="786" fetchpriority="high"
+                alt="Kanyargó folyó az összefüggő Amazonas-esőerdő felett, légifelvételen">
+            <figcaption class="kep-forras">Fotó: lubasi, CC BY-SA 2.0, Wikimedia Commons (módosítva)</figcaption>
+        </figure>
+    </header>
+    <main id="tartalom" tabindex="-1">
+        <section id="bevezeto" class="aloldal-szakasz" aria-labelledby="bevezeto-cim">
+            <h2 id="bevezeto-cim">Hol találhatók esőerdők?</h2>
+            <div class="aloldal-bevezeto">
+                <p>A trópusi esőerdők többsége az Egyenlítő két oldalán, a Ráktérítő és a Baktérítő között húzódik, ahol
+                    egész évben meleg van, és szinte minden nap esik az eső. A három legnagyobb összefüggő terület
+                    Dél-Amerikában, Közép-Afrikában, valamint Délkelet-Ázsiában és Új-Guineán található.</p>
+                <p>Esőerdők azonban hűvösebb vidékeken is nőnek. A mérsékelt övi esőerdők például Észak-Amerika nyugati
+                    partján és Chile déli részén alakultak ki, ahol a tenger felől érkező párás levegő bőséges csapadékot
+                    hoz.</p>
+            </div>
+        </section>
+        <section class="aloldal-szakasz" aria-labelledby="tudtad-cim">
+            <h2 id="tudtad-cim">Tudtad?</h2>
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                <div class="col">
+                    <article class="card tudtad-kartya h-100">
+                        <div class="card-body">
+                            <i class="bi bi-rulers" aria-hidden="true"></i>
+                            <h3 class="card-title">A legnagyobb</h3>
+                            <p class="card-text">Az Amazonas-esőerdő kb. 5,5 millió km²-es: majdnem hatvanszor akkora,
+                                mint Magyarország, és kilenc ország osztozik rajta.</p>
+                        </div>
+                    </article>
+                </div>
+                <div class="col">
+                    <article class="card tudtad-kartya h-100">
+                        <div class="card-body">
+                            <i class="bi bi-snow" aria-hidden="true"></i>
+                            <h3 class="card-title">Hűvös esőerdők</h3>
+                            <p class="card-text">A kanadai Great Bear-esőerdőben óriás tuják nőnek, és itt él a ritka,
+                                fehér bundájú „szellemmedve” is.</p>
+                        </div>
+                    </article>
+                </div>
+                <div class="col">
+                    <article class="card tudtad-kartya h-100">
+                        <div class="card-body">
+                            <i class="bi bi-hourglass-split" aria-hidden="true"></i>
+                            <h3 class="card-title">Ősi erdők</h3>
+                            <p class="card-text">Az ausztráliai Daintree-esőerdőt a világ egyik legősibb trópusi
+                                erdejének tartják: a becslések szerint mintegy 180 millió éves.</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+        <section class="kovetkezo" aria-labelledby="kovetkezo-cim">
+            <h2 id="kovetkezo-cim">Következő lépés: kik élnek az esőerdőkben?</h2>
+            <p>Ismerd meg az esőerdők legkülönlegesebb állatait és növényeit – néhányuk hangját is meghallgathatod.</p>
+            <a class="btn btn-esoerdo" href="elovilag.html">Tovább az Élővilághoz</a>
+        </section>
+    </main>
+    <footer class="lablec">
+        <div class="lablec-belso">
+            <div class="row g-5">
+                <section class="col-md-6 col-xl-3" aria-labelledby="lablec-rolunk">
+                    <h2 class="lablec-cim" id="lablec-rolunk">Rólunk</h2>
+                    <p>Ezt a weboldalt <strong>Ádám Levente Dániel</strong> és <strong>Juhász Arnold</strong>
+                        készítette iskolai projektként, 2026-ban. Célunk, hogy közérthetően bemutassuk az esőerdők
+                        élővilágát, és megmutassuk, mit tehetünk a megóvásukért.</p>
+                </section>
+                <nav class="col-md-6 col-xl-2" aria-labelledby="lablec-oldalak">
+                    <h2 class="lablec-cim" id="lablec-oldalak">Oldalak</h2>
+                    <ul class="lablec-lista">
+                        <li><a href="../index.html">Főoldal</a></li>
+                        <li><a href="terkep.html">Térkép</a></li>
+                        <li><a href="elovilag.html">Élővilág</a></li>
+                        <li><a href="vizivilag.html">Vízi világ</a></li>
+                        <li><a href="kviz.html">Kvíz</a></li>
+                        <li><a href="jatek.html">Játék</a></li>
+                        <li><a href="tippek.html">Tippek</a></li>
+                    </ul>
+                </nav>
+                <section class="col-md-6 col-xl-3" aria-labelledby="lablec-kapcsolat">
+                    <h2 class="lablec-cim" id="lablec-kapcsolat">Kapcsolat</h2>
+                    <ul class="lablec-lista">
+                        <li><i class="bi bi-envelope" aria-hidden="true"></i> <a
+                                href="mailto:arnoldjuhasz2008@gmail.com">arnoldjuhasz2008@gmail.com</a></li>
+                        <li><i class="bi bi-telephone" aria-hidden="true"></i> <a href="tel:+36206242895">06 20 624
+                                2895</a></li>
+                        <li><i class="bi bi-github" aria-hidden="true"></i> <a href="https://github.com/levivagymi/EsoErdo" target="_blank"
+                                rel="noopener">GitHub-projekt<span class="visually-hidden"> (új lapon nyílik)</span></a></li>
+                    </ul>
+                </section>
+                <section class="col-md-6 col-xl-4" aria-labelledby="lablec-terkep">
+                    <h2 class="lablec-cim" id="lablec-terkep">A legnagyobb esőerdő helye</h2>
+                    <iframe class="lablec-terkep" title="Az Amazonas esőerdejének helye a térképen"
+                        src="https://www.openstreetmap.org/export/embed.html?bbox=-76.0%2C-16.0%2C-47.0%2C4.0&amp;layer=mapnik&amp;marker=-3.5%2C-62.0" loading="lazy"></iframe>
+                </section>
+            </div>
+            <p class="lablec-also">&copy; 2026 Ádám Levente Dániel és Juhász Arnold · Esőerdők világa – Interaktív
+                felfedező weboldal · <a href="https://github.com/levivagymi/EsoErdo" target="_blank" rel="noopener">GitHub-repó<span
+                        class="visually-hidden"> (új lapon nyílik)</span></a></p>
+        </div>
+    </footer>
+</body>
+
+</html>

@@ -22,7 +22,7 @@
     <script src="../script.js" defer></script>
 </head>
 
-<body class="oldal-elovilag">
+<body class="oldal-elovilag aloldal">
     <a class="visually-hidden-focusable ugraslink" href="#tartalom">Ugrás a tartalomra</a>
     <header>
         <nav class="navbar navbar-expand-lg fo-menu" aria-label="Fő navigáció">
@@ -38,24 +38,50 @@
                 <div class="collapse navbar-collapse" id="fomenu">
                     <ul class="navbar-nav ms-lg-auto">
                         <li class="nav-item"><a class="nav-link" href="../index.html">Főoldal</a></li>
+                        <li class="nav-item"><a class="nav-link" href="terkep.html">Térkép</a></li>
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="elovilag.html">Élővilág</a></li>
                         <li class="nav-item"><a class="nav-link" href="vizivilag.html">Vízi világ</a></li>
+                        <li class="nav-item"><a class="nav-link" href="kviz.html">Kvíz</a></li>
+                        <li class="nav-item"><a class="nav-link" href="jatek.html">Játék</a></li>
+                        <li class="nav-item"><a class="nav-link" href="tippek.html">Tippek</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
-        <section class="hero title">
-            <h1>
-                Esőerdők <br> Növényzete
-            </h1>
-            <p>
-                Tudj meg mindent röviden az esőerdők világáról!
-            </p>
-            <button class="button-57" role="button"><span>Segíts az esőerdőknek</span><span>Támogatás</span></button>
+        <section class="title" aria-labelledby="oldal-cim">
+            <p class="oldal-felirat">Élővilág</p>
+            <h1 id="oldal-cim">Az esőerdő lakói</h1>
+            <p>Ismerd meg az esőerdők legkülönlegesebb állatait és növényeit – néhány állat hangját is
+                meghallgathatod!</p>
+            <div class="hero-gombok">
+                <a class="btn btn-esoerdo" href="#bevezeto">Ismerkedjünk!</a>
+            </div>
         </section>
-
+        <figure class="hero-kep">
+            <img src="../img/hero-elovilag-1280.webp"
+                srcset="../img/hero-elovilag-800.webp 800w, ../img/hero-elovilag-1280.webp 1280w, ../img/hero-elovilag-1920.webp 1920w"
+                sizes="(min-width: 861px) 120vh, 100vw" width="1280" height="853" fetchpriority="high"
+                alt="Óriástukán ül egy ágon, élénk narancssárga csőrével">
+            <figcaption class="kep-forras">Fotó: Giles Laurent, CC BY-SA 4.0, Wikimedia Commons (módosítva)</figcaption>
+        </figure>
     </header>
     <main id="tartalom" tabindex="-1">
+        <section id="bevezeto" class="aloldal-szakasz" aria-labelledby="bevezeto-cim">
+            <h2 id="bevezeto-cim">Az élet sokfélesége</h2>
+            <div class="aloldal-bevezeto">
+                <p>Az esőerdők a Föld legfajgazdagabb élőhelyei: bár a szárazföldeknek csak kis részét borítják, itt él a
+                    növény- és állatfajok több mint fele. Egyetlen hektárnyi amazóniai erdőben akár több száz különböző
+                    fafaj is nőhet.</p>
+                <p>Az élőlények itt szorosan egymásra vannak utalva: a fák termését állatok terjesztik, a virágokat
+                    madarak, denevérek és rovarok porozzák be, a lehullott leveleket pedig gombák bontják le. Ha egyetlen
+                    faj eltűnik, az az egész erdő életére hatással lehet.</p>
+            </div>
+        </section>
+        <section class="kovetkezo" aria-labelledby="kovetkezo-cim">
+            <h2 id="kovetkezo-cim">Következő lépés: az esőerdő vízi világa</h2>
+            <p>Fekete és fehér vizű folyók, elárasztott erdők, piráják és lamantinok várnak az Amazonas vidékén.</p>
+            <a class="btn btn-esoerdo" href="vizivilag.html">Tovább a Vízi világhoz</a>
+        </section>
     </main>
     <footer class="lablec">
         <div class="lablec-belso">
@@ -70,8 +96,12 @@
                     <h2 class="lablec-cim" id="lablec-oldalak">Oldalak</h2>
                     <ul class="lablec-lista">
                         <li><a href="../index.html">Főoldal</a></li>
+                        <li><a href="terkep.html">Térkép</a></li>
                         <li><a href="elovilag.html">Élővilág</a></li>
                         <li><a href="vizivilag.html">Vízi világ</a></li>
+                        <li><a href="kviz.html">Kvíz</a></li>
+                        <li><a href="jatek.html">Játék</a></li>
+                        <li><a href="tippek.html">Tippek</a></li>
                     </ul>
                 </nav>
                 <section class="col-md-6 col-xl-3" aria-labelledby="lablec-kapcsolat">
