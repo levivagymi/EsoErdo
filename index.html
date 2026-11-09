@@ -48,12 +48,12 @@
                 </div>
             </div>
         </nav>
-        <section class="title">
-            <h1>
+        <section class="title" aria-labelledby="oldal-cim">
+            <h1 id="oldal-cim">
                 <span class="cimsor"><span>Esőerdők</span></span>
                 <span class="cimsor"><span>világa</span></span>
             </h1>
-            <p>Ismerd meg az esőerdőket, és segíts nekik</p>
+            <p>Fedezd fel az esőerdők világát, és tudd meg, hogyan segíthetsz nekik!</p>
             <div class="hero-gombok">
                 <a class="button-57" href="#bevezeto"><span>Tudj meg többet</span><span aria-hidden="true">Irány az
                         erdő</span></a>
@@ -70,12 +70,17 @@
     <main id="tartalom" tabindex="-1">
         <section id="bevezeto" class="bevezeto" aria-labelledby="bevezeto-cim">
             <div class="bevezeto-szoveg">
-                <h2 id="bevezeto-cim">Mi az esőerdő?</h2>
-                <p>Az esőerdő sűrű, örökzöld erdő, ahol egész évben bőven esik az eső. A legtöbb a trópusokon, az
-                    Egyenlítő mentén nő, de hűvösebb, mérsékelt övi esőerdők is léteznek, például Észak-Amerika nyugati
-                    partvidékén.</p>
-                <p>Ezek az erdők szabályozzák a csapadékot, hatalmas mennyiségű szenet tárolnak, és élőlények
-                    millióinak adnak otthont.</p>
+                <h2 id="bevezeto-cim">Miért fontosak az esőerdők?</h2>
+                <p>Az esőerdők sűrű, örökzöld erdők, ahol egész évben bőséges eső hullik. A legtöbbjük a trópusokon, az
+                    Egyenlítő mentén található, de hűvösebb, mérsékelt övi esőerdők is léteznek, például Észak-Amerika
+                    nyugati partvidékén.</p>
+                <p>Bár a szárazföldeknek csak nagyjából 6%-át borítják, a Föld növény- és állatfajainak több mint fele
+                    itt él. Számos mindennapi termékünk is innen származik: a kakaó, a banán, a kávé és sok gyógyszer
+                    hatóanyaga is esőerdei növényekből ered.</p>
+                <p>Az esőerdők a bolygó éghajlatának fontos szabályozói: fáik hatalmas mennyiségű szenet tárolnak, ezért
+                    lassítják a felmelegedést. A fák által elpárologtatott víz felhőket képez, amelyek több ezer kilométerre
+                    is eljuttatják az esőt. Emellett sok millió embernek, köztük számos őslakos népnek adnak otthont és
+                    megélhetést.</p>
             </div>
             <dl class="jellemzok">
                 <div class="jellemzo">
@@ -109,6 +114,92 @@
                     </dd>
                 </div>
             </dl>
+        </section>
+
+        <section id="galeria" class="galeria" aria-labelledby="galeria-cim">
+            <h2 id="galeria-cim">Az esőerdő arcai</h2>
+            <div id="esoerdo-carousel" class="carousel slide galeria-carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#esoerdo-carousel" data-bs-slide-to="0" class="active"
+                        aria-current="true" aria-label="1. kép: Mohás óriások"></button>
+                    <button type="button" data-bs-target="#esoerdo-carousel" data-bs-slide-to="1"
+                        aria-label="2. kép: Felhőerdők"></button>
+                    <button type="button" data-bs-target="#esoerdo-carousel" data-bs-slide-to="2"
+                        aria-label="3. kép: Zöld tenger"></button>
+                    <button type="button" data-bs-target="#esoerdo-carousel" data-bs-slide-to="3"
+                        aria-label="4. kép: Folyók útvesztője"></button>
+                    <button type="button" data-bs-target="#esoerdo-carousel" data-bs-slide-to="4"
+                        aria-label="5. kép: Színes lakók"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="img/hero-esoerdo-1280.webp"
+                            srcset="img/hero-esoerdo-1280.webp 1280w, img/hero-esoerdo-1920.webp 1920w"
+                            sizes="(min-width: 1320px) 1200px, 92vw" class="d-block w-100" width="1280" height="720"
+                            loading="lazy" decoding="async"
+                            alt="Mohával borított fatörzsek és páfrányok a párás esőerdőben">
+                        <div class="carousel-caption">
+                            <h3>Mohás óriások</h3>
+                            <p>A párás levegőben a fatörzseket vastagon borítja a moha és a páfrány.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="img/esoerdo-kod-960.webp"
+                            srcset="img/esoerdo-kod-960.webp 960w, img/esoerdo-kod-1920.webp 1920w"
+                            sizes="(min-width: 1320px) 1200px, 92vw" class="d-block w-100" width="960" height="640"
+                            loading="lazy" decoding="async" alt="Ködbe burkolózó esőerdő egy hegyoldalon">
+                        <div class="carousel-caption">
+                            <h3>Felhőerdők</h3>
+                            <p>A hegyvidéki esőerdőket gyakran köd és felhő borítja, a fák a levegőből is nedvességet
+                                kapnak.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="img/hero-terkep-1280.webp"
+                            srcset="img/hero-terkep-1280.webp 1280w, img/hero-terkep-1920.webp 1920w"
+                            sizes="(min-width: 1320px) 1200px, 92vw" class="d-block w-100" width="1280" height="786"
+                            loading="lazy" decoding="async"
+                            alt="Kanyargó folyó az összefüggő Amazonas-esőerdő felett, légifelvételen">
+                        <div class="carousel-caption">
+                            <h3>Zöld tenger</h3>
+                            <p>Felülről nézve az Amazonas erdeje végtelen zöld szőnyegnek látszik.</p>
+                            <p class="galeria-forras">Fotó: lubasi, CC BY-SA 2.0, Wikimedia Commons (módosítva)</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="img/fekete-viz-1280.webp"
+                            srcset="img/fekete-viz-1280.webp 1280w, img/fekete-viz-1920.webp 1920w"
+                            sizes="(min-width: 1320px) 1200px, 92vw" class="d-block w-100" width="1280" height="853"
+                            loading="lazy" decoding="async"
+                            alt="Sötét vizű folyó kanyarog a sűrű esőerdőben, légifelvételen">
+                        <div class="carousel-caption">
+                            <h3>Folyók útvesztője</h3>
+                            <p>Az esőerdőt folyók ezrei szövik át; a víz színét az határozza meg, mit mos bele az erdő.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="img/hero-elovilag-1280.webp"
+                            srcset="img/hero-elovilag-1280.webp 1280w, img/hero-elovilag-1920.webp 1920w"
+                            sizes="(min-width: 1320px) 1200px, 92vw" class="d-block w-100" width="1280" height="853"
+                            loading="lazy" decoding="async" alt="Óriástukán ül egy ágon, élénk narancssárga csőrével">
+                        <div class="carousel-caption">
+                            <h3>Színes lakók</h3>
+                            <p>Tukánok, papagájok és békák: az esőerdő a színek birodalma.</p>
+                            <p class="galeria-forras">Fotó: Giles Laurent, CC BY-SA 4.0, Wikimedia Commons (módosítva)</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#esoerdo-carousel"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Előző kép</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#esoerdo-carousel"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Következő kép</span>
+                </button>
+            </div>
         </section>
 
         <section id="szintek" class="szintek" aria-labelledby="szintek-cim">
@@ -180,31 +271,94 @@
 
         <section id="temak" class="temak" aria-labelledby="temak-cim">
             <h2 id="temak-cim">Fedezd fel részletesen</h2>
-            <div class="tema-lista">
-                <article class="tema-kartya">
-                    <div class="tema-kep">
-                        <img src="img/esoerdo-kod-960.webp"
-                            srcset="img/esoerdo-kod-960.webp 960w, img/esoerdo-kod-1920.webp 1920w"
-                            sizes="(min-width: 1024px) 380px, (min-width: 768px) 40vw, 100vw" width="960" height="640"
+            <p class="temak-bevezeto">Válaszd ki, merre indulsz tovább: minden aloldalon új információk és interaktív
+                feladatok várnak.</p>
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 tema-racs">
+                <div class="col">
+                    <article class="card tema-kartya h-100">
+                        <img src="img/hero-terkep-800.webp" class="card-img-top" width="800" height="491"
+                            loading="lazy" decoding="async" alt="Kanyargó folyó az Amazonas-esőerdő felett">
+                        <div class="card-body">
+                            <h3 class="card-title">Interaktív térkép</h3>
+                            <p class="card-text">Hol vannak a világ esőerdei? Fedezd fel őket egy kattintható
+                                világtérképen.</p>
+                        </div>
+                        <div class="card-footer">
+                            <a class="btn btn-esoerdo" href="pages/terkep.html">Irány a térkép</a>
+                        </div>
+                    </article>
+                </div>
+                <div class="col">
+                    <article class="card tema-kartya h-100">
+                        <img src="img/hero-elovilag-800.webp" class="card-img-top" width="800" height="533"
+                            loading="lazy" decoding="async" alt="Óriástukán egy faágon">
+                        <div class="card-body">
+                            <h3 class="card-title">Élővilág</h3>
+                            <p class="card-text">Jaguárok, tukánok, óriásfák és orchideák – néhány állat hangját is
+                                meghallgathatod.</p>
+                        </div>
+                        <div class="card-footer">
+                            <a class="btn btn-esoerdo" href="pages/elovilag.html">Ismerd meg a lakóit</a>
+                        </div>
+                    </article>
+                </div>
+                <div class="col">
+                    <article class="card tema-kartya h-100">
+                        <img src="img/folyo-naplemente.webp" class="card-img-top" width="1000" height="664"
+                            loading="lazy" decoding="async" alt="Esőerdővel szegélyezett folyó naplementekor">
+                        <div class="card-body">
+                            <h3 class="card-title">Vízi világ</h3>
+                            <p class="card-text">Fekete és fehér vizű folyók, elárasztott erdők, piráják és
+                                arapaimák az Amazonas vidékén.</p>
+                        </div>
+                        <div class="card-footer">
+                            <a class="btn btn-esoerdo" href="pages/vizivilag.html">Merülj el</a>
+                        </div>
+                    </article>
+                </div>
+                <div class="col">
+                    <article class="card tema-kartya h-100">
+                        <img src="img/esoerdo-kod-960.webp" class="card-img-top" width="960" height="640"
                             loading="lazy" decoding="async" alt="Ködbe burkolózó esőerdő egy hegyoldalon">
-                    </div>
-                    <div class="tema-szoveg">
-                        <h3><a class="stretched-link" href="pages/elovilag.html">Esőerdők élővilága</a></h3>
-                        <p>Jaguárok, tukánok, óriásfák és orchideák: ismerd meg az esőerdő különleges állatait és
-                            növényeit.</p>
-                    </div>
-                </article>
-                <article class="tema-kartya">
-                    <div class="tema-kep">
-                        <img src="img/folyo-naplemente.webp" width="1000" height="664" loading="lazy" decoding="async"
-                            alt="Esőerdővel szegélyezett folyó naplementekor">
-                    </div>
-                    <div class="tema-szoveg">
-                        <h3><a class="stretched-link" href="pages/vizivilag.html">Esőerdők vízi világa</a></h3>
-                        <p>Fekete és fehér vizű folyók, elárasztott erdők, valamint piráják, arapaimák és elektromos
-                            angolnák az Amazonas vidékén.</p>
-                    </div>
-                </article>
+                        <div class="card-body">
+                            <h3 class="card-title">Kvíz</h3>
+                            <p class="card-text">Tíz kérdés, azonnali visszajelzés és pontszám: mennyit tudsz az
+                                esőerdőkről?</p>
+                        </div>
+                        <div class="card-footer">
+                            <a class="btn btn-esoerdo" href="pages/kviz.html">Kitöltöm a kvízt</a>
+                        </div>
+                    </article>
+                </div>
+                <div class="col">
+                    <article class="card tema-kartya h-100">
+                        <img src="img/hero-jatek-800.webp" class="card-img-top" width="800" height="533"
+                            loading="lazy" decoding="async"
+                            alt="Erdősávok szántóföldek között egy kiirtott esőerdő helyén, légifelvételen">
+                        <div class="card-body">
+                            <h3 class="card-title">Döntési játék</h3>
+                            <p class="card-text">Vezess egy esőerdős vidéket hat éven át – a te döntéseiden múlik
+                                az erdő sorsa.</p>
+                        </div>
+                        <div class="card-footer">
+                            <a class="btn btn-esoerdo" href="pages/jatek.html">Játszani akarok</a>
+                        </div>
+                    </article>
+                </div>
+                <div class="col">
+                    <article class="card tema-kartya h-100">
+                        <img src="img/hero-tippek-800.webp" class="card-img-top" width="800" height="590"
+                            loading="lazy" decoding="async" alt="Fiatal mangrovecsemete hajt ki a kopár talajból">
+                        <div class="card-body">
+                            <h3 class="card-title">Tippek</h3>
+                            <p class="card-text">Konkrét, mindennapi ötletek arra, hogyan segíthetsz te is az
+                                esőerdőknek.</p>
+                        </div>
+                        <div class="card-footer">
+                            <a class="btn btn-esoerdo" href="pages/tippek.html">Mutasd a tippeket</a>
+                        </div>
+                    </article>
+                </div>
             </div>
         </section>
 
@@ -258,6 +412,7 @@
                         tesznek a megóvásukért.</p>
                 </li>
             </ul>
+            <a class="btn btn-outline-esoerdo vedelem-gomb" href="pages/tippek.html">Mind a 10 tipp megtekintése</a>
             <div class="tamogatas">
                 <div class="tamogatas-szoveg">
                     <h3>Támogasd a természetvédőket</h3>

@@ -54,7 +54,7 @@
             <p>Ismerd meg az esőerdők legkülönlegesebb állatait és növényeit – néhány állat hangját is
                 meghallgathatod!</p>
             <div class="hero-gombok">
-                <a class="btn btn-esoerdo" href="#bevezeto">Ismerkedjünk!</a>
+                <a class="btn btn-esoerdo" href="#fajok">Ismerkedjünk!</a>
             </div>
         </section>
         <figure class="hero-kep">
@@ -76,6 +76,271 @@
                     madarak, denevérek és rovarok porozzák be, a lehullott leveleket pedig gombák bontják le. Ha egyetlen
                     faj eltűnik, az az egész erdő életére hatással lehet.</p>
             </div>
+        </section>
+        <section id="fajok" class="aloldal-szakasz" aria-labelledby="fajok-cim">
+            <h2 id="fajok-cim">Állatok és növények</h2>
+            <p class="fajok-bevezeto">Szűrd a fajokat a gombokkal!</p>
+            <div class="faj-szuro-sor">
+                <div class="btn-group faj-szuro" role="group" aria-label="Fajok szűrése">
+                    <button type="button" class="btn btn-outline-esoerdo active" data-szuro="mind"
+                        aria-pressed="true">Mind</button>
+                    <button type="button" class="btn btn-outline-esoerdo" data-szuro="allat"
+                        aria-pressed="false">Állatok</button>
+                    <button type="button" class="btn btn-outline-esoerdo" data-szuro="noveny"
+                        aria-pressed="false">Növények</button>
+                </div>
+                <p class="faj-szam" id="faj-szam" aria-live="polite">14 faj látható</p>
+            </div>
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4 faj-racs">
+                <div class="col" data-tipus="allat">
+                    <article class="card faj-kartya h-100" id="faj-jaguar">
+                        <img src="../img/elovilag/jaguar-800.webp" class="card-img-top" width="800"
+                            height="533" loading="lazy" decoding="async" alt="Jaguár sétál a folyóparton, a magas fű szélén">
+                        <div class="card-body">
+                            <p class="faj-tipus faj-tipus-allat">Állat</p>
+                            <h3 class="card-title">Jaguár</h3>
+                            <p class="faj-latin"><i lang="la">Panthera onca</i></p>
+                            <p class="card-text">Amerika legnagyobb macskaféléje, amely kiválóan úszik és mászik. Erős harapásával akár egy teknős páncélját is képes feltörni. Főleg a talajszinten vadászik, gyakran folyók közelében.</p>
+                            <ul class="faj-cimkek" aria-label="Jellemzők">
+                                <li><i class="bi bi-layers" aria-hidden="true"></i> Talajszint</li>
+                                <li><i class="bi bi-geo-alt" aria-hidden="true"></i> Közép- és Dél-Amerika</li>
+                            </ul>
+                        </div>
+                    </article>
+                </div>
+                <div class="col" data-tipus="allat">
+                    <article class="card faj-kartya h-100" id="faj-bogomajom">
+                        <img src="../img/elovilag/bogomajom-800.webp" class="card-img-top" width="800"
+                            height="533" loading="lazy" decoding="async" alt="Fekete bundájú bőgőmajom kapaszkodik egy faágon">
+                        <div class="card-body">
+                            <p class="faj-tipus faj-tipus-allat">Állat</p>
+                            <h3 class="card-title">Bőgőmajom</h3>
+                            <p class="faj-latin"><i lang="la">Alouatta palliata</i></p>
+                            <p class="card-text">Hangja akár 5 kilométerre is elhallatszik, ezzel a szárazföld egyik leghangosabb állata. A csapat így jelzi a többieknek, hol van a területe. Főleg levelekkel táplálkozik, ezért sokat pihen.</p>
+                            <ul class="faj-cimkek" aria-label="Jellemzők">
+                                <li><i class="bi bi-layers" aria-hidden="true"></i> Lombkoronaszint</li>
+                                <li><i class="bi bi-geo-alt" aria-hidden="true"></i> Közép- és Dél-Amerika</li>
+                            </ul>
+                        </div>
+                    </article>
+                </div>
+                <div class="col" data-tipus="allat">
+                    <article class="card faj-kartya h-100" id="faj-tukan">
+                        <img src="../img/elovilag/tukan-800.webp" class="card-img-top" width="800"
+                            height="533" loading="lazy" decoding="async" alt="Óriástukán ül egy ágon, élénk narancssárga csőrével">
+                        <div class="card-body">
+                            <p class="faj-tipus faj-tipus-allat">Állat</p>
+                            <h3 class="card-title">Óriástukán</h3>
+                            <p class="faj-latin"><i lang="la">Ramphastos toco</i></p>
+                            <p class="card-text">A legnagyobb tukánfaj. Óriási csőre meglepően könnyű, mert belül szivacsos szerkezetű, és a testhőmérséklete szabályozásában is segít. Gyümölcsöket eszik, így a magvak terjesztésével az erdő megújulását segíti.</p>
+                            <ul class="faj-cimkek" aria-label="Jellemzők">
+                                <li><i class="bi bi-layers" aria-hidden="true"></i> Lombkoronaszint</li>
+                                <li><i class="bi bi-geo-alt" aria-hidden="true"></i> Dél-Amerika</li>
+                            </ul>
+                        </div>
+                    </article>
+                </div>
+                <div class="col" data-tipus="allat">
+                    <article class="card faj-kartya h-100" id="faj-arakanga">
+                        <img src="../img/elovilag/arakanga-800.webp" class="card-img-top" width="800"
+                            height="533" loading="lazy" decoding="async" alt="Vörös, sárga és kék tollú arakanga egy fa ágai között">
+                        <div class="card-body">
+                            <p class="faj-tipus faj-tipus-allat">Állat</p>
+                            <h3 class="card-title">Arakanga (vörös ara)</h3>
+                            <p class="faj-latin"><i lang="la">Ara macao</i></p>
+                            <p class="card-text">Az egyik legszínesebb papagáj: tollazata vörös, sárga és kék. Erős csőrével a legkeményebb dióhéjat is feltöri. Párban vagy csapatban repül, és akár 40–50 évig is élhet.</p>
+                            <ul class="faj-cimkek" aria-label="Jellemzők">
+                                <li><i class="bi bi-layers" aria-hidden="true"></i> Óriásfák szintje</li>
+                                <li><i class="bi bi-geo-alt" aria-hidden="true"></i> Közép- és Dél-Amerika</li>
+                            </ul>
+                        </div>
+                    </article>
+                </div>
+                <div class="col" data-tipus="allat">
+                    <article class="card faj-kartya h-100" id="faj-levelibeka">
+                        <img src="../img/elovilag/levelibeka-800.webp" class="card-img-top" width="800"
+                            height="600" loading="lazy" decoding="async" alt="Vörösszemű levelibéka egy zöld levélen, kék-sárga oldalával és narancssárga lábujjaival">
+                        <div class="card-body">
+                            <p class="faj-tipus faj-tipus-allat">Állat</p>
+                            <h3 class="card-title">Vörösszemű levelibéka</h3>
+                            <p class="faj-latin"><i lang="la">Agalychnis callidryas</i></p>
+                            <p class="card-text">Nappal mozdulatlanul alszik egy levél fonákján, zöld testével szinte láthatatlan. Ha megzavarják, hirtelen kinyitja élénkvörös szemét, ami megriaszthatja a ragadozót. Petéit víz fölé hajló levelekre rakja.</p>
+                            <ul class="faj-cimkek" aria-label="Jellemzők">
+                                <li><i class="bi bi-layers" aria-hidden="true"></i> Alsó lombkoronaszint</li>
+                                <li><i class="bi bi-geo-alt" aria-hidden="true"></i> Közép-Amerika</li>
+                            </ul>
+                        </div>
+                    </article>
+                </div>
+                <div class="col" data-tipus="allat">
+                    <article class="card faj-kartya h-100" id="faj-lajhar">
+                        <img src="../img/elovilag/lajhar-800.webp" class="card-img-top" width="800"
+                            height="534" loading="lazy" decoding="async" alt="Háromujjú lajhár leveleket eszik egy ágon">
+                        <div class="card-body">
+                            <p class="faj-tipus faj-tipus-allat">Állat</p>
+                            <h3 class="card-title">Háromujjú lajhár</h3>
+                            <p class="faj-latin"><i lang="la">Bradypus variegatus</i></p>
+                            <p class="card-text">Olyan lassan mozog, hogy egy nap alatt sokszor csak néhány tíz métert tesz meg. Bundájában algák nőnek, ezért zöldes színű, ami segít elrejtőzni. Körülbelül hetente egyszer ereszkedik le a fáról.</p>
+                            <ul class="faj-cimkek" aria-label="Jellemzők">
+                                <li><i class="bi bi-layers" aria-hidden="true"></i> Lombkoronaszint</li>
+                                <li><i class="bi bi-geo-alt" aria-hidden="true"></i> Közép- és Dél-Amerika</li>
+                            </ul>
+                        </div>
+                    </article>
+                </div>
+                <div class="col" data-tipus="allat">
+                    <article class="card faj-kartya h-100" id="faj-harpia">
+                        <img src="../img/elovilag/harpia-800.webp" class="card-img-top" width="800"
+                            height="533" loading="lazy" decoding="async" alt="Hárpia ül egy ágon a sűrű esőerdőben">
+                        <div class="card-body">
+                            <p class="faj-tipus faj-tipus-allat">Állat</p>
+                            <h3 class="card-title">Hárpia</h3>
+                            <p class="faj-latin"><i lang="la">Harpia harpyja</i></p>
+                            <p class="card-text">Az egyik legerősebb ragadozó madár: hátsó karma akkora, mint egy grizzly medve karma. Lajhárokra és majmokra vadászik a lombkoronában. Fészkét a legmagasabb fák koronájában építi.</p>
+                            <ul class="faj-cimkek" aria-label="Jellemzők">
+                                <li><i class="bi bi-layers" aria-hidden="true"></i> Óriásfák szintje</li>
+                                <li><i class="bi bi-geo-alt" aria-hidden="true"></i> Közép- és Dél-Amerika</li>
+                            </ul>
+                        </div>
+                    </article>
+                </div>
+                <div class="col" data-tipus="allat">
+                    <article class="card faj-kartya h-100" id="faj-orangutan">
+                        <img src="../img/elovilag/orangutan-800.webp" class="card-img-top" width="800"
+                            height="530" loading="lazy" decoding="async" alt="Felnőtt hím orangután arca közelről, széles pofalebenyekkel">
+                        <div class="card-body">
+                            <p class="faj-tipus faj-tipus-allat">Állat</p>
+                            <h3 class="card-title">Borneói orangután</h3>
+                            <p class="faj-latin"><i lang="la">Pongo pygmaeus</i></p>
+                            <p class="card-text">A legnagyobb, főleg fán élő emlős. Minden este új fészket épít magának ágakból és levelekből. Az olajpálma-ültetvények miatt élőhelye gyorsan zsugorodik, ezért súlyosan veszélyeztetett faj.</p>
+                            <ul class="faj-cimkek" aria-label="Jellemzők">
+                                <li><i class="bi bi-layers" aria-hidden="true"></i> Lombkoronaszint</li>
+                                <li><i class="bi bi-geo-alt" aria-hidden="true"></i> Borneó</li>
+                            </ul>
+                        </div>
+                    </article>
+                </div>
+                <div class="col" data-tipus="noveny">
+                    <article class="card faj-kartya h-100" id="faj-kapokfa">
+                        <img src="../img/elovilag/kapokfa-800.webp" class="card-img-top" width="800"
+                            height="561" loading="lazy" decoding="async" alt="Kapokfa vastag törzse és hatalmas támasztógyökerei az erdőben">
+                        <div class="card-body">
+                            <p class="faj-tipus faj-tipus-noveny">Növény</p>
+                            <h3 class="card-title">Kapokfa</h3>
+                            <p class="faj-latin"><i lang="la">Ceiba pentandra</i></p>
+                            <p class="card-text">Akár 60 méter magasra is megnőhet, így kiemelkedik a lombkoronából. Hatalmas támasztógyökerei tartják meg a laza talajon. Terméséből selymes, vízálló rost, a kapok nyerhető.</p>
+                            <ul class="faj-cimkek" aria-label="Jellemzők">
+                                <li><i class="bi bi-layers" aria-hidden="true"></i> Óriásfák szintje</li>
+                                <li><i class="bi bi-geo-alt" aria-hidden="true"></i> Amerika és Afrika trópusai</li>
+                            </ul>
+                        </div>
+                    </article>
+                </div>
+                <div class="col" data-tipus="noveny">
+                    <article class="card faj-kartya h-100" id="faj-tunderrozsa">
+                        <img src="../img/elovilag/tunderrozsa-800.webp" class="card-img-top" width="800"
+                            height="436" loading="lazy" decoding="async" alt="Óriás tündérrózsa kerek, peremes levelei egy tó vízén">
+                        <div class="card-body">
+                            <p class="faj-tipus faj-tipus-noveny">Növény</p>
+                            <h3 class="card-title">Óriás tündérrózsa</h3>
+                            <p class="faj-latin"><i lang="la">Victoria amazonica</i></p>
+                            <p class="card-text">Kerek levelei akár 3 méter átmérőjűek is lehetnek. A levelek fonákját éles tüskék védik a növényevő halaktól. Virágai csak két éjszakán át nyílnak: először fehérek, majd rózsaszínre váltanak.</p>
+                            <ul class="faj-cimkek" aria-label="Jellemzők">
+                                <li><i class="bi bi-layers" aria-hidden="true"></i> Folyók és tavak vize</li>
+                                <li><i class="bi bi-geo-alt" aria-hidden="true"></i> Amazonas-medence</li>
+                            </ul>
+                        </div>
+                    </article>
+                </div>
+                <div class="col" data-tipus="noveny">
+                    <article class="card faj-kartya h-100" id="faj-bromelia">
+                        <img src="../img/elovilag/bromelia-800.webp" class="card-img-top" width="800"
+                            height="531" loading="lazy" decoding="async" alt="Fatörzseken élő broméliák az esőerdőben">
+                        <div class="card-body">
+                            <p class="faj-tipus faj-tipus-noveny">Növény</p>
+                            <h3 class="card-title">Broméliák</h3>
+                            <p class="faj-latin"><i lang="la">Bromeliaceae</i></p>
+                            <p class="card-text">Sok bromélia a fák ágain él, talajra sincs szüksége. Levelei tölcsérként gyűjtik az esővizet, amelyben békák, rovarok és apró rákok is élhetnek. Az ananász is ebbe a családba tartozik.</p>
+                            <ul class="faj-cimkek" aria-label="Jellemzők">
+                                <li><i class="bi bi-layers" aria-hidden="true"></i> Lombkoronaszint</li>
+                                <li><i class="bi bi-geo-alt" aria-hidden="true"></i> Amerika trópusai</li>
+                            </ul>
+                        </div>
+                    </article>
+                </div>
+                <div class="col" data-tipus="noveny">
+                    <article class="card faj-kartya h-100" id="faj-vanilia">
+                        <img src="../img/elovilag/vanilia-800.webp" class="card-img-top" width="800"
+                            height="600" loading="lazy" decoding="async" alt="A vanília halványzöld virága a kúszónövény levelei között">
+                        <div class="card-body">
+                            <p class="faj-tipus faj-tipus-noveny">Növény</p>
+                            <h3 class="card-title">Vanília</h3>
+                            <p class="faj-latin"><i lang="la">Vanilla planifolia</i></p>
+                            <p class="card-text">Ez a fákra kúszó orchidea adja a vaníliát: a fűszer a megszárított, érlelt termése. Virága csak egyetlen napig nyílik, ezért az ültetvényeken kézzel porozzák be.</p>
+                            <ul class="faj-cimkek" aria-label="Jellemzők">
+                                <li><i class="bi bi-layers" aria-hidden="true"></i> Alsó lombkoronaszint</li>
+                                <li><i class="bi bi-geo-alt" aria-hidden="true"></i> Mexikó és Közép-Amerika</li>
+                            </ul>
+                        </div>
+                    </article>
+                </div>
+                <div class="col" data-tipus="noveny">
+                    <article class="card faj-kartya h-100" id="faj-rafflesia">
+                        <img src="../img/elovilag/rafflesia-800.webp" class="card-img-top" width="800"
+                            height="533" loading="lazy" decoding="async" alt="Nyitott, vörösesbarna, fehér pöttyös Rafflesia-virág az erdő talaján">
+                        <div class="card-body">
+                            <p class="faj-tipus faj-tipus-noveny">Növény</p>
+                            <h3 class="card-title">Rafflézia</h3>
+                            <p class="faj-latin"><i lang="la">Rafflesia arnoldii</i></p>
+                            <p class="card-text">A világ legnagyobb egyedi virága: akár 1 méter átmérőjű és 10 kilogramm is lehet. Nincs levele, szára és gyökere, egy lián belsejében élősködik. Rothadó hús szagával csalogatja a beporzó legyeket.</p>
+                            <ul class="faj-cimkek" aria-label="Jellemzők">
+                                <li><i class="bi bi-layers" aria-hidden="true"></i> Talajszint</li>
+                                <li><i class="bi bi-geo-alt" aria-hidden="true"></i> Szumátra és Borneó</li>
+                            </ul>
+                        </div>
+                    </article>
+                </div>
+                <div class="col" data-tipus="noveny">
+                    <article class="card faj-kartya h-100" id="faj-kakao">
+                        <img src="../img/elovilag/kakao-800.webp" class="card-img-top" width="800"
+                            height="600" loading="lazy" decoding="async" alt="Zöld kakaótermések a kakaófa törzsén">
+                        <div class="card-body">
+                            <p class="faj-tipus faj-tipus-noveny">Növény</p>
+                            <h3 class="card-title">Kakaófa</h3>
+                            <p class="faj-latin"><i lang="la">Theobroma cacao</i></p>
+                            <p class="card-text">A csokoládé alapanyaga: a magvak a fa törzsén növő, nagy termésekben fejlődnek. Az esőerdő alsó szintjén, árnyékban nő. Apró virágait főleg törpeszúnyogok porozzák be.</p>
+                            <ul class="faj-cimkek" aria-label="Jellemzők">
+                                <li><i class="bi bi-layers" aria-hidden="true"></i> Alsó lombkoronaszint</li>
+                                <li><i class="bi bi-geo-alt" aria-hidden="true"></i> Az Amazonas vidéke (őshazája)</li>
+                            </ul>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+        <section id="forrasok" class="aloldal-szakasz forrasok" aria-labelledby="forrasok-cim">
+            <h2 id="forrasok-cim">Képek forrása</h2>
+            <details class="forras-lista">
+                <summary>Szerzők és licencek megtekintése</summary>
+                <p>A fajok képei a Wikimedia Commonsról származnak, szabad licenc alatt. Mindegyiket átméreteztük
+                    és WebP formátumba alakítottuk (módosítva).</p>
+                <ul>
+                    <li>Jaguár: Charles J. Sharp, <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a> – <a href="https://commons.wikimedia.org/wiki/File:Jaguar_(Panthera_onca_palustris)_male_Three_Brothers_River_2.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
+                    <li>Bőgőmajom: Charles J. Sharp, <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a> – <a href="https://commons.wikimedia.org/wiki/File:Ecuadorian_mantled_howler_(Alouatta_palliata_aequatorialis).jpg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
+                    <li>Óriástukán: Giles Laurent, <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a> – <a href="https://commons.wikimedia.org/wiki/File:006_Toco_toucan_in_Encontro_das_%C3%81guas_State_Park_Photo_by_Giles_Laurent.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
+                    <li>Arakanga (vörös ara): Charles J. Sharp, <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a> – <a href="https://commons.wikimedia.org/wiki/File:Scarlet_macaw_(Ara_macao_cyanopterus)_Copan.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
+                    <li>Vörösszemű levelibéka: Carey James Balboa, közkincs (public domain) – <a href="https://commons.wikimedia.org/wiki/File:Red_eyed_tree_frog_edit2.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
+                    <li>Háromujjú lajhár: Christian Mehlführer, <a href="https://creativecommons.org/licenses/by/2.5" target="_blank" rel="noopener">CC BY 2.5</a> – <a href="https://commons.wikimedia.org/wiki/File:MC_Drei-Finger-Faultier.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
+                    <li>Hárpia: Brian Gratwicke, <a href="https://creativecommons.org/licenses/by/2.0" target="_blank" rel="noopener">CC BY 2.0</a> – <a href="https://commons.wikimedia.org/wiki/File:Harpy_Eagle_(Harpia_harpyja).jpg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
+                    <li>Borneói orangután: Ridwan0810, <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a> – <a href="https://commons.wikimedia.org/wiki/File:Orangutan_Kalimantan.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
+                    <li>Kapokfa: Cayambe, <a href="https://creativecommons.org/licenses/by-sa/3.0" target="_blank" rel="noopener">CC BY-SA 3.0</a> – <a href="https://commons.wikimedia.org/wiki/File:Ilet_la_M%C3%A8re_Ceiba_pentandra_fromager_2013.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
+                    <li>Óriás tündérrózsa: Diego Delso, <a href="https://creativecommons.org/licenses/by-sa/3.0" target="_blank" rel="noopener">CC BY-SA 3.0</a> – <a href="https://commons.wikimedia.org/wiki/File:Nen%C3%BAfares_(Victoria_amazonica),_Zoo_de_Ciudad_Ho_Chi_Minh,_Vietnam,_2013-08-14,_DD_01.JPG" target="_blank" rel="noopener">Wikimedia Commons</a></li>
+                    <li>Broméliák: US Forest Service – Southern Region, <a href="https://creativecommons.org/licenses/by-sa/2.0" target="_blank" rel="noopener">CC BY-SA 2.0</a> – <a href="https://commons.wikimedia.org/wiki/File:Bromeliads_on_tree_trunks_Luquillo_EF_(19083768770).jpg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
+                    <li>Vanília: Forest és Kim Starr, <a href="https://creativecommons.org/licenses/by/3.0/us/deed.en" target="_blank" rel="noopener">CC BY 3.0 US</a> – <a href="https://commons.wikimedia.org/wiki/File:Starr-130312-2167-Vanilla_planifolia-flower-Pali_o_Waipio_Huelo-Maui_(24580055063).jpg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
+                    <li>Rafflézia: SofianRafflesia, <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a> – <a href="https://commons.wikimedia.org/wiki/File:Rafflesia_arnoldii_Bengkulu_02.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
+                    <li>Kakaófa: Bernard Dupont, <a href="https://creativecommons.org/licenses/by-sa/2.0" target="_blank" rel="noopener">CC BY-SA 2.0</a> – <a href="https://commons.wikimedia.org/wiki/File:Cacao_Tree_(Theobroma_cacao)_green_pods_(17348751253).jpg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
+                </ul>
+            </details>
         </section>
         <section class="kovetkezo" aria-labelledby="kovetkezo-cim">
             <h2 id="kovetkezo-cim">Következő lépés: az esőerdő vízi világa</h2>

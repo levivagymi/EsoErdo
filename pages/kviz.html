@@ -53,7 +53,8 @@
             <h1 id="oldal-cim">Teszteld a tudásod!</h1>
             <p>Tíz kérdés az esőerdőkről. Minden válasz után megtudod, mi a helyes megoldás, és miért.</p>
             <div class="hero-gombok">
-                <a class="btn btn-esoerdo" href="#szabalyok">Hogyan működik?</a>
+                <a class="btn btn-esoerdo" href="#kviz">Irány a kvíz</a>
+                <a class="szoveglink hero-link" href="#szabalyok">Hogyan működik?</a>
             </div>
         </section>
         <figure class="hero-kep">
@@ -72,6 +73,45 @@
                 <li>Minden helyes válasz egy pontot ér, a végén pedig megtudod, hány pontot értél el.</li>
                 <li>Bármikor újrakezdheted, és a kérdések sorrendje minden alkalommal változik.</li>
             </ol>
+        </section>
+        <section id="kviz" class="aloldal-szakasz kviz-szekcio" aria-labelledby="kviz-cim">
+            <h2 id="kviz-cim">Esőerdő-kvíz</h2>
+            <article class="card kviz-kartya">
+                <div class="card-body">
+                    <div class="kviz-kezdo" id="kviz-kezdo">
+                        <p>Készen állsz? Tíz kérdés, négy válaszlehetőség – lássuk, mennyit tudsz az esőerdőkről!</p>
+                        <button type="button" class="btn btn-esoerdo btn-lg" id="kviz-indit">Kezdjük!</button>
+                        <noscript>
+                            <p class="kviz-figyelem">A kvíz kitöltéséhez engedélyezd a JavaScriptet a böngésződben.</p>
+                        </noscript>
+                    </div>
+                    <div class="kviz-kerdes-resz" id="kviz-kerdes-resz" hidden>
+                        <div class="kviz-fej">
+                            <p class="kviz-szamlalo" id="kviz-szamlalo">1. kérdés / 10</p>
+                            <p class="kviz-pont">Pontszám: <span id="kviz-pont">0</span></p>
+                        </div>
+                        <div class="progress kviz-sav" id="kviz-sav" role="progressbar" aria-label="Haladás a kvízben"
+                            aria-valuemin="0" aria-valuemax="10" aria-valuenow="1" aria-valuetext="1. kérdés a 10-ből">
+                            <div class="progress-bar" id="kviz-sav-belso"></div>
+                        </div>
+                        <fieldset class="kviz-kerdes">
+                            <legend id="kviz-kerdes-szoveg" tabindex="-1">Kérdés</legend>
+                            <div class="kviz-valaszok" id="kviz-valaszok"></div>
+                        </fieldset>
+                        <div class="kviz-visszajelzes" id="kviz-visszajelzes" aria-live="polite"></div>
+                        <button type="button" class="btn btn-esoerdo" id="kviz-tovabb" hidden>Következő kérdés</button>
+                    </div>
+                    <div class="kviz-eredmeny" id="kviz-eredmeny" hidden>
+                        <h3 id="kviz-eredmeny-cim" tabindex="-1">Az eredményed</h3>
+                        <p class="kviz-vegpont"><span id="kviz-vegpont">0</span> / 10 pont</p>
+                        <p class="kviz-ertekeles" id="kviz-ertekeles">Töltsd ki a kvízt az eredményhez!</p>
+                        <div class="kovetkezo-gombok">
+                            <button type="button" class="btn btn-esoerdo" id="kviz-ujra">Újrakezdés</button>
+                            <a class="btn btn-outline-esoerdo" href="tippek.html">Mit tehetek az esőerdőkért?</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
         </section>
         <section class="kovetkezo" aria-labelledby="kovetkezo-cim">
             <h2 id="kovetkezo-cim">Következő lépés: dönts te az erdő sorsáról!</h2>
