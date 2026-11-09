@@ -670,3 +670,201 @@ const vallalasDobozok = [...document.querySelectorAll('.vallalas')];
 if (vallalasDobozok.length) {
   initVallalasok(vallalasDobozok);
 }
+
+/* ---------- Döntési játék (pages/jatek.html) ----------
+   Hat év, évente egy helyzet és három döntés. Minden döntés megváltoztatja a három mutatót (0–100). */
+const JATEK_KEZDO = { erdo: 80, elovilag: 75, jolet: 45 };
+const MUTATO_NEV = { erdo: 'Erdő', elovilag: 'Élővilág', jolet: 'Helyiek jóléte' };
+
+const JATEK_HELYZETEK = [
+  {
+    cim: 'Fakitermelő cég ajánlata',
+    leiras: 'Egy nagy fakitermelő cég sok pénzt ajánl azért, hogy kivághassa az erdő egy részét.',
+    dontesek: [
+      { szoveg: 'Elfogadod az ajánlatot, és engedélyezed a tarvágást.', hatas: { erdo: -20, elovilag: -15, jolet: 15 },
+        kovetkezmeny: 'Sok fa eltűnt, az állatok élőhelye beszűkült. A pénz egy ideig jól jön, de a kivágott erdő évtizedek alatt sem nő vissza.' },
+      { szoveg: 'Csak kíméletes, tanúsított (FSC) fakitermelést engedsz.', hatas: { erdo: -5, elovilag: -3, jolet: 8 },
+        kovetkezmeny: 'A cég csak válogatva vághat ki fákat, és újakat ültet. Kevesebb a bevétel, de az erdő megmarad.' },
+      { szoveg: 'Elutasítod az ajánlatot.', hatas: { erdo: 0, elovilag: 2, jolet: -5 },
+        kovetkezmeny: 'Az erdő érintetlen marad, de a helyiek csalódottak, mert elmaradt a munkalehetőség.' },
+    ],
+  },
+  {
+    cim: 'Legelő vagy erdő?',
+    leiras: 'A gazdák azt kérik, hogy felégethessenek egy erdőrészt új marhalegelőnek.',
+    dontesek: [
+      { szoveg: 'Engedélyezed az erdőégetést.', hatas: { erdo: -20, elovilag: -15, jolet: 10 },
+        kovetkezmeny: 'A tűz hatalmas területet emésztett fel. A legelő talaja néhány év alatt kimerül, és a gazdák újabb erdőt kérnek majd.' },
+      { szoveg: 'Segítesz a meglévő legelőket jobban kihasználni.', hatas: { erdo: 0, elovilag: 0, jolet: 6 },
+        kovetkezmeny: 'Fák árnyékában legeltetnek, takarmányt termesztenek: ugyanakkora területen több állat fér el.' },
+      { szoveg: 'Az erdő árnyékában termesztett kakaót és gyümölcsöt támogatod.', hatas: { erdo: 2, elovilag: 3, jolet: 4 },
+        kovetkezmeny: 'Az erdei kertek jövedelmet adnak, és közben az erdő is megmarad.' },
+    ],
+  },
+  {
+    cim: 'Turisták érkeznének',
+    leiras: 'Egy utazási iroda szállást építene, hogy a turisták megismerhessék az esőerdőt.',
+    dontesek: [
+      { szoveg: 'Nagy szállodát és utat építtetsz az erdő közepébe.', hatas: { erdo: -10, elovilag: -8, jolet: 10 },
+        kovetkezmeny: 'Sok turista érkezik, de az új út mentén megindult az illegális fakivágás is.' },
+      { szoveg: 'Kis, helyiek által vezetett ökoszállást támogatsz, helyi túravezetőkkel.', hatas: { erdo: 0, elovilag: 2, jolet: 10 },
+        kovetkezmeny: 'A turisták azért fizetnek, hogy élő erdőt lássanak – így a helyieknek megéri megvédeni.' },
+      { szoveg: 'Nem engedsz be turistákat.', hatas: { erdo: 0, elovilag: 0, jolet: -3 },
+        kovetkezmeny: 'Az erdő nyugalma megmarad, de a vidék egy fontos bevételi lehetőségtől esik el.' },
+    ],
+  },
+  {
+    cim: 'Orvvadászok az erdőben',
+    leiras: 'Orvvadászok jelentek meg, akik ritka papagájokat és majmokat fognak be eladásra.',
+    dontesek: [
+      { szoveg: 'Nem foglalkozol vele, erre nincs pénz.', hatas: { erdo: 0, elovilag: -15, jolet: 0 },
+        kovetkezmeny: 'Egyre kevesebb papagáj és majom él az erdőben, néhány faj teljesen eltűnt a vidékről.' },
+      { szoveg: 'Helyi erdőőröket alkalmazol.', hatas: { erdo: 2, elovilag: 10, jolet: 4 },
+        kovetkezmeny: 'Az őrök munkát kaptak, az orvvadászat pedig szinte teljesen megszűnt.' },
+      { szoveg: 'Szigorú büntetést vezetsz be, de nincs, aki ellenőrizze.', hatas: { erdo: 0, elovilag: -5, jolet: 0 },
+        kovetkezmeny: 'A szabály papíron jó, de ellenőrzés nélkül az orvvadászok folytatják.' },
+    ],
+  },
+  {
+    cim: 'Aszály és tűzveszély',
+    leiras: 'Rendkívül száraz év jön, az erdőben nagy a tűzveszély.',
+    dontesek: [
+      { szoveg: 'Tűzoltó csapatokat képzel ki, és megtiltod a tűzgyújtást.', hatas: { erdo: 0, elovilag: 2, jolet: -3 },
+        kovetkezmeny: 'Néhány kisebb tűz kitört, de gyorsan eloltották. Az erdő nagy része megmenekült.' },
+      { szoveg: 'Nem teszel semmit.', hatas: { erdo: -15, elovilag: -10, jolet: -5 },
+        kovetkezmeny: 'Hatalmas erdőtűz pusztított, a füst miatt sok ember meg is betegedett.' },
+      { szoveg: 'Engedélyezed a szokásos tarlóégetést.', hatas: { erdo: -10, elovilag: -6, jolet: 2 },
+        kovetkezmeny: 'Az egyik tűz átterjedt az erdőre: száraz időben a tűz könnyen elszabadul.' },
+    ],
+  },
+  {
+    cim: 'Az őslakosok földjei',
+    leiras: 'Az erdőben élő őslakos közösség hivatalos jogot kér az ősei által lakott földekre.',
+    dontesek: [
+      { szoveg: 'Megadod nekik a földjogot, és támogatod őket.', hatas: { erdo: 8, elovilag: 6, jolet: 8 },
+        kovetkezmeny: 'Az őslakosok vigyáznak az erdőre, amelyben élnek. A kutatások szerint ahol biztos a földjoguk, ott sokkal kevesebb erdőt irtanak ki.' },
+      { szoveg: 'Elutasítod, mert a földet egy bányacégnek adnád.', hatas: { erdo: -15, elovilag: -10, jolet: -5 },
+        kovetkezmeny: 'A bánya szennyezte a folyót, az őslakosoknak el kellett hagyniuk az otthonukat.' },
+      { szoveg: 'Elhalasztod a döntést.', hatas: { erdo: -3, elovilag: -2, jolet: -3 },
+        kovetkezmeny: 'Amíg nem született döntés, illegális telepesek vágtak ki erdőt a területen.' },
+    ],
+  },
+];
+
+function initJatek(jatekElem) {
+  const $ = (id) => jatekElem.querySelector(`#${id}`);
+  const kezdo = $('jatek-kezdo');
+  const kor = $('jatek-kor');
+  const vegeResz = $('jatek-vege');
+  const dontesDoboz = $('jatek-dontesek');
+  const kovetkezmeny = $('jatek-kovetkezmeny');
+  const tovabbGomb = $('jatek-tovabb');
+  const helyzetCim = $('jatek-helyzet-cim');
+
+  let allapot = { ...JATEK_KEZDO };
+  let ev = 0;
+  let naplo = [];
+
+  const mutatokFrissit = () => {
+    Object.keys(MUTATO_NEV).forEach((kulcs) => {
+      $(`mutato-${kulcs}`).setAttribute('aria-valuenow', String(allapot[kulcs]));
+      $(`mutato-${kulcs}-sav`).style.width = `${allapot[kulcs]}%`;
+      $(`mutato-${kulcs}-ertek`).textContent = `${allapot[kulcs]}%`;
+    });
+  };
+
+  const valtozasSzoveg = (hatas) => Object.keys(MUTATO_NEV)
+    .map((kulcs) => {
+      const ertek = hatas[kulcs];
+      const jel = ertek > 0 ? '+' : ertek < 0 ? '−' : '±';
+      return `${MUTATO_NEV[kulcs]} ${jel}${Math.abs(ertek)}`;
+    })
+    .join(', ');
+
+  const helyzetMutat = () => {
+    const helyzet = JATEK_HELYZETEK[ev];
+    $('jatek-ev').textContent = `${ev + 1}. év / ${JATEK_HELYZETEK.length}`;
+    helyzetCim.textContent = helyzet.cim;
+    $('jatek-helyzet-leiras').textContent = helyzet.leiras;
+    kovetkezmeny.replaceChildren();
+    tovabbGomb.hidden = true;
+    const gombok = helyzet.dontesek.map((dontes) => {
+      const gomb = elem('button', 'btn jatek-dontes', dontes.szoveg);
+      gomb.type = 'button';
+      gomb.addEventListener('click', () => dont(gomb, dontes, helyzet));
+      return gomb;
+    });
+    dontesDoboz.replaceChildren(...gombok);
+    helyzetCim.focus({ preventScroll: true });
+  };
+
+  const dont = (gomb, dontes, helyzet) => {
+    [...dontesDoboz.children].forEach((g) => { g.disabled = true; });
+    gomb.classList.add('valasztott');
+    Object.keys(MUTATO_NEV).forEach((kulcs) => {
+      allapot[kulcs] = Math.min(100, Math.max(0, allapot[kulcs] + dontes.hatas[kulcs]));
+    });
+    mutatokFrissit();
+    naplo.push({ cim: helyzet.cim, dontes: dontes.szoveg });
+    kovetkezmeny.replaceChildren(
+      elem('p', 'jatek-kovetkezmeny-szoveg', dontes.kovetkezmeny),
+      elem('p', 'jatek-valtozas', `Változás: ${valtozasSzoveg(dontes.hatas)}.`),
+    );
+    tovabbGomb.textContent = ev === JATEK_HELYZETEK.length - 1 ? 'Eredmény megtekintése' : 'Következő év';
+    tovabbGomb.hidden = false;
+    tovabbGomb.focus({ preventScroll: true });
+  };
+
+  const ertekeles = () => {
+    const { erdo, elovilag, jolet } = allapot;
+    if (erdo >= 70 && elovilag >= 70 && jolet >= 55) {
+      return 'Fenntartható jövő! Megőrizted az erdőt és az élővilágot, és közben az itt élők is jobban élnek. A valóságban is ez a cél.';
+    }
+    if (erdo < 45) {
+      return 'Az erdő nagy része eltűnt. A gyors haszon helyett hosszú távú kár lett a vége: a kivágott esőerdő emberöltők alatt sem nő vissza.';
+    }
+    if (jolet < 40) {
+      return 'Az erdő megmaradt, de az itt élők nehezen boldogulnak. A legjobb megoldások azok, amelyek az embereknek is megélhetést adnak.';
+    }
+    return 'Kompromisszumos eredmény: az erdő egy része megmaradt, de lett volna jobb út is. Próbáld újra, és keresd azokat a döntéseket, amelyek egyszerre védik az erdőt és segítik az embereket!';
+  };
+
+  const vege = () => {
+    kor.hidden = true;
+    vegeResz.hidden = false;
+    $('jatek-ertekeles').textContent = `Erdő: ${allapot.erdo}%, élővilág: ${allapot.elovilag}%, helyiek jóléte: ${allapot.jolet}%. ${ertekeles()}`;
+    $('jatek-osszegzes').replaceChildren(...naplo.map((sor, i) => elem('li', '', `${i + 1}. év – ${sor.cim}: ${sor.dontes}`)));
+    $('jatek-vege-cim').focus({ preventScroll: true });
+    jatekElem.scrollIntoView({ behavior: csokkentettMozgas() ? 'auto' : 'smooth', block: 'start' });
+  };
+
+  const indit = () => {
+    allapot = { ...JATEK_KEZDO };
+    ev = 0;
+    naplo = [];
+    mutatokFrissit();
+    kezdo.hidden = true;
+    vegeResz.hidden = true;
+    kor.hidden = false;
+    helyzetMutat();
+    jatekElem.scrollIntoView({ behavior: csokkentettMozgas() ? 'auto' : 'smooth', block: 'start' });
+  };
+
+  tovabbGomb.addEventListener('click', () => {
+    if (ev === JATEK_HELYZETEK.length - 1) {
+      vege();
+      return;
+    }
+    ev += 1;
+    helyzetMutat();
+    jatekElem.scrollIntoView({ behavior: csokkentettMozgas() ? 'auto' : 'smooth', block: 'start' });
+  });
+  $('jatek-indit').addEventListener('click', indit);
+  $('jatek-ujra').addEventListener('click', indit);
+  mutatokFrissit();
+}
+
+const jatekElem = document.getElementById('jatek');
+if (jatekElem) {
+  initJatek(jatekElem);
+}

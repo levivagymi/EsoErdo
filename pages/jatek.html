@@ -54,7 +54,8 @@
             <p>Hat éven át te irányítasz egy esőerdős vidéket. Minden évben döntened kell, és minden döntésnek
                 következménye van.</p>
             <div class="hero-gombok">
-                <a class="btn btn-esoerdo" href="#szabalyok">Hogyan kell játszani?</a>
+                <a class="btn btn-esoerdo" href="#jatek">Játszani akarok</a>
+                <a class="szoveglink hero-link" href="#szabalyok">Hogyan kell játszani?</a>
             </div>
         </section>
         <figure class="hero-kep">
@@ -79,7 +80,97 @@
                 <li><strong>Helyiek jóléte:</strong> mennyire tudnak megélni a helyi közösségek.</li>
             </ul>
         </section>
-        <section class="kovetkezo" aria-labelledby="kovetkezo-cim">
+        <section id="jatek" class="aloldal-szakasz jatek-szekcio" aria-labelledby="jatek-cim">
+            <h2 id="jatek-cim">Kezdődjön a játék!</h2>
+            <article class="card jatek-kartya">
+                <div class="card-body">
+                    <div class="jatek-mutatok">
+                        <div class="jatek-mutato">
+                            <div class="jatek-mutato-fej"><span>Erdő</span> <span class="jatek-mutato-ertek"
+                                    id="mutato-erdo-ertek">80%</span></div>
+                            <div class="progress" id="mutato-erdo" role="progressbar" aria-label="Erdő" aria-valuemin="0"
+                                aria-valuemax="100" aria-valuenow="80">
+                                <div class="progress-bar mutato-sav-erdo" id="mutato-erdo-sav"></div>
+                            </div>
+                        </div>                        <div class="jatek-mutato">
+                            <div class="jatek-mutato-fej"><span>Élővilág</span> <span class="jatek-mutato-ertek"
+                                    id="mutato-elovilag-ertek">75%</span></div>
+                            <div class="progress" id="mutato-elovilag" role="progressbar" aria-label="Élővilág" aria-valuemin="0"
+                                aria-valuemax="100" aria-valuenow="75">
+                                <div class="progress-bar mutato-sav-elovilag" id="mutato-elovilag-sav"></div>
+                            </div>
+                        </div>                        <div class="jatek-mutato">
+                            <div class="jatek-mutato-fej"><span>Helyiek jóléte</span> <span class="jatek-mutato-ertek"
+                                    id="mutato-jolet-ertek">45%</span></div>
+                            <div class="progress" id="mutato-jolet" role="progressbar" aria-label="Helyiek jóléte" aria-valuemin="0"
+                                aria-valuemax="100" aria-valuenow="45">
+                                <div class="progress-bar mutato-sav-jolet" id="mutato-jolet-sav"></div>
+                            </div>
+                        </div>                    </div>
+                    <div class="jatek-kezdo" id="jatek-kezdo">
+                        <p>A vidéked még erdős, de az itt élők szegények, és sokan pénzt ajánlanak az erdőért. Hat év,
+                            hat döntés – vajon meg tudod őrizni az erdőt úgy, hogy közben az emberek is jól éljenek?</p>
+                        <button type="button" class="btn btn-esoerdo btn-lg" id="jatek-indit">Játék indítása</button>
+                        <noscript>
+                            <p class="jatek-figyelem">A játékhoz engedélyezd a JavaScriptet a böngésződben.</p>
+                        </noscript>
+                    </div>
+                    <div class="jatek-kor" id="jatek-kor" hidden>
+                        <p class="jatek-ev" id="jatek-ev">1. év / 6</p>
+                        <h3 id="jatek-helyzet-cim" tabindex="-1">Helyzet</h3>
+                        <p class="jatek-helyzet-leiras" id="jatek-helyzet-leiras">Leírás</p>
+                        <div class="jatek-dontesek" id="jatek-dontesek" role="group" aria-labelledby="jatek-helyzet-cim"></div>
+                        <div class="jatek-kovetkezmeny" id="jatek-kovetkezmeny" aria-live="polite"></div>
+                        <button type="button" class="btn btn-esoerdo" id="jatek-tovabb" hidden>Következő év</button>
+                    </div>
+                    <div class="jatek-vege" id="jatek-vege" hidden>
+                        <h3 id="jatek-vege-cim" tabindex="-1">A vidéked hat év után</h3>
+                        <p class="jatek-ertekeles" id="jatek-ertekeles">Játszd végig a hat évet az értékeléshez!</p>
+                        <h4 class="jatek-osszegzes-cim">A döntéseid</h4>
+                        <ol class="jatek-osszegzes" id="jatek-osszegzes"></ol>
+                        <div class="kovetkezo-gombok">
+                            <button type="button" class="btn btn-esoerdo" id="jatek-ujra">Új játék</button>
+                            <a class="btn btn-outline-esoerdo" href="tippek.html">Mit tehetek én?</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </section>
+        <section class="aloldal-szakasz" aria-labelledby="tanulsag-cim">
+            <h2 id="tanulsag-cim">Mit tanulhatunk a játékból?</h2>
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                <div class="col">
+                    <article class="card tudtad-kartya h-100">
+                        <div class="card-body">
+                            <i class="bi bi-people" aria-hidden="true"></i>
+                            <h3 class="card-title">Az őslakosok védik az erdőt</h3>
+                            <p class="card-text">Kutatások szerint ahol az erdőben élő őslakos közösségek földjogai
+                                biztosítottak, ott jóval kevesebb erdőt irtanak ki.</p>
+                        </div>
+                    </article>
+                </div>
+                <div class="col">
+                    <article class="card tudtad-kartya h-100">
+                        <div class="card-body">
+                            <i class="bi bi-tree" aria-hidden="true"></i>
+                            <h3 class="card-title">Az élő erdő is érték</h3>
+                            <p class="card-text">Az ökoturizmus, az erdei kertekben termesztett kakaó és gyümölcs, vagy a
+                                tanúsított fakitermelés úgy ad megélhetést, hogy az erdő is megmarad.</p>
+                        </div>
+                    </article>
+                </div>
+                <div class="col">
+                    <article class="card tudtad-kartya h-100">
+                        <div class="card-body">
+                            <i class="bi bi-fire" aria-hidden="true"></i>
+                            <h3 class="card-title">A kár gyorsan jön, a gyógyulás lassú</h3>
+                            <p class="card-text">Egy esőerdőt néhány nap alatt fel lehet égetni, de évszázadok kellenek
+                                ahhoz, hogy újra olyan gazdag legyen, mint korábban.</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>        <section class="kovetkezo" aria-labelledby="kovetkezo-cim">
             <h2 id="kovetkezo-cim">Következő lépés: te mit tehetsz?</h2>
             <p>A játékban egy egész vidékről döntesz, de a saját mindennapjaidban is sokat tehetsz az esőerdőkért.</p>
             <a class="btn btn-esoerdo" href="tippek.html">Tovább a tippekhez</a>
