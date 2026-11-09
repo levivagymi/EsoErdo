@@ -79,7 +79,16 @@
         </section>
         <section id="fajok" class="aloldal-szakasz" aria-labelledby="fajok-cim">
             <h2 id="fajok-cim">Állatok és növények</h2>
-            <p class="fajok-bevezeto">Szűrd a fajokat a gombokkal!</p>
+            <p class="fajok-bevezeto">Szűrd a fajokat a gombokkal, és hallgasd meg néhány állat valódi hangját!</p>
+            <div class="hangulat-sav">
+                <button type="button" class="btn btn-esoerdo hang-gomb" data-hang="../audio/esoerdo-hangulat.mp3"
+                    aria-pressed="false">
+                    <i class="bi bi-music-note-beamed" aria-hidden="true"></i>
+                    <span class="hang-felirat">Esőerdő-hangulat</span>
+                </button>
+                <p class="hang-leiras">Hang: madarak hajnali kórusa egy trópusi esőerdőben (kb. 30 másodperc).</p>
+            </div>
+            <p class="hang-allapot" id="hang-allapot" aria-live="polite"></p>
             <div class="faj-szuro-sor">
                 <div class="btn-group faj-szuro" role="group" aria-label="Fajok szűrése">
                     <button type="button" class="btn btn-outline-esoerdo active" data-szuro="mind"
@@ -106,6 +115,14 @@
                                 <li><i class="bi bi-geo-alt" aria-hidden="true"></i> Közép- és Dél-Amerika</li>
                             </ul>
                         </div>
+                        <div class="card-footer">
+                            <button type="button" class="btn btn-outline-esoerdo hang-gomb"
+                                data-hang="../audio/jaguar.mp3" aria-pressed="false">
+                                <i class="bi bi-volume-up" aria-hidden="true"></i>
+                                <span class="hang-felirat">Jaguár hangja</span>
+                            </button>
+                            <p class="hang-leiras">Hang: Rövid, mély, fűrészelésre emlékeztető morgás – a jaguár így jelzi a jelenlétét.</p>
+                        </div>
                     </article>
                 </div>
                 <div class="col" data-tipus="allat">
@@ -121,6 +138,14 @@
                                 <li><i class="bi bi-layers" aria-hidden="true"></i> Lombkoronaszint</li>
                                 <li><i class="bi bi-geo-alt" aria-hidden="true"></i> Közép- és Dél-Amerika</li>
                             </ul>
+                        </div>
+                        <div class="card-footer">
+                            <button type="button" class="btn btn-outline-esoerdo hang-gomb"
+                                data-hang="../audio/bogomajom.mp3" aria-pressed="false">
+                                <i class="bi bi-volume-up" aria-hidden="true"></i>
+                                <span class="hang-felirat">Bőgőmajom hangja</span>
+                            </button>
+                            <p class="hang-leiras">Hang: Erős, mély üvöltések sorozata, amely kilométerekre elhallatszik.</p>
                         </div>
                     </article>
                 </div>
@@ -138,6 +163,14 @@
                                 <li><i class="bi bi-geo-alt" aria-hidden="true"></i> Dél-Amerika</li>
                             </ul>
                         </div>
+                        <div class="card-footer">
+                            <button type="button" class="btn btn-outline-esoerdo hang-gomb"
+                                data-hang="../audio/tukan.mp3" aria-pressed="false">
+                                <i class="bi bi-volume-up" aria-hidden="true"></i>
+                                <span class="hang-felirat">Óriástukán hangja</span>
+                            </button>
+                            <p class="hang-leiras">Hang: Ismétlődő, rekedtes, mély károgás.</p>
+                        </div>
                     </article>
                 </div>
                 <div class="col" data-tipus="allat">
@@ -154,6 +187,14 @@
                                 <li><i class="bi bi-geo-alt" aria-hidden="true"></i> Közép- és Dél-Amerika</li>
                             </ul>
                         </div>
+                        <div class="card-footer">
+                            <button type="button" class="btn btn-outline-esoerdo hang-gomb"
+                                data-hang="../audio/arakanga.mp3" aria-pressed="false">
+                                <i class="bi bi-volume-up" aria-hidden="true"></i>
+                                <span class="hang-felirat">Arakanga hangja</span>
+                            </button>
+                            <p class="hang-leiras">Hang: Éles, harsány rikácsolás.</p>
+                        </div>
                     </article>
                 </div>
                 <div class="col" data-tipus="allat">
@@ -169,6 +210,14 @@
                                 <li><i class="bi bi-layers" aria-hidden="true"></i> Alsó lombkoronaszint</li>
                                 <li><i class="bi bi-geo-alt" aria-hidden="true"></i> Közép-Amerika</li>
                             </ul>
+                        </div>
+                        <div class="card-footer">
+                            <button type="button" class="btn btn-outline-esoerdo hang-gomb"
+                                data-hang="../audio/levelibeka.mp3" aria-pressed="false">
+                                <i class="bi bi-volume-up" aria-hidden="true"></i>
+                                <span class="hang-felirat">Vörösszemű levelibéka hangja</span>
+                            </button>
+                            <p class="hang-leiras">Hang: Rövid, kattogó „csak-csak” hívások a párzási időszakban.</p>
                         </div>
                     </article>
                 </div>
@@ -319,7 +368,7 @@
             </div>
         </section>
         <section id="forrasok" class="aloldal-szakasz forrasok" aria-labelledby="forrasok-cim">
-            <h2 id="forrasok-cim">Képek forrása</h2>
+            <h2 id="forrasok-cim">Képek és hangok forrása</h2>
             <details class="forras-lista">
                 <summary>Szerzők és licencek megtekintése</summary>
                 <p>A fajok képei a Wikimedia Commonsról származnak, szabad licenc alatt. Mindegyiket átméreteztük
@@ -339,6 +388,16 @@
                     <li>Vanília: Forest és Kim Starr, <a href="https://creativecommons.org/licenses/by/3.0/us/deed.en" target="_blank" rel="noopener">CC BY 3.0 US</a> – <a href="https://commons.wikimedia.org/wiki/File:Starr-130312-2167-Vanilla_planifolia-flower-Pali_o_Waipio_Huelo-Maui_(24580055063).jpg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
                     <li>Rafflézia: SofianRafflesia, <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a> – <a href="https://commons.wikimedia.org/wiki/File:Rafflesia_arnoldii_Bengkulu_02.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
                     <li>Kakaófa: Bernard Dupont, <a href="https://creativecommons.org/licenses/by-sa/2.0" target="_blank" rel="noopener">CC BY-SA 2.0</a> – <a href="https://commons.wikimedia.org/wiki/File:Cacao_Tree_(Theobroma_cacao)_green_pods_(17348751253).jpg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
+                </ul>
+                <h3 class="forras-alcim">Hangok</h3>
+                <p>A hangfelvételeket megvágtuk, a végüket elhalkítottuk és MP3 formátumba alakítottuk (módosítva).</p>
+                <ul>
+                    <li>Jaguár: About Zoos, <a href="https://creativecommons.org/licenses/by/4.0" target="_blank" rel="noopener">CC BY 4.0</a> – <a href="https://commons.wikimedia.org/wiki/File:Jaguar_saw.flac" target="_blank" rel="noopener">Wikimedia Commons</a></li>
+                    <li>Bőgőmajom: David O&#x27;Hara, <a href="https://creativecommons.org/licenses/by/3.0" target="_blank" rel="noopener">CC BY 3.0</a> – <a href="https://commons.wikimedia.org/wiki/File:Howler_monkey.ogg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
+                    <li>Óriástukán: Fabrício Grigolin, <a href="https://creativecommons.org/licenses/by/4.0" target="_blank" rel="noopener">CC BY 4.0</a> – <a href="https://commons.wikimedia.org/wiki/File:Toco_Toucan_call_(Ramphastos_toco).ogg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
+                    <li>Arakanga: Ganesh Mohan T, <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a> – <a href="https://commons.wikimedia.org/wiki/File:Scarlet_macaw_01.wav" target="_blank" rel="noopener">Wikimedia Commons</a></li>
+                    <li>Vörösszemű levelibéka: Klemens Bottig, Copyrighted free USe – <a href="https://commons.wikimedia.org/wiki/File:Rotaugenlaubfrosch_Paarungsruf.ogg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
+                    <li>Esőerdő hajnali madárkórusa (India, Nyugati-Ghátok): DivyaCM, <a href="https://creativecommons.org/licenses/by/4.0" target="_blank" rel="noopener">CC BY 4.0</a> – <a href="https://commons.wikimedia.org/wiki/File:RainforestDawnChorus_Selaliparai_DM.ogg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
                 </ul>
             </details>
         </section>
